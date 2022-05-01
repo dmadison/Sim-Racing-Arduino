@@ -1,0 +1,51 @@
+name: build
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      BOARD: "Arduino Leonardo"           # board name, human-readable
+      BOARD_PLATFORM: "arduino:avr"       # board platform, to be installed by the CLI
+      BOARD_FQBN: "arduino:avr:leonardo"  # fully qualified board name for compilation
+  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.1.1
+
+      - name: Install Board Platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install $BOARD_PLATFORM
+
+      - name: Add Library Symbolic Link to Repo
+        run: |
+          mkdir --parents "$HOME/Arduino/libraries"
+          ln --symbolic "$PWD" "$HOME/Arduino/libraries/."
+
+      - name: Install Dependencies
+        run: |
+          git clone https://github.com/MHeironimus/ArduinoJoystickLibrary $HOME/Arduino/libraries/Joystick
+
+      - name: Compile Library Examples
+        run: |
+          buildSketchPath() {
+            sktch=${1##*/examples/};
+            sktch=${sktch%/*.ino};
+            echo -e "\nBuilding sketch $sktch.ino";
+            arduino-cli compile --fqbn $BOARD_FQBN "$1";
+          }
+          buildExamples() {
+            IFS=$'\n'; set -f;
+            for f in $(find $PWD/examples/ -name '*.ino');
+            do
+              buildSketchPath $f;
+            done;
+            unset IFS; set +f;
+          }
+          buildExamples

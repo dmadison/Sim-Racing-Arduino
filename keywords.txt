@@ -1,0 +1,113 @@
+#######################################
+# Syntax Coloring Map For Sim Racing Library
+#######################################
+
+# Note that some "public" classes such as DeviceConnection are implemented
+# privately in the device classes, and thus do not need keyword definitions
+# for their hidden (to the user) functions.
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+# Library and Namespace
+SimRacing	KEYWORD1
+
+# Generic Classes
+AnalogInput	KEYWORD1
+Peripheral	KEYWORD1
+
+# Enums
+Axis	KEYWORD1
+Pedal	KEYWORD1
+
+# Pedal Classes
+Pedals	KEYWORD1
+TwoPedals	KEYWORD1
+ThreePedals	KEYWORD1
+
+LogitechPedals	KEYWORD1
+LogitechDrivingForceGT_Pedals	KEYWORD1
+
+# Shifter Classes
+Shifter	KEYWORD1
+AnalogShifter	KEYWORD1
+
+LogitechShifter	KEYWORD1
+
+#######################################
+# Peripheral Class Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+update	KEYWORD2
+
+isConnected	KEYWORD2
+
+#######################################
+# AnalogInput Class Methods and Functions (KEYWORD2)
+#######################################
+
+read	KEYWORD2
+
+getPosition	KEYWORD2
+getPositionRaw	KEYWORD2
+
+getMin	KEYWORD2
+getMax	KEYWORD2
+isInverted	KEYWORD2
+
+setPosition	KEYWORD2
+setInverted	KEYWORD2
+setCalibration	KEYWORD2
+
+#######################################
+# Pedal Methods and Functions (KEYWORD2)
+#######################################
+
+hasPedal	KEYWORD2
+
+getNumPedals	KEYWORD2
+getPedalName	KEYWORD2
+
+serialCalibration	KEYWORD2
+
+#######################################
+# Shifter Methods and Functions (KEYWORD2)
+#######################################
+
+getGear	KEYWORD2
+getGearChar	KEYWORD2
+getGearString	KEYWORD2
+
+gearChanged	KEYWORD2
+getGearMin	KEYWORD2
+getGearMax	KEYWORD2
+
+getReverseButton	KEYWORD2
+
+setCalibration	KEYWORD2
+serialCalibration	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+# Axis Enum
+X	LITERAL1
+Y	LITERAL1
+
+# Pedal Enum
+Gas	LITERAL1
+Accelerator	LITERAL1
+Throttle	LITERAL1
+Brake	LITERAL1
+Clutch	LITERAL1
+
+# Board Pin Definitions
+SHIFTER_SHIELD_V1_PINS	LITERAL1
+PEDAL_SHIELD_V1_PINS	LITERAL1
