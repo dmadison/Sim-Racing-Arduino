@@ -1,0 +1,21 @@
+/**
+Sim Racing Arduino Library - Doxygen Stylesheet
+https://github.com/dmadison/Sim-Racing-Arduino/
+
+For use with Doxygen Awesome theme
+*/
+
+/* Custom side nav width */
+html {
+    /* side nav width. MUST be = `TREEVIEW_WIDTH`.
+     * Make sure it is wide enough to contain the page title (logo + title + version)
+     */
+    --side-nav-fixed-width: 350px !important;
+}
+
+/* Move project number to its own line */
+#projectnumber{
+    display:block;
+    position: relative;
+    left: -0.3em;
+}
