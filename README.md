@@ -14,8 +14,15 @@ Run one of the library examples in the Arduino IDE by going to `File -> Examples
 
 ## Supported Devices
 
-* [Logitech Three Pedal Peripheral (Gas, Brake, Clutch)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html)
+### Generic Devices
+* [Two pedal peripherals (gas + brake)](https://dmadison.github.io/Sim-Racing-Arduino/docs/class_sim_racing_1_1_two_pedals.html)
+* [Three pedal peripherals (gas, brake, clutch)](https://dmadison.github.io/Sim-Racing-Arduino/docs/class_sim_racing_1_1_three_pedals.html)
+* [Analog shifters](https://dmadison.github.io/Sim-Racing-Arduino/docs/class_sim_racing_1_1_analog_shifter.html)
+* [Analog handbrakes](https://dmadison.github.io/Sim-Racing-Arduino/docs/class_sim_racing_1_1_handbrake.html)
+
+### Commercial Devices
 * [Logitech Two Pedal Peripheral (Gas, Brake)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html)
+* [Logitech Three Pedal Peripheral (Gas, Brake, Clutch)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html)
 * [Logitech Driving Force Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter.html)
 
 ## License
