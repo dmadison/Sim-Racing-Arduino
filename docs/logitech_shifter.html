@@ -100,18 +100,18 @@ $(document).ready(function(){initNavTree('logitech_shifter.html',''); initResiza
 Connector</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadCenter"><img src="DE9_Male.svg" alt="" style="pointer-events: none;" class="inline" title="DE9_Male"/>     </th><th class="markdownTableHeadCenter"><img src="DE9_Female.svg" alt="" style="pointer-events: none;" class="inline" title="DE9_Female"/>      </th></tr>
+<th class="markdownTableHeadCenter"><img src="DE9_Male.svg" alt="" style="pointer-events: none;" class="inline" title="DE-9_Male"/>     </th><th class="markdownTableHeadCenter"><img src="DE9_Female.svg" alt="" style="pointer-events: none;" class="inline" title="DE-9_Female"/>      </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter">DE9 Male Connector   </td><td class="markdownTableBodyCenter">DE9 Female connector   </td></tr>
+<td class="markdownTableBodyCenter">DE-9 Male Connector   </td><td class="markdownTableBodyCenter">DE-9 Female connector   </td></tr>
 </table>
-<p ><sup>DE9 graphic from <a href="https://commons.wikimedia.org/wiki/User:Aeroid">Aeroid</a> @ <a href="https://commons.wikimedia.org/wiki/File:DE9_Diagram.svg#/media/File:DE-9_Female.svg">Wikimedia Commons</a>, modified for scale, colors, and creation of a complementary male version. These graphics are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</sup></p>
-<p >The Logitech shifter connects to the wheel base units using <a href="https://en.wikipedia.org/wiki/D-subminiature">a female DE9 connector</a>. Note that most jumper wires with <a href="https://en.wikipedia.org/wiki/Jump_wire">DuPont headers</a> will not fit snugly into a DE9 connector. For reliability and ease of use it's recommended to use a mating male DE9 connector when interfacing with the shifter.</p>
-<p >Note that the DE9 connector is often erroneously referred to as DB9. These are the same thing.</p>
+<p ><sup>DE-9 graphic from <a href="https://commons.wikimedia.org/wiki/User:Aeroid">Aeroid</a> @ <a href="https://commons.wikimedia.org/wiki/File:DE9_Diagram.svg#/media/File:DE-9_Female.svg">Wikimedia Commons</a>, modified for scale, colors, and creation of a complementary male version. These graphics are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</sup></p>
+<p >The Logitech shifter connects to the wheel base units using <a href="https://en.wikipedia.org/wiki/D-subminiature">a female DE-9 connector</a>. Note that most jumper wires with <a href="https://en.wikipedia.org/wiki/Jump_wire">DuPont headers</a> will not fit snugly into a DE-9 connector. For reliability and ease of use it's recommended to use a mating male DE-9 connector when interfacing with the shifter.</p>
+<p >Note that the DE-9 connector is often erroneously referred to as DB-9. These are the same thing.</p>
 <h1><a class="anchor" id="autotoc_md8"></a>
 Pinout</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Function   </th><th class="markdownTableHeadNone">DE9 Pin   </th><th class="markdownTableHeadNone">Internal J1 Pins   </th><th class="markdownTableHeadNone">Internal J2 Pins   </th><th class="markdownTableHeadNone">Wire Color   </th><th class="markdownTableHeadNone">Necessary   </th><th class="markdownTableHeadNone">Recommended Pin    </th></tr>
+<th class="markdownTableHeadNone">Function   </th><th class="markdownTableHeadNone">DE-9 Pin   </th><th class="markdownTableHeadNone">Internal J1 Pins   </th><th class="markdownTableHeadNone">Internal J2 Pins   </th><th class="markdownTableHeadNone">Wire Color   </th><th class="markdownTableHeadNone">Necessary   </th><th class="markdownTableHeadNone">Recommended Pin    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Clock (SCLK)   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">6   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">Purple   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowEven">
@@ -137,7 +137,7 @@ Pinout</h1>
 <p >The shifter's electronics are compatible up to 5V. Be sure to use the appropriate voltage for the logic level of your microcontroller.</p>
 <h1><a class="anchor" id="autotoc_md9"></a>
 EEPROM Storage</h1>
-<p >The Logitech shifter has an internal EEPROM chip, presumably for storing settings and calibration data. In my shifter this is an <a href="https://www.st.com/resource/en/datasheet/m95010-w.pdf">ST Microelectronics M95010-W</a> in an SO8 package. It has 1 Kbit of memory and can be read and written to via the DE9 connector. The EERPOM does not need to be used in order to retrieve the control surface data from the devices.</p>
+<p >The Logitech shifter has an internal EEPROM chip, presumably for storing settings and calibration data. In my shifter this is an <a href="https://www.st.com/resource/en/datasheet/m95010-w.pdf">ST Microelectronics M95010-W</a> in an SO8 package. It has 1 Kbit of memory and can be read and written to via the DE-9 connector. The EERPOM does not need to be used in order to retrieve the control surface data from the devices.</p>
 <p >This library does not implement EEPROM support, either for reading from the EEPROM or utilizing its data. The remaining two unused pins (SCLK and SDI) are only used for interfacing with the EEPROM. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
