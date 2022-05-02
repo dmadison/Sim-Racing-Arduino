@@ -26,7 +26,6 @@
  */
 
 #include <SimRacing.h>
-#include <Joystick.h>
 
 const int Pin_Gas    = A2;
 const int Pin_Brake  = A1;
