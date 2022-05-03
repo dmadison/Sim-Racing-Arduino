@@ -663,6 +663,67 @@ namespace SimRacing {
 
 
 	/**
+	* @brief Interface with analog handbrakes that use hall effect sensors
+	*/
+	class Handbrake : public Peripheral {
+	public:
+		/**
+		* Class constructor
+		*
+		* @param pinAx analog pin number for the handbrake axis
+		* @param detectPin the digital pin for device detection (high is detected)
+		*/
+		Handbrake(uint8_t pinAx, uint8_t detectPin = NOT_A_PIN);
+
+		/**
+		* Initializes the pin for reading from the handbrake.
+		*/
+		virtual void begin();
+
+		/**
+		* Polls the handbrake to update its position.
+		*
+		* @return 'true' if the gear has changed, 'false' otherwise
+		*/
+		virtual bool update();
+
+		/**
+		* Retrieves the buffered position for the handbrake axis, rescaled to a
+		* nominal range using the calibration values.
+		*
+		* By default this is rescaled to an integer percentage (0 - 100)
+		*
+		* @param rMin the minimum output value
+		* @param rMax the maximum output value
+		*
+		* @return the handbrake position, buffered and rescaled
+		*/
+		long getPosition(long rMin = 0, long rMax = 100) const;
+
+		/**
+		* Retrieves the buffered position for the handbrake, ignoring the
+		* calibration data.
+		*
+		* @return the handbrake position, buffered
+		*/
+		int getPositionRaw() const;
+
+		/// @copydoc AnalogInput::setCalibration()
+		void setCalibration(AnalogInput::Calibration newCal);
+
+		/// @copydoc AnalogShifter::serialCalibration()
+		void serialCalibration(Stream& iface = Serial);
+
+		/** @copydoc Peripheral::isConnected() */
+		bool isConnected() const { return detector.isConnected(); }
+
+	private:
+		AnalogInput analogAxis;     ///< axis data for the handbrake's position
+		DeviceConnection detector;  ///< detector instance for checking if the handbrake is connected
+	};
+
+
+	/**
 	* @brief Interface with the Logitech pedals (Gas, Brake, and Clutch)
 	* @ingroup Pedals
 	*

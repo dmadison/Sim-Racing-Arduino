@@ -35,6 +35,9 @@ AnalogShifter	KEYWORD1
 
 LogitechShifter	KEYWORD1
 
+# Handbrake Classes
+Handbrake	KEYWORD1
+
 #######################################
 # Peripheral Class Methods and Functions (KEYWORD2)
 #######################################
@@ -65,6 +68,9 @@ setCalibration	KEYWORD2
 # Pedal Methods and Functions (KEYWORD2)
 #######################################
 
+getPosition	KEYWORD2
+getPositionRaw	KEYWORD2
+
 hasPedal	KEYWORD2
 
 getNumPedals	KEYWORD2
@@ -84,7 +90,20 @@ gearChanged	KEYWORD2
 getGearMin	KEYWORD2
 getGearMax	KEYWORD2
 
+getPosition	KEYWORD2
+getPositionRaw	KEYWORD2
+
 getReverseButton	KEYWORD2
+
+setCalibration	KEYWORD2
+serialCalibration	KEYWORD2
+
+#######################################
+# Handbrake Methods and Functions (KEYWORD2)
+#######################################
+
+getPosition	KEYWORD2
+getPositionRaw	KEYWORD2
 
 setCalibration	KEYWORD2
 serialCalibration	KEYWORD2

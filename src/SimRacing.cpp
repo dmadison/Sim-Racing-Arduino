@@ -902,4 +902,106 @@ LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uin
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 }, 0.70, 0.50, 0.70);
 }
 
+//#########################################################
+//                      Handbrake                         #
+//#########################################################
+
+Handbrake::Handbrake(uint8_t pinAx, uint8_t detectPin) 
+	: analogAxis(pinAx), detector(detectPin)
+{}
+
+void Handbrake::begin() {
+	update();  // set initial handbrake position
+}
+
+bool Handbrake::update() {
+	bool changed = false;
+
+	detector.poll();
+	if (detector.getState() == DeviceConnection::Connected) {
+		changed = analogAxis.read();
+	}
+	else if (detector.getState() == DeviceConnection::Unplug) {
+		analogAxis.setPosition(analogAxis.getMin());
+	}
+
+	return changed;
+}
+
+long Handbrake::getPosition(long rMin, long rMax) const {
+	return analogAxis.getPosition(rMin, rMax);
+}
+
+int Handbrake::getPositionRaw() const {
+	return analogAxis.getPositionRaw();
+}
+
+void Handbrake::setCalibration(AnalogInput::Calibration newCal) {
+	analogAxis.setCalibration(newCal);
+	analogAxis.setPosition(analogAxis.getMin());  // reset to min
+}
+
+void Handbrake::serialCalibration(Stream& iface) {
+	if (isConnected() == false) {
+		iface.print(F("Error! Cannot perform calibration, "));
+		iface.print(F("handbrake"));
+		iface.println(F(" is not connected."));
+		return;
+	}
+
+	const char* separator = "------------------------------------";
+
+	iface.println();
+	iface.println(F("Sim Racing Library Handbrake Calibration"));
+	iface.println(separator);
+	iface.println();
+
+	AnalogInput::Calibration newCal;
+
+	// read minimum
+	iface.println(F("Keep your hand off of the handbrake to record its resting position"));
+	iface.println(F("Send any character to continue."));
+	waitClient(iface);
+
+	analogAxis.read();
+	newCal.min = analogAxis.getPositionRaw();
+	iface.println();
+
+	// read maximum
+	iface.println(F("Now pull on the handbrake and hold it at the end of its range"));
+	iface.println(F("Send any character to continue."));
+	waitClient(iface);
+
+	analogAxis.read();
+	newCal.max = analogAxis.getPositionRaw();
+	iface.println();
+
+	// set new calibration
+	this->setCalibration(newCal);
+
+	// print finished calibration
+	iface.println(F("Here is your calibration:"));
+	iface.println(separator);
+	iface.println();
+
+	iface.print(F("handbrake.setCalibration("));
+	iface.print('{');
+	iface.print(newCal.min);
+	iface.print(F(", "));
+	iface.print(newCal.max);
+	iface.print("});");
+	iface.println();
+
+	iface.println();
+	iface.println(separator);
+	iface.println();
+
+	iface.print(F("Paste this line into the setup() function. The "));
+	iface.print(F("handbrake"));
+	iface.print(F(" will be calibrated with these values on startup."));
+	iface.println(F("\nCalibration complete! :)\n\n"));
+
+	flushClient(iface);
+}
+	
 };  // end SimRacing namespace
