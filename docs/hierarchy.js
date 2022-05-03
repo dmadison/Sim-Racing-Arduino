@@ -5,6 +5,7 @@ var hierarchy =
     [ "SimRacing::DeviceConnection", "class_sim_racing_1_1_device_connection.html", null ],
     [ "SimRacing::AnalogShifter::GearPosition", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html", null ],
     [ "SimRacing::Peripheral", "class_sim_racing_1_1_peripheral.html", [
+      [ "SimRacing::Handbrake", "class_sim_racing_1_1_handbrake.html", null ],
       [ "SimRacing::Pedals", "class_sim_racing_1_1_pedals.html", [
         [ "SimRacing::ThreePedals", "class_sim_racing_1_1_three_pedals.html", [
           [ "SimRacing::LogitechPedals", "class_sim_racing_1_1_logitech_pedals.html", null ]

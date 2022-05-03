@@ -34,7 +34,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.0.0</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.0</span>
    </div>
   </td>
  </tr>
@@ -108,14 +108,15 @@ Inheritance diagram for SimRacing::Peripheral:</div>
  <div class="center">
   <img src="class_sim_racing_1_1_peripheral.png" usemap="#SimRacing::Peripheral_map" alt=""/>
   <map id="SimRacing::Peripheral_map" name="SimRacing::Peripheral_map">
-<area href="class_sim_racing_1_1_pedals.html" title="Base class for all pedals instances." alt="SimRacing::Pedals" shape="rect" coords="135,56,396,80"/>
-<area href="class_sim_racing_1_1_shifter.html" title="Base class for all shifter instances." alt="SimRacing::Shifter" shape="rect" coords="542,56,803,80"/>
-<area href="class_sim_racing_1_1_three_pedals.html" title="Pedal implementation for devices with gas, brake, and clutch." alt="SimRacing::ThreePedals" shape="rect" coords="0,112,261,136"/>
-<area href="class_sim_racing_1_1_two_pedals.html" title="Pedal implementation for devices with only gas and brake." alt="SimRacing::TwoPedals" shape="rect" coords="271,112,532,136"/>
-<area href="class_sim_racing_1_1_analog_shifter.html" title="Interface with shifters using two potentiometers for gear position." alt="SimRacing::AnalogShifter" shape="rect" coords="542,112,803,136"/>
-<area href="class_sim_racing_1_1_logitech_pedals.html" title="Interface with the Logitech pedals (Gas, Brake, and Clutch)" alt="SimRacing::LogitechPedals" shape="rect" coords="0,168,261,192"/>
-<area href="class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html" title="Interface with the Logitech Driving Force GT pedals (Gas + Brake)" alt="SimRacing::LogitechDrivingForceGT_Pedals" shape="rect" coords="271,168,532,192"/>
-<area href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter." alt="SimRacing::LogitechShifter" shape="rect" coords="542,168,803,192"/>
+<area href="class_sim_racing_1_1_handbrake.html" title="Interface with analog handbrakes that use hall effect sensors." alt="SimRacing::Handbrake" shape="rect" coords="0,56,261,80"/>
+<area href="class_sim_racing_1_1_pedals.html" title="Base class for all pedals instances." alt="SimRacing::Pedals" shape="rect" coords="271,56,532,80"/>
+<area href="class_sim_racing_1_1_shifter.html" title="Base class for all shifter instances." alt="SimRacing::Shifter" shape="rect" coords="677,56,938,80"/>
+<area href="class_sim_racing_1_1_three_pedals.html" title="Pedal implementation for devices with gas, brake, and clutch." alt="SimRacing::ThreePedals" shape="rect" coords="135,112,396,136"/>
+<area href="class_sim_racing_1_1_two_pedals.html" title="Pedal implementation for devices with only gas and brake." alt="SimRacing::TwoPedals" shape="rect" coords="406,112,667,136"/>
+<area href="class_sim_racing_1_1_analog_shifter.html" title="Interface with shifters using two potentiometers for gear position." alt="SimRacing::AnalogShifter" shape="rect" coords="677,112,938,136"/>
+<area href="class_sim_racing_1_1_logitech_pedals.html" title="Interface with the Logitech pedals (Gas, Brake, and Clutch)" alt="SimRacing::LogitechPedals" shape="rect" coords="135,168,396,192"/>
+<area href="class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html" title="Interface with the Logitech Driving Force GT pedals (Gas + Brake)" alt="SimRacing::LogitechDrivingForceGT_Pedals" shape="rect" coords="406,168,667,192"/>
+<area href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter." alt="SimRacing::LogitechShifter" shape="rect" coords="677,168,938,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -157,7 +158,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p >Initialize the hardware (if necessary) </p>
 
-<p>Reimplemented in <a class="el" href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">SimRacing::Pedals</a>, and <a class="el" href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">SimRacing::AnalogShifter</a>.</p>
+<p>Reimplemented in <a class="el" href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">SimRacing::Pedals</a>, <a class="el" href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">SimRacing::AnalogShifter</a>, and <a class="el" href="class_sim_racing_1_1_handbrake.html#a0b7f6916cd4ac88b32d73a671af458ac">SimRacing::Handbrake</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00242">242</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
@@ -190,7 +191,7 @@ Public Member Functions</h2></td></tr>
 <p >Check if the device is physically connected to the board. That means it is both present and detected long enough to be considered 'stable'.</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d">SimRacing::Pedals</a>, and <a class="el" href="class_sim_racing_1_1_analog_shifter.html#ac8baeaeef50b0982b0c61a161ab6614a">SimRacing::AnalogShifter</a>.</p>
+<p>Reimplemented in <a class="el" href="class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d">SimRacing::Pedals</a>, <a class="el" href="class_sim_racing_1_1_analog_shifter.html#ac8baeaeef50b0982b0c61a161ab6614a">SimRacing::AnalogShifter</a>, and <a class="el" href="class_sim_racing_1_1_handbrake.html#ab968cf671c3e9f6b3c4dbea58b6db65f">SimRacing::Handbrake</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00252">252</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
@@ -221,7 +222,7 @@ Public Member Functions</h2></td></tr>
 <p >Perform a poll of the hardware to refresh the class state</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise </dd></dl>
 
-<p>Implemented in <a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">SimRacing::Pedals</a>, and <a class="el" href="class_sim_racing_1_1_analog_shifter.html#aba4a4be01b42f15119a948e12d0a2f39">SimRacing::AnalogShifter</a>.</p>
+<p>Implemented in <a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">SimRacing::Pedals</a>, <a class="el" href="class_sim_racing_1_1_analog_shifter.html#aba4a4be01b42f15119a948e12d0a2f39">SimRacing::AnalogShifter</a>, and <a class="el" href="class_sim_racing_1_1_handbrake.html#aa1cfe2d01f1b1d66d08f304f076a314b">SimRacing::Handbrake</a>.</p>
 
 </div>
 </div>

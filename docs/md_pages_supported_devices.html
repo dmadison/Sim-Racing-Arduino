@@ -34,7 +34,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.0.0</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.0</span>
    </div>
   </td>
  </tr>
@@ -94,24 +94,20 @@ $(document).ready(function(){initNavTree('md_pages_supported_devices.html',''); 
   <div class="headertitle"><div class="title">Supported Devices </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="autotoc_md11"></a>
-Commercial Devices:</h2>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md13"></a>
+Generic Devices</h2>
+<ul>
+<li>Two pedal peripherals (gas + brake) using <code><a class="el" href="class_sim_racing_1_1_two_pedals.html" title="Pedal implementation for devices with only gas and brake.">SimRacing::TwoPedals</a></code></li>
+<li>Three pedal peripherals (gas, brake, clutch) using <code><a class="el" href="class_sim_racing_1_1_three_pedals.html" title="Pedal implementation for devices with gas, brake, and clutch.">SimRacing::ThreePedals</a></code></li>
+<li>Analog shifters using <code><a class="el" href="class_sim_racing_1_1_analog_shifter.html" title="Interface with shifters using two potentiometers for gear position.">SimRacing::AnalogShifter</a></code></li>
+<li>Analog handbrakes using <code><a class="el" href="class_sim_racing_1_1_handbrake.html" title="Interface with analog handbrakes that use hall effect sensors.">SimRacing::Handbrake</a></code></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md14"></a>
+Commercial Devices</h2>
 <ul>
 <li><a class="el" href="logitech_pedals.html">Logitech Pedals</a></li>
-<li><a class="el" href="logitech_shifter.html">Logitech Driving Force Shifter</a></li>
+<li><a class="el" href="logitech_shifter.html">Logitech Driving Force Shifter</a> </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
-Generic Devices</h2>
-<h3><a class="anchor" id="autotoc_md13"></a>
-Pedals</h3>
-<p >The library supports generic pedal devices that connect via the microcontroller's analog to digital converter (ADC).</p>
-<ul>
-<li>Two pedal setups (gas + brake) use the <code><a class="el" href="class_sim_racing_1_1_two_pedals.html" title="Pedal implementation for devices with only gas and brake.">SimRacing::TwoPedals</a></code> class.</li>
-<li>Three pedal setups (gas, brake, clutch) use the <code><a class="el" href="class_sim_racing_1_1_three_pedals.html" title="Pedal implementation for devices with gas, brake, and clutch.">SimRacing::ThreePedals</a></code> class.</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md14"></a>
-Shifters</h3>
-<p >The library supports generic shifting devices that record gear position using a pair of potentiometers. These are supported as part of the <code><a class="el" href="class_sim_racing_1_1_analog_shifter.html" title="Interface with shifters using two potentiometers for gear position.">SimRacing::AnalogShifter</a></code> class. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

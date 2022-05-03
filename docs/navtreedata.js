@@ -27,8 +27,11 @@ var NAVTREE =
   [ "Arduino Sim Racing Library", "index.html", [
     [ "Sim Racing Library for Arduino", "index.html", [
       [ "Getting Started", "index.html#autotoc_md1", null ],
-      [ "Supported Devices", "index.html#autotoc_md2", null ],
-      [ "License", "index.html#autotoc_md3", null ]
+      [ "Supported Devices", "index.html#autotoc_md2", [
+        [ "Generic Devices", "index.html#autotoc_md3", null ],
+        [ "Commercial Devices", "index.html#autotoc_md4", null ]
+      ] ],
+      [ "License", "index.html#autotoc_md5", null ]
     ] ],
     [ "Supported Devices", "md_pages_supported_devices.html", "md_pages_supported_devices" ],
     [ "Modules", "modules.html", "modules" ],
@@ -58,7 +61,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_pedals_joystick_8ino-example.html"
+"_handbrake_joystick_8ino-example.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

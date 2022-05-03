@@ -5,6 +5,7 @@ var _sim_racing_8h =
     [ "SimRacing::AnalogInput::Calibration", "struct_sim_racing_1_1_analog_input_1_1_calibration.html", "struct_sim_racing_1_1_analog_input_1_1_calibration" ],
     [ "SimRacing::Peripheral", "class_sim_racing_1_1_peripheral.html", "class_sim_racing_1_1_peripheral" ],
     [ "SimRacing::AnalogShifter::GearPosition", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position" ],
+    [ "SimRacing::Handbrake", "class_sim_racing_1_1_handbrake.html", "class_sim_racing_1_1_handbrake" ],
     [ "PEDAL_SHIELD_V1_PINS", "_sim_racing_8h.html#aee8041b5e2abaf861dfbc513f07e9b34", null ],
     [ "SHIFTER_SHIELD_V1_PINS", "_sim_racing_8h.html#a8bdc255ffe6b34b9191157febf849eca", null ],
     [ "Axis", "_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2", [

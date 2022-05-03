@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pedals_0',['Pedals',['../class_sim_racing_1_1_pedals.html',1,'SimRacing']]],
-  ['peripheral_1',['Peripheral',['../class_sim_racing_1_1_peripheral.html',1,'SimRacing']]]
+  ['logitechdrivingforcegt_5fpedals_0',['LogitechDrivingForceGT_Pedals',['../class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html',1,'SimRacing']]],
+  ['logitechpedals_1',['LogitechPedals',['../class_sim_racing_1_1_logitech_pedals.html',1,'SimRacing']]],
+  ['logitechshifter_2',['LogitechShifter',['../class_sim_racing_1_1_logitech_shifter.html',1,'SimRacing']]]
 ];

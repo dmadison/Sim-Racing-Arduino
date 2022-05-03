@@ -4,6 +4,7 @@ var annotated_dup =
       [ "AnalogInput", "class_sim_racing_1_1_analog_input.html", "class_sim_racing_1_1_analog_input" ],
       [ "AnalogShifter", "class_sim_racing_1_1_analog_shifter.html", "class_sim_racing_1_1_analog_shifter" ],
       [ "DeviceConnection", "class_sim_racing_1_1_device_connection.html", "class_sim_racing_1_1_device_connection" ],
+      [ "Handbrake", "class_sim_racing_1_1_handbrake.html", "class_sim_racing_1_1_handbrake" ],
       [ "LogitechDrivingForceGT_Pedals", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals" ],
       [ "LogitechPedals", "class_sim_racing_1_1_logitech_pedals.html", "class_sim_racing_1_1_logitech_pedals" ],
       [ "LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html", "class_sim_racing_1_1_logitech_shifter" ],
