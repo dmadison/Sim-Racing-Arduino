@@ -28,7 +28,7 @@
 #include <SimRacing.h>
 
 const int Pin_ShifterX   = A0;
-const int Pin_ShifterY   = A1;
+const int Pin_ShifterY   = A2;
 const int Pin_ShifterRev = 2;
 
 SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);

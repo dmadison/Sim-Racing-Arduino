@@ -27,7 +27,7 @@ Note that the DE-9 connector is often erroneously referred to as DB-9. These are
 | Data In (SDI)    | 5       | 2                | -                | White      | -                 | -               |
 | Ground           | 6       | 8                | 1                | Black      | X                 | GND             |
 | Power            | 7       | 1                | 5                | Red        | X<sup>1</sup>     | -               |
-| Y Axis Wiper     | 8       | 4                | 2                | Green      | X                 | A1              |
+| Y Axis Wiper     | 8       | 4                | 2                | Green      | X                 | A2              |
 | Power            | 9       | 1                | 5                | Red        | X<sup>1</sup>     | VCC<sup>2</sup> |
 
 <sup>1. Both power pins are identical. Only one needs to be connected. The other can be used for a detection circuit in combination with a pull-down resistor.</sup>  
