@@ -61,17 +61,19 @@ void setup() {
 	Joystick.setZAxisRange(0, ADC_Max);
 	Joystick.setRxAxisRange(0, ADC_Max);
 	Joystick.setRyAxisRange(0, ADC_Max);
+
+	updateJoystick();  // send initial state
 }
 
 void loop() {
 	pedals.update();
 
 	if (pedals.positionChanged()) {
-		updatePedals();
+		updateJoystick();
 	}
 }
 
-void updatePedals() {
+void updateJoystick() {
 	if (pedals.hasPedal(SimRacing::Gas)) {
 		int gasPedal = pedals.getPosition(SimRacing::Gas, 0, ADC_Max);
 		Joystick.setRyAxis(gasPedal);
