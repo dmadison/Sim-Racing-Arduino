@@ -49,6 +49,7 @@ Joystick_ Joystick(
 	false, false, false, false, false, false);  // no other axes
 
 const int ADC_Max = 1023;  // max value of the analog inputs, 10-bit on AVR boards
+const bool AlwaysSend = false;  // override the position checks, *always* send data constantly
 
 
 void setup() {
@@ -68,7 +69,7 @@ void setup() {
 void loop() {
 	pedals.update();
 
-	if (pedals.positionChanged()) {
+	if (pedals.positionChanged() || AlwaysSend) {
 		updateJoystick();
 	}
 }
