@@ -8,6 +8,7 @@ var class_sim_racing_1_1_logitech_driving_force_g_t___pedals =
     [ "getPositionRaw", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#abb447325455d5d1a2a8916497e499032", null ],
     [ "hasPedal", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#aa68c7a07235feca59483d2fc5814503f", null ],
     [ "isConnected", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d", null ],
+    [ "positionChanged", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#ab458ee597251d133ffffcf14c83c11fc", null ],
     [ "serialCalibration", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#a33cdb23af5fde195e3aa035bedf269ea", null ],
     [ "setCalibration", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#a922233d275f20df0bdc4545adc0f9064", null ],
     [ "setCalibration", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#a5e18b4ead4270de839961be61437043a", null ],

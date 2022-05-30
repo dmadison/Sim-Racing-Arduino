@@ -34,7 +34,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.1</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.2</span>
    </div>
   </td>
  </tr>
@@ -106,11 +106,12 @@ $(document).ready(function(){initNavTree('class_sim_racing_1_1_three_pedals.html
   <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d">isConnected</a>() const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a1ce50c934a99c58f1c4224004afea7dd">PedalID</a> typedef</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a6088fd57fbae268180ccfc80fc8b6fed">Pedals</a>(AnalogInput *dataPtr, uint8_t nPedals, uint8_t detectPin)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a33cdb23af5fde195e3aa035bedf269ea">serialCalibration</a>(Stream &amp;iface=Serial)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html#ab69ab30bb5ebdf64a266c62e926e0279">setCalibration</a>(AnalogInput::Calibration gasCal, AnalogInput::Calibration brakeCal, AnalogInput::Calibration clutchCal)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html">SimRacing::ThreePedals</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a5e18b4ead4270de839961be61437043a">SimRacing::Pedals::setCalibration</a>(PedalID pedal, AnalogInput::Calibration cal)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html#a3198435b269ef096a39a2303306abb76">ThreePedals</a>(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin=NOT_A_PIN)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html">SimRacing::ThreePedals</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">update</a>()</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#ab458ee597251d133ffffcf14c83c11fc">positionChanged</a>() const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a33cdb23af5fde195e3aa035bedf269ea">serialCalibration</a>(Stream &amp;iface=Serial)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html#ab69ab30bb5ebdf64a266c62e926e0279">setCalibration</a>(AnalogInput::Calibration gasCal, AnalogInput::Calibration brakeCal, AnalogInput::Calibration clutchCal)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html">SimRacing::ThreePedals</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#a5e18b4ead4270de839961be61437043a">SimRacing::Pedals::setCalibration</a>(PedalID pedal, AnalogInput::Calibration cal)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html#a3198435b269ef096a39a2303306abb76">ThreePedals</a>(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin=NOT_A_PIN)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_three_pedals.html">SimRacing::ThreePedals</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">update</a>()</td><td class="entry"><a class="el" href="class_sim_racing_1_1_pedals.html">SimRacing::Pedals</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->
