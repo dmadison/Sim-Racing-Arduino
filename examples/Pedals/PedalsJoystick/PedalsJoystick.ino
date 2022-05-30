@@ -49,6 +49,7 @@ Joystick_ Joystick(
 	false, false, false, false, false, false);  // no other axes
 
 const int ADC_Max = 1023;  // max value of the analog inputs, 10-bit on AVR boards
+const bool AlwaysSend = false;  // override the position checks, *always* send data constantly
 
 
 void setup() {
@@ -61,11 +62,19 @@ void setup() {
 	Joystick.setZAxisRange(0, ADC_Max);
 	Joystick.setRxAxisRange(0, ADC_Max);
 	Joystick.setRyAxisRange(0, ADC_Max);
+
+	updateJoystick();  // send initial state
 }
 
 void loop() {
 	pedals.update();
 
+	if (pedals.positionChanged() || AlwaysSend) {
+		updateJoystick();
+	}
+}
+
+void updateJoystick() {
 	if (pedals.hasPedal(SimRacing::Gas)) {
 		int gasPedal = pedals.getPosition(SimRacing::Gas, 0, ADC_Max);
 		Joystick.setRyAxis(gasPedal);

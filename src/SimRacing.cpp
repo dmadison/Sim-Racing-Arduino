@@ -268,10 +268,33 @@ AnalogInput::AnalogInput(uint8_t p)
 
 bool AnalogInput::read() {
 	bool changed = false;
+
 	if (Pin != NOT_A_PIN) {
-		const int current = this->position;
+		const int previous = this->position;
 		this->position = analogRead(Pin);
-		if (current != this->position) changed = true;
+
+		// check if value is different for 'changed' flag
+		if (previous != this->position) {
+
+			const int rMin = isInverted() ? getMax() : getMin();
+			const int rMax = isInverted() ? getMin() : getMax();
+
+			if (
+				// if the previous value was under the minimum range
+				// and the current value is as well, no change
+				!(previous < rMin && this->position < rMin) && 
+
+				// if the previous value was over the maximum range
+				// and the current value is as well, no change
+				!(previous > rMax && this->position > rMax)
+			)
+			{
+				// otherwise, the current value is either within the
+				// range limits *or* it has changed from one extreme
+				// to the other. Either way, mark it changed!
+				changed = true;
+			}
+		}
 	}
 	return changed;
 }
@@ -311,7 +334,11 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 //#########################################################
 
 Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, uint8_t detectPin)
-	: pedalData(dataPtr), NumPedals(nPedals), detector(detectPin)
+	: 
+	pedalData(dataPtr),
+	NumPedals(nPedals),
+	detector(detectPin),
+	changed(false)
 {}
 
 void Pedals::begin() {
@@ -319,7 +346,7 @@ void Pedals::begin() {
 }
 
 bool Pedals::update() {
-	bool changed = false;
+	changed = false;
 
 	detector.poll();
 	if (detector.getState() == DeviceConnection::Connected) {
@@ -420,7 +447,60 @@ void Pedals::serialCalibration(Stream& iface) {
 		pedalData[i].read();  // read position
 		pedalCal[i].max = pedalData[i].getPositionRaw();  // set max to the recorded position
 	}
+
+	// deadzone options
+	iface.println(separator);
 	iface.println();
+
+	float DeadzoneMin = 0.01;  // by default, 1% (trying to keep things responsive)
+	float DeadzoneMax = 0.025;  // by default, 2.5%
+
+	iface.println(F("These settings are optional. Send 'y' to customize. Send any other character to continue with the default values."));
+
+	iface.print(F("  * Pedal Travel Deadzone, Start: \t"));
+	iface.print(DeadzoneMin);
+	iface.println(F("  (Used to avoid the pedal always being slightly pressed)"));
+
+	iface.print(F("  * Pedal Travel Deadzone, End:   \t"));
+	iface.print(DeadzoneMax);
+	iface.println(F("  (Used to guarantee that the pedal can be fully pressed)"));
+
+	iface.println();
+
+	waitClient(iface);
+
+	if (iface.read() == 'y') {
+		iface.println(F("Set the pedal travel starting deadzone as a floating point percentage."));
+		readFloat(DeadzoneMin, iface);
+		iface.println();
+
+		iface.println(F("Set the pedal travel ending deadzone as a floating point percentage."));
+		readFloat(DeadzoneMax, iface);
+		iface.println();
+	}
+
+	flushClient(iface);
+
+	// calculate deadzone offsets
+	for (int i = 0; (i < getNumPedals()) && (i < MaxPedals); i++) {
+		auto &cMin = pedalCal[i].min;
+		auto &cMax = pedalCal[i].max;
+
+		const int range = abs(cMax - cMin);
+		const int dzMin = DeadzoneMin * (float)range;
+		const int dzMax = DeadzoneMax * (float)range;
+
+		// non-inverted
+		if (cMax >= cMin) {
+			cMax -= dzMax;  // 'cut' into the range so it limits sooner
+			cMin += dzMin;
+		}
+		// inverted
+		else {
+			cMax += dzMax;
+			cMin -= dzMin;
+		}
+	}
 
 	// print finished calibration
 	iface.println(F("Here is your calibration:"));
@@ -487,7 +567,7 @@ LogitechPedals::LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchP
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
 	// this covers the whole travel range, users may want to back it down for casual
 	// use (esp. for the brake travel)
-	this->setCalibration({ 904, 48 }, { 949, 286 }, { 881, 59 });
+	this->setCalibration({ 904, 48 }, { 944, 286 }, { 881, 59 });
 }
 
 LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin)

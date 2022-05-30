@@ -332,6 +332,13 @@ namespace SimRacing {
 		int getNumPedals() const { return this->NumPedals; }
 
 		/**
+		* Checks whether the current pedal positions have changed since the last update.
+		*
+		* @return 'true' if position has changed, 'false' otherwise
+		*/
+		bool positionChanged() const { return changed; }
+
+		/**
 		* Calibrate a pedal's min/max values for rescaling.
 		* 
 		* @param pedal the pedal to set the calibration of
@@ -362,6 +369,7 @@ namespace SimRacing {
 		AnalogInput* pedalData;     ///< pointer to the pedal data
 		const int NumPedals;        ///< number of pedals managed by this class
 		DeviceConnection detector;  ///< detector instance for checking if the pedals are connected
+		bool changed;               ///< whether the pedal position has changed since the previous update
 	};
 
 
