@@ -176,6 +176,23 @@ namespace SimRacing {
 		int getMax() const { return this->cal.max; }
 
 		/**
+		* Checks whether the current position is within the calibrated
+		* range of the axis.
+		*
+		* @return 'true' if position is within range, 'false' otherwise
+		*/
+		bool inRange() const;
+
+		/**
+		* Checks whether a given input value is within the calibrated
+		* range of the axis.
+		*
+		* @param p position value to test
+		* @return 'true' if test value is within range, 'false' otherwise
+		*/
+		bool inRange(int p) const;
+
+		/**
 		* Check whether the axis is inverted or not.
 		*
 		* @return 'true' if the axis is inverted, 'false' otherwise
