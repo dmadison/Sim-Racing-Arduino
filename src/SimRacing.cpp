@@ -487,7 +487,7 @@ LogitechPedals::LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchP
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
 	// this covers the whole travel range, users may want to back it down for casual
 	// use (esp. for the brake travel)
-	this->setCalibration({ 904, 48 }, { 949, 286 }, { 881, 59 });
+	this->setCalibration({ 904, 48 }, { 944, 286 }, { 881, 59 });
 }
 
 LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin)
