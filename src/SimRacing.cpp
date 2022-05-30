@@ -311,7 +311,11 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 //#########################################################
 
 Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, uint8_t detectPin)
-	: pedalData(dataPtr), NumPedals(nPedals), detector(detectPin)
+	: 
+	pedalData(dataPtr),
+	NumPedals(nPedals),
+	detector(detectPin),
+	changed(false)
 {}
 
 void Pedals::begin() {
@@ -319,7 +323,7 @@ void Pedals::begin() {
 }
 
 bool Pedals::update() {
-	bool changed = false;
+	changed = false;
 
 	detector.poll();
 	if (detector.getState() == DeviceConnection::Connected) {
