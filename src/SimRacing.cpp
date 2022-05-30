@@ -987,7 +987,10 @@ LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uin
 //#########################################################
 
 Handbrake::Handbrake(uint8_t pinAx, uint8_t detectPin) 
-	: analogAxis(pinAx), detector(detectPin)
+	: 
+	analogAxis(pinAx),
+	detector(detectPin),
+	changed(false)
 {}
 
 void Handbrake::begin() {
@@ -995,7 +998,7 @@ void Handbrake::begin() {
 }
 
 bool Handbrake::update() {
-	bool changed = false;
+	changed = false;
 
 	detector.poll();
 	if (detector.getState() == DeviceConnection::Connected) {

@@ -70,6 +70,7 @@ setCalibration	KEYWORD2
 
 getPosition	KEYWORD2
 getPositionRaw	KEYWORD2
+positionChanged	KEYWORD2
 
 hasPedal	KEYWORD2
 
@@ -104,6 +105,7 @@ serialCalibration	KEYWORD2
 
 getPosition	KEYWORD2
 getPositionRaw	KEYWORD2
+positionChanged	KEYWORD2
 
 setCalibration	KEYWORD2
 serialCalibration	KEYWORD2

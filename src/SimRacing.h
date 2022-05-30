@@ -716,6 +716,13 @@ namespace SimRacing {
 		*/
 		int getPositionRaw() const;
 
+		/**
+		* Checks whether the handbrake's position has changed since the last update.
+		*
+		* @return 'true' if the position has changed, 'false' otherwise
+		*/
+		bool positionChanged() const { return changed; }
+
 		/// @copydoc AnalogInput::setCalibration()
 		void setCalibration(AnalogInput::Calibration newCal);
 
@@ -728,6 +735,7 @@ namespace SimRacing {
 	private:
 		AnalogInput analogAxis;     ///< axis data for the handbrake's position
 		DeviceConnection detector;  ///< detector instance for checking if the handbrake is connected
+		bool changed;               ///< whether the handbrake position has changed since the previous update
 	};
 
 

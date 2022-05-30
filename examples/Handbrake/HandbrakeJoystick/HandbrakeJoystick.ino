@@ -45,6 +45,7 @@ Joystick_ Joystick(
 	false, false, false, false, false, false, false, false);  // no other axes
 
 const int ADC_Max = 1023;  // max value of the analog inputs, 10-bit on AVR boards
+const bool AlwaysSend = false;  // override the position checks, *always* send data constantly
 
 
 void setup() {
@@ -53,13 +54,20 @@ void setup() {
 	// if you have one, your calibration line should go here
 	
 	Joystick.begin(false);  // 'false' to disable auto-send
-
 	Joystick.setZAxisRange(0, ADC_Max);
+
+	updateJoystick();  // send initial state
 }
 
 void loop() {
 	handbrake.update();
 
+	if (handbrake.positionChanged() || AlwaysSend) {
+		updateJoystick();
+	}
+}
+
+void updateJoystick() {
 	int pos = handbrake.getPosition(0, ADC_Max);
 	Joystick.setZAxis(pos);
 
