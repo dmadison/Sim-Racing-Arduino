@@ -447,7 +447,60 @@ void Pedals::serialCalibration(Stream& iface) {
 		pedalData[i].read();  // read position
 		pedalCal[i].max = pedalData[i].getPositionRaw();  // set max to the recorded position
 	}
+
+	// deadzone options
+	iface.println(separator);
 	iface.println();
+
+	float DeadzoneMin = 0.01;  // by default, 1% (trying to keep things responsive)
+	float DeadzoneMax = 0.025;  // by default, 2.5%
+
+	iface.println(F("These settings are optional. Send 'y' to customize. Send any other character to continue with the default values."));
+
+	iface.print(F("  * Pedal Travel Deadzone, Start: \t"));
+	iface.print(DeadzoneMin);
+	iface.println(F("  (Used to avoid the pedal always being slightly pressed)"));
+
+	iface.print(F("  * Pedal Travel Deadzone, End:   \t"));
+	iface.print(DeadzoneMax);
+	iface.println(F("  (Used to guarantee that the pedal can be fully pressed)"));
+
+	iface.println();
+
+	waitClient(iface);
+
+	if (iface.read() == 'y') {
+		iface.println(F("Set the pedal travel starting deadzone as a floating point percentage."));
+		readFloat(DeadzoneMin, iface);
+		iface.println();
+
+		iface.println(F("Set the pedal travel ending deadzone as a floating point percentage."));
+		readFloat(DeadzoneMax, iface);
+		iface.println();
+	}
+
+	flushClient(iface);
+
+	// calculate deadzone offsets
+	for (int i = 0; (i < getNumPedals()) && (i < MaxPedals); i++) {
+		auto &cMin = pedalCal[i].min;
+		auto &cMax = pedalCal[i].max;
+
+		const int range = abs(cMax - cMin);
+		const int dzMin = DeadzoneMin * (float)range;
+		const int dzMax = DeadzoneMax * (float)range;
+
+		// non-inverted
+		if (cMax >= cMin) {
+			cMax -= dzMax;  // 'cut' into the range so it limits sooner
+			cMin += dzMin;
+		}
+		// inverted
+		else {
+			cMax += dzMax;
+			cMin -= dzMin;
+		}
+	}
 
 	// print finished calibration
 	iface.println(F("Here is your calibration:"));
