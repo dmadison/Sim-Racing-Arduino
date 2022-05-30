@@ -285,26 +285,6 @@ int AnalogInput::getPositionRaw() const {
 	return this->position;
 }
 
-bool AnalogInput::inRange() const {
-	return inRange(this->getPositionRaw());
-}
-
-bool AnalogInput::inRange(int p) const {
-	bool output;
-	
-	// In 'normal' orientation, we are within range if the position
-	// is above the min and below the max.
-	if (!isInverted()) {
-		output = (p >= getMin() && p <= getMax());
-	}
-	// In 'inverted' orientation, we are within range if the position
-	// is below the min and above the max.
-	else {
-		output = (p >= getMax() && p <= getMin());
-	}
-	return output;
-}
-
 bool AnalogInput::isInverted() const {
 	return (this->cal.min > this->cal.max);  // inverted if min is greater than max
 }
