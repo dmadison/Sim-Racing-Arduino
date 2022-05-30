@@ -268,10 +268,33 @@ AnalogInput::AnalogInput(uint8_t p)
 
 bool AnalogInput::read() {
 	bool changed = false;
+
 	if (Pin != NOT_A_PIN) {
-		const int current = this->position;
+		const int previous = this->position;
 		this->position = analogRead(Pin);
-		if (current != this->position) changed = true;
+
+		// check if value is different for 'changed' flag
+		if (previous != this->position) {
+
+			const int rMin = isInverted() ? getMax() : getMin();
+			const int rMax = isInverted() ? getMin() : getMax();
+
+			if (
+				// if the previous value was under the minimum range
+				// and the current value is as well, no change
+				!(previous < rMin && this->position < rMin) && 
+
+				// if the previous value was over the maximum range
+				// and the current value is as well, no change
+				!(previous > rMax && this->position > rMax)
+			)
+			{
+				// otherwise, the current value is either within the
+				// range limits *or* it has changed from one extreme
+				// to the other. Either way, mark it changed!
+				changed = true;
+			}
+		}
 	}
 	return changed;
 }
