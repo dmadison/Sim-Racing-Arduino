@@ -361,6 +361,7 @@ bool Pedals::update() {
 			const int min = pedalData[i].getMin();
 			pedalData[i].setPosition(min);
 		}
+		changed = true;  // set flag so we know everything moved to 0
 	}
 
 	return changed;
