@@ -1007,6 +1007,7 @@ bool Handbrake::update() {
 	}
 	else if (detector.getState() == DeviceConnection::Unplug) {
 		analogAxis.setPosition(analogAxis.getMin());
+		changed = true;
 	}
 
 	return changed;
