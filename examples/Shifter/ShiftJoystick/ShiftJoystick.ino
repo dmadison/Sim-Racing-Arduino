@@ -45,6 +45,7 @@ const int Pin_ShifterY   = A2;
 const int Pin_ShifterRev = 2;
 
 SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
+//SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
 
 const int Gears[] = { 1, 2, 3, 4, 5, 6, -1 };
 const int NumGears = sizeof(Gears) / sizeof(Gears[0]);

@@ -32,6 +32,7 @@ const int Pin_ShifterY   = A2;
 const int Pin_ShifterRev = 2;
 
 SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
+//SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
 
 const unsigned long PrintSpeed = 1500;  // ms
 unsigned long lastPrint = 0;
