@@ -25,6 +25,12 @@ Run one of the library examples in the Arduino IDE by going to `File -> Examples
 * [Logitech Three Pedal Peripheral (Gas, Brake, Clutch)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html)
 * [Logitech Driving Force Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter.html)
 
+## Adapters
+
+Open source shields are available to connect the [Logitech Three Pedal Peripheral](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html) and the [Logitech Driving Force Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter.html) to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the adapter appears with a custom identity and "Sim Racing" name over USB. You can use these shields to build an inexpensive USB HID adapter.
+
+You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields).
+
 ## License
 
 This library is licensed under the terms of the [GNU Lesser General Public License (LGPL)](https://www.gnu.org/licenses/lgpl.html), either version 3 of the License, or (at your option) any later version. See the [LICENSE](https://github.com/dmadison/Sim-Racing-Arduino/blob/master/LICENSE) file for more information.
