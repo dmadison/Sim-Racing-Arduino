@@ -6,6 +6,12 @@ The 2-pedal peripheral included with the [Logitech Driving Force GT wheel](https
 
 See the PedalsPrint.ino and PedalsJoystick.ino examples for reference.
 
+## Adapters
+
+An open source shield is available to connect the three pedal peripheral to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the device appears as "Sim Racing Pedals" over USB. You can use this shield to build an inexpensive USB HID adapter.
+
+You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields). Please note that this shield is *not* compatible with the two pedal peripheral.
+
 ## Connector
 
 | ![DE-9](DE9_Male.svg) | ![DE-9_Female](DE9_Female.svg) |

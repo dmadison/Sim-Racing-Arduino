@@ -4,6 +4,12 @@ The [Logitech Driving Force Shifter](https://www.logitechg.com/en-us/products/dr
 
 See the ShiftPrint.ino and ShiftJoystick.ino examples for reference.
 
+## Adapters
+
+An open source shield is available to connect the shifter to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the device appears as a "Sim Racing Shifter" over USB. You can use this shield to build an inexpensive USB HID adapter.
+
+You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields).
+
 ## Connector
 
 | ![DE-9_Male](DE9_Male.svg) | ![DE-9_Female](DE9_Female.svg) |
