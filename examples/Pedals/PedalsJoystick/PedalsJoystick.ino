@@ -36,6 +36,7 @@ const int Pin_Brake  = A1;
 const int Pin_Clutch = A0;
 
 SimRacing::LogitechPedals pedals(Pin_Gas, Pin_Brake, Pin_Clutch);
+//SimRacing::LogitechPedals pedals(PEDAL_SHIELD_V1_PINS);
 
 Joystick_ Joystick(
 	JOYSTICK_DEFAULT_REPORT_ID,          // default report (no additional pages)
