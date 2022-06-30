@@ -8,9 +8,13 @@ See the PedalsPrint.ino and PedalsJoystick.ino examples for reference.
 
 ## Adapters
 
-An open source shield is available to connect the three pedal peripheral to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the device appears as "Sim Racing Pedals" over USB. You can use this shield to build an inexpensive USB HID adapter.
+@youtube_embed{https://www.youtube.com/embed/6Pu1qknGjy4}
 
-You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields). Please note that this shield is *not* compatible with the two pedal peripheral.
+The best way to connect to the pedals is to build your own DIY adapter using a female DE-9 connector. This is simple to make and does not require any modifications to the pedal base. The above video walks you through the process of wiring to an Arduino Leonardo. Be aware that the wiring is different between the 3-pedal and 2-pedal versions; the video does *not* apply to the 2-pedal version.
+
+If you want something more robust, an open source shield is available to connect the three pedal peripheral to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the device appears as "Sim Racing Pedals" over USB. You can use this shield to build an inexpensive USB HID adapter.
+
+You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields). Please note that this shield is also *not* compatible with the two pedal peripheral.
 
 ## Connector
 
