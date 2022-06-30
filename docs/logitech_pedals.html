@@ -97,7 +97,13 @@ $(document).ready(function(){initNavTree('logitech_pedals.html',''); initResizab
 <div class="textblock"><p ><a class="anchor" id="md_pages_devices_logitech_pedals"></a> The 3-pedal peripheral included with the <a href="https://www.logitechg.com/en-us/products/driving/g923-trueforce-sim-racing-wheel.html">G923 "TRUEFORCE"</a>, <a href="https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html">G29/G920 "Driving Force"</a>, and <a href="https://en.wikipedia.org/wiki/Logitech_G27">G27</a>/<a href="https://en.wikipedia.org/wiki/Logitech_G25">G25</a> wheels is implemented using the <a class="el" href="class_sim_racing_1_1_logitech_pedals.html" title="Interface with the Logitech pedals (Gas, Brake, and Clutch)">SimRacing::LogitechPedals</a> class.</p>
 <p >The 2-pedal peripheral included with the <a href="https://en.wikipedia.org/wiki/Logitech_Driving_Force_GT">Logitech Driving Force GT wheel</a> is implemented using the <a class="el" href="class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html" title="Interface with the Logitech Driving Force GT pedals (Gas + Brake)">SimRacing::LogitechDrivingForceGT_Pedals</a> class.</p>
 <p >See the <a class="el" href="_pedals_print_8ino_source.html">PedalsPrint.ino</a> and <a class="el" href="_pedals_joystick_8ino_source.html">PedalsJoystick.ino</a> examples for reference.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Adapters</h1>
+<p > <div><div style="position:relative;padding-top:56.25%;"><iframe src="https://www.youtube.com/embed/6Pu1qknGjy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div></div></p>
+<p >The best way to connect to the pedals is to build your own DIY adapter using a female DE-9 connector. This is simple to make and does not require any modifications to the pedal base. The above video walks you through the process of wiring to an Arduino Leonardo. Be aware that the wiring is different between the 3-pedal and 2-pedal versions; the video does <em>not</em> apply to the 2-pedal version.</p>
+<p >If you want something more robust, an open source shield is available to connect the three pedal peripheral to a <a href="https://github.com/sparkfun/Pro_Micro">SparkFun Pro Micro</a>. The design comes with a 3D printable case and custom board files so that the device appears as "Sim Racing Pedals" over USB. You can use this shield to build an inexpensive USB HID adapter.</p>
+<p >You can find all of the necessary files in <a href="https://github.com/dmadison/Sim-Racing-Shields">the project repository</a>. Please note that this shield is also <em>not</em> compatible with the two pedal peripheral.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Connector</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -108,7 +114,7 @@ Connector</h1>
 <p ><sup>DE-9 graphic from <a href="https://commons.wikimedia.org/wiki/User:Aeroid">Aeroid</a> @ <a href="https://commons.wikimedia.org/wiki/File:DE9_Diagram.svg#/media/File:DE-9_Female.svg">Wikimedia Commons</a>, modified for scale, colors, and creation of a complementary male version. These graphics are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</sup></p>
 <p >The Logitech pedals connect to the wheel base units using <a href="https://en.wikipedia.org/wiki/D-subminiature">a male DE-9 connector</a>. Note that most jumper wires with <a href="https://en.wikipedia.org/wiki/Jump_wire">DuPont headers</a> will not fit snugly into a DE-9 connector. For reliability and ease of use it's recommended to use a mating female DE-9 connector when interfacing with the pedals.</p>
 <p >Note that the DE-9 connector is often erroneously referred to as DB-9. These are the same thing.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Gas, Brake, and Clutch Pedals Pinout</h1>
 <p >Most Logitech wheels come with a combined pedal unit with a gas, brake, and clutch pedal. This connects to the wheel using a male DE-9 connector.</p>
 <table class="markdownTable">
@@ -137,7 +143,7 @@ Gas, Brake, and Clutch Pedals Pinout</h1>
  <sup>2. VCC is the logic level voltage of your microcontroller. On most Arduinos this is the 5V pin.</sup> <br  />
 </p>
 <p >The pedal electronics are compatible up to at least 5V. Higher voltages may be possible but have not been tested.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Gas + Brake Pedals Pinout</h1>
 <p >Inexpensive Logitech wheels such as the older "Driving Force GT" wheel come with a combined pedal unit with a gas and brake pedal. This connects to the wheel using a male DE-9 connector with pins 1 and 5 removed.</p>
 <table class="markdownTable">

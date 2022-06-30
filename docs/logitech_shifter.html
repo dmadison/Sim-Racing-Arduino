@@ -96,7 +96,13 @@ $(document).ready(function(){initNavTree('logitech_shifter.html',''); initResiza
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_pages_devices_logitech_shifter"></a> The <a href="https://www.logitechg.com/en-us/products/driving/driving-force-shifter.html">Logitech Driving Force Shifter</a> is implemented using the <a class="el" href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter.">SimRacing::LogitechShifter</a> class.</p>
 <p >See the <a class="el" href="_shift_print_8ino_source.html">ShiftPrint.ino</a> and <a class="el" href="_shift_joystick_8ino_source.html">ShiftJoystick.ino</a> examples for reference.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Adapters</h1>
+<p > <div><div style="position:relative;padding-top:56.25%;"><iframe src="https://www.youtube.com/embed/ngXsOidoWhI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div></div></p>
+<p >The best way to connect to the shifter is to build your own DIY adapter using a male DE-9 connector. This is simple to make and does not require any modifications to the shifter. The above video walks you through the process of wiring to an Arduino Leonardo.</p>
+<p >If you want something more robust, an open source shield is available to connect the shifter to a <a href="https://github.com/sparkfun/Pro_Micro">SparkFun Pro Micro</a>. The design comes with a 3D printable case and custom board files so that the device appears as a "Sim Racing Shifter" over USB. You can use this shield to build an inexpensive USB HID adapter.</p>
+<p >You can find all of the necessary files in <a href="https://github.com/dmadison/Sim-Racing-Shields">the project repository</a>.</p>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Connector</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -107,7 +113,7 @@ Connector</h1>
 <p ><sup>DE-9 graphic from <a href="https://commons.wikimedia.org/wiki/User:Aeroid">Aeroid</a> @ <a href="https://commons.wikimedia.org/wiki/File:DE9_Diagram.svg#/media/File:DE-9_Female.svg">Wikimedia Commons</a>, modified for scale, colors, and creation of a complementary male version. These graphics are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</sup></p>
 <p >The Logitech shifter connects to the wheel base units using <a href="https://en.wikipedia.org/wiki/D-subminiature">a female DE-9 connector</a>. Note that most jumper wires with <a href="https://en.wikipedia.org/wiki/Jump_wire">DuPont headers</a> will not fit snugly into a DE-9 connector. For reliability and ease of use it's recommended to use a mating male DE-9 connector when interfacing with the shifter.</p>
 <p >Note that the DE-9 connector is often erroneously referred to as DB-9. These are the same thing.</p>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Pinout</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -135,7 +141,7 @@ Pinout</h1>
  <sup>2. VCC is the logic level voltage of your microcontroller. On most Arduinos this is the 5V pin.</sup> <br  />
 </p>
 <p >The shifter's electronics are compatible up to 5V. Be sure to use the appropriate voltage for the logic level of your microcontroller.</p>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 EEPROM Storage</h1>
 <p >The Logitech shifter has an internal EEPROM chip, presumably for storing settings and calibration data. In my shifter this is an <a href="https://www.st.com/resource/en/datasheet/m95010-w.pdf">ST Microelectronics M95010-W</a> in an SO8 package. It has 1 Kbit of memory and can be read and written to via the DE-9 connector. The EERPOM does not need to be used in order to retrieve the control surface data from the devices.</p>
 <p >This library does not implement EEPROM support, either for reading from the EEPROM or utilizing its data. The remaining two unused pins (SCLK and SDI) are only used for interfacing with the EEPROM. </p>

@@ -31,7 +31,8 @@ var NAVTREE =
         [ "Generic Devices", "index.html#autotoc_md3", null ],
         [ "Commercial Devices", "index.html#autotoc_md4", null ]
       ] ],
-      [ "License", "index.html#autotoc_md5", null ]
+      [ "Adapters", "index.html#autotoc_md5", null ],
+      [ "License", "index.html#autotoc_md6", null ]
     ] ],
     [ "Supported Devices", "md_pages_supported_devices.html", "md_pages_supported_devices" ],
     [ "Modules", "modules.html", "modules" ],
