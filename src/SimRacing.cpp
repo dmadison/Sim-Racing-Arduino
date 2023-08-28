@@ -655,7 +655,7 @@ String Shifter::getGearString() const {
 */
 const float AnalogShifter::CalEngagementPoint = 0.70;
 const float AnalogShifter::CalReleasePoint = 0.50;
-const float AnalogShifter::CalEdgeOffset = 0.70;
+const float AnalogShifter::CalEdgeOffset = 0.60;
 
 AnalogShifter::AnalogShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uint8_t detectPin)
 	: 
