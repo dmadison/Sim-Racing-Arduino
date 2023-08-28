@@ -980,7 +980,7 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uint8_t detectPin)
 	: AnalogShifter(pinX, pinY, pinRev, detectPin)
 {
-	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 }, 0.70, 0.50, 0.70);
+	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
 }
 
 //#########################################################
