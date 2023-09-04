@@ -11,5 +11,5 @@ var searchData=
   ['sim_20racing_20library_20for_20arduino_8',['Sim Racing Library for Arduino',['../index.html',1,'']]],
   ['simracing_2ecpp_9',['SimRacing.cpp',['../_sim_racing_8cpp.html',1,'']]],
   ['simracing_2eh_10',['SimRacing.h',['../_sim_racing_8h.html',1,'']]],
-  ['supported_20devices_11',['Supported Devices',['../md_pages_supported_devices.html',1,'']]]
+  ['supported_20devices_11',['Supported Devices',['../md_pages_2supported__devices.html',1,'']]]
 ];

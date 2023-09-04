@@ -25,16 +25,20 @@
 var NAVTREE =
 [
   [ "Arduino Sim Racing Library", "index.html", [
-    [ "Sim Racing Library for Arduino", "index.html", [
-      [ "Getting Started", "index.html#autotoc_md1", null ],
-      [ "Supported Devices", "index.html#autotoc_md2", [
-        [ "Generic Devices", "index.html#autotoc_md3", null ],
-        [ "Commercial Devices", "index.html#autotoc_md4", null ]
-      ] ],
-      [ "Adapters", "index.html#autotoc_md5", null ],
-      [ "License", "index.html#autotoc_md6", null ]
+    [ "Sim Racing Library for Arduino", "index.html", "index" ],
+    [ "Logitech Pedals", "md_pages_2devices_2logitech__pedals.html", [
+      [ "Adapters", "md_pages_2devices_2logitech__pedals.html#autotoc_md7", null ],
+      [ "Connector", "md_pages_2devices_2logitech__pedals.html#autotoc_md8", null ],
+      [ "Gas, Brake, and Clutch Pedals Pinout", "md_pages_2devices_2logitech__pedals.html#autotoc_md9", null ],
+      [ "Gas + Brake Pedals Pinout", "md_pages_2devices_2logitech__pedals.html#autotoc_md10", null ]
     ] ],
-    [ "Supported Devices", "md_pages_supported_devices.html", "md_pages_supported_devices" ],
+    [ "Logitech Driving Force Shifter", "md_pages_2devices_2logitech__shifter.html", [
+      [ "Adapters", "md_pages_2devices_2logitech__shifter.html#autotoc_md11", null ],
+      [ "Connector", "md_pages_2devices_2logitech__shifter.html#autotoc_md12", null ],
+      [ "Pinout", "md_pages_2devices_2logitech__shifter.html#autotoc_md13", null ],
+      [ "EEPROM Storage", "md_pages_2devices_2logitech__shifter.html#autotoc_md14", null ]
+    ] ],
+    [ "Supported Devices", "md_pages_2supported__devices.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
