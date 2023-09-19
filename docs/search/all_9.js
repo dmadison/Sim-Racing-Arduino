@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['pedal_0',['Pedal',['../group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846',1,'SimRacing']]],
-  ['pedal_5fshield_5fv1_5fpins_1',['PEDAL_SHIELD_V1_PINS',['../_sim_racing_8h.html#aee8041b5e2abaf861dfbc513f07e9b34',1,'SimRacing.h']]],
-  ['pedalid_2',['PedalID',['../class_sim_racing_1_1_pedals.html#a1ce50c934a99c58f1c4224004afea7dd',1,'SimRacing::Pedals']]],
-  ['pedals_3',['Pedals',['../class_sim_racing_1_1_pedals.html#a6088fd57fbae268180ccfc80fc8b6fed',1,'SimRacing::Pedals::Pedals()'],['../group___pedals.html',1,'(Global Namespace)'],['../class_sim_racing_1_1_pedals.html',1,'SimRacing::Pedals']]],
-  ['peripheral_4',['Peripheral',['../class_sim_racing_1_1_peripheral.html',1,'SimRacing']]],
-  ['plugin_5',['PlugIn',['../class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852ea3f8a14a4260bfece2c2df2705449c8a7',1,'SimRacing::DeviceConnection']]],
-  ['poll_6',['poll',['../class_sim_racing_1_1_device_connection.html#a085284c2e4ba8d0c29b50599312ce27c',1,'SimRacing::DeviceConnection']]],
-  ['positionchanged_7',['positionChanged',['../class_sim_racing_1_1_pedals.html#ab458ee597251d133ffffcf14c83c11fc',1,'SimRacing::Pedals::positionChanged()'],['../class_sim_racing_1_1_handbrake.html#a91a560fe530bb025eaa050802fc820e6',1,'SimRacing::Handbrake::positionChanged()']]]
+  ['library_20for_20arduino_0',['Sim Racing Library for Arduino',['../index.html',1,'']]],
+  ['license_1',['License',['../index.html#autotoc_md6',1,'']]],
+  ['logitech_20driving_20force_20shifter_2',['Logitech Driving Force Shifter',['../logitech_shifter.html',1,'md_pages_2supported__devices']]],
+  ['logitech_20pedals_3',['Logitech Pedals',['../logitech_pedals.html',1,'md_pages_2supported__devices']]],
+  ['logitechdrivingforcegt_5fpedals_4',['logitechdrivingforcegt_pedals',['../class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html',1,'SimRacing::LogitechDrivingForceGT_Pedals'],['../class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#aaef2bb601a3f045a0fd17af4b1334ecb',1,'SimRacing::LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals()']]],
+  ['logitechpedals_5',['logitechpedals',['../class_sim_racing_1_1_logitech_pedals.html',1,'SimRacing::LogitechPedals'],['../class_sim_racing_1_1_logitech_pedals.html#ac7804db3c6fc4a4332b809b5b740660c',1,'SimRacing::LogitechPedals::LogitechPedals()']]],
+  ['logitechshifter_6',['logitechshifter',['../class_sim_racing_1_1_logitech_shifter.html',1,'SimRacing::LogitechShifter'],['../class_sim_racing_1_1_logitech_shifter.html#aa440daa325b3d373cfbecf6553d5df3f',1,'SimRacing::LogitechShifter::LogitechShifter()']]]
 ];

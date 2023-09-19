@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['threepedals_0',['ThreePedals',['../class_sim_racing_1_1_three_pedals.html',1,'SimRacing::ThreePedals'],['../class_sim_racing_1_1_three_pedals.html#a3198435b269ef096a39a2303306abb76',1,'SimRacing::ThreePedals::ThreePedals()']]],
-  ['twopedals_1',['TwoPedals',['../class_sim_racing_1_1_two_pedals.html',1,'SimRacing::TwoPedals'],['../class_sim_racing_1_1_two_pedals.html#aca438f043cfbc7a45b0e65df44c9df89',1,'SimRacing::TwoPedals::TwoPedals()']]]
+  ['racing_20library_20for_20arduino_0',['Sim Racing Library for Arduino',['../index.html',1,'']]],
+  ['read_1',['read',['../class_sim_racing_1_1_analog_input.html#abb4e228064827222e1e9c1826a5bf5ec',1,'SimRacing::AnalogInput']]]
 ];

@@ -26,20 +26,23 @@ var NAVTREE =
 [
   [ "Arduino Sim Racing Library", "index.html", [
     [ "Sim Racing Library for Arduino", "index.html", "index" ],
-    [ "Logitech Pedals", "md_pages_2devices_2logitech__pedals.html", [
-      [ "Adapters", "md_pages_2devices_2logitech__pedals.html#autotoc_md7", null ],
-      [ "Connector", "md_pages_2devices_2logitech__pedals.html#autotoc_md8", null ],
-      [ "Gas, Brake, and Clutch Pedals Pinout", "md_pages_2devices_2logitech__pedals.html#autotoc_md9", null ],
-      [ "Gas + Brake Pedals Pinout", "md_pages_2devices_2logitech__pedals.html#autotoc_md10", null ]
+    [ "Supported Devices", "md_pages_2supported__devices.html", [
+      [ "Logitech Pedals", "logitech_pedals.html", [
+        [ "Generic Devices", "md_pages_2supported__devices.html#autotoc_md16", null ],
+        [ "Commercial Devices", "md_pages_2supported__devices.html#autotoc_md17", null ],
+        [ "Adapters", "logitech_pedals.html#autotoc_md7", null ],
+        [ "Connector", "logitech_pedals.html#autotoc_md8", null ],
+        [ "Gas, Brake, and Clutch Pedals Pinout", "logitech_pedals.html#autotoc_md9", null ],
+        [ "Gas + Brake Pedals Pinout", "logitech_pedals.html#autotoc_md10", null ]
+      ] ],
+      [ "Logitech Driving Force Shifter", "logitech_shifter.html", [
+        [ "Adapters", "logitech_shifter.html#autotoc_md11", null ],
+        [ "Connector", "logitech_shifter.html#autotoc_md12", null ],
+        [ "Pinout", "logitech_shifter.html#autotoc_md13", null ],
+        [ "EEPROM Storage", "logitech_shifter.html#autotoc_md14", null ]
+      ] ]
     ] ],
-    [ "Logitech Driving Force Shifter", "md_pages_2devices_2logitech__shifter.html", [
-      [ "Adapters", "md_pages_2devices_2logitech__shifter.html#autotoc_md11", null ],
-      [ "Connector", "md_pages_2devices_2logitech__shifter.html#autotoc_md12", null ],
-      [ "Pinout", "md_pages_2devices_2logitech__shifter.html#autotoc_md13", null ],
-      [ "EEPROM Storage", "md_pages_2devices_2logitech__shifter.html#autotoc_md14", null ]
-    ] ],
-    [ "Supported Devices", "md_pages_2supported__devices.html", null ],
-    [ "Modules", "modules.html", "modules" ],
+    [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

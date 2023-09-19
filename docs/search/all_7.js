@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['logitech_20driving_20force_20shifter_0',['Logitech Driving Force Shifter',['../md_pages_2devices_2logitech__shifter.html',1,'']]],
-  ['logitech_20pedals_1',['Logitech Pedals',['../md_pages_2devices_2logitech__pedals.html',1,'']]],
-  ['logitechdrivingforcegt_5fpedals_2',['LogitechDrivingForceGT_Pedals',['../class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#aaef2bb601a3f045a0fd17af4b1334ecb',1,'SimRacing::LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals()'],['../class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html',1,'SimRacing::LogitechDrivingForceGT_Pedals']]],
-  ['logitechpedals_3',['LogitechPedals',['../class_sim_racing_1_1_logitech_pedals.html#ac7804db3c6fc4a4332b809b5b740660c',1,'SimRacing::LogitechPedals::LogitechPedals()'],['../class_sim_racing_1_1_logitech_pedals.html',1,'SimRacing::LogitechPedals']]],
-  ['logitechshifter_4',['LogitechShifter',['../class_sim_racing_1_1_logitech_shifter.html#aa440daa325b3d373cfbecf6553d5df3f',1,'SimRacing::LogitechShifter::LogitechShifter()'],['../class_sim_racing_1_1_logitech_shifter.html',1,'SimRacing::LogitechShifter']]]
+  ['handbrake_0',['handbrake',['../class_sim_racing_1_1_handbrake.html',1,'SimRacing::Handbrake'],['../class_sim_racing_1_1_handbrake.html#a3268ce775d3bdbddeea6981ef42c0e0b',1,'SimRacing::Handbrake::Handbrake()']]],
+  ['haspedal_1',['hasPedal',['../class_sim_racing_1_1_pedals.html#aa68c7a07235feca59483d2fc5814503f',1,'SimRacing::Pedals']]]
 ];
