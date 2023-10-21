@@ -21,7 +21,7 @@
  */
 
  /**
- * @brief   Prints pedal position percentages over Serial.
+ * @details Prints pedal position percentages over Serial.
  * @example PedalsPrint.ino
  */
 

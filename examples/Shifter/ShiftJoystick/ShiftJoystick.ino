@@ -21,7 +21,7 @@
  */
 
  /**
- * @brief   Emulates the shifter as a joystick over USB.
+ * @details Emulates the shifter as a joystick over USB.
  * @example ShiftJoystick.ino
  */
 
