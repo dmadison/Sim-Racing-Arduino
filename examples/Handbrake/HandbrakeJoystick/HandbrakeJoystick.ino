@@ -21,7 +21,7 @@
  */
 
  /**
- * @brief   Emulates the handbrake as a joystick over USB.
+ * @details Emulates the handbrake as a joystick over USB.
  * @example HandbrakeJoystick.ino
  */
 

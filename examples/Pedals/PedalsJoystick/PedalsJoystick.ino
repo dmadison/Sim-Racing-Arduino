@@ -21,7 +21,7 @@
  */
 
  /**
- * @brief   Emulates the pedals as a joystick over USB.
+ * @details Emulates the pedals as a joystick over USB.
  * @example PedalsJoystick.ino
  */
 

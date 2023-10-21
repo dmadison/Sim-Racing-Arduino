@@ -21,7 +21,7 @@
  */
 
  /**
- * @brief   Reads and prints the current gear over serial.
+ * @details Reads and prints the current gear over serial.
  * @example ShiftPrint.ino
  */
 

@@ -21,7 +21,7 @@
  */
 
  /**
- * @brief   Prints handbrake position percentage over Serial.
+ * @details Prints handbrake position percentage over Serial.
  * @example HandbrakePrint.ino
  */
 
