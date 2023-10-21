@@ -130,10 +130,13 @@ Inheritance diagram for SimRacing::Peripheral:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1121a3a58c336931c563ff4d0fc4bdb" id="r_ad1121a3a58c336931c563ff4d0fc4bdb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#ad1121a3a58c336931c563ff4d0fc4bdb">begin</a> ()</td></tr>
+<tr class="memdesc:ad1121a3a58c336931c563ff4d0fc4bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the hardware (if necessary)  <br /></td></tr>
 <tr class="separator:ad1121a3a58c336931c563ff4d0fc4bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac61ff77db01f00fcfca62c8d96dec4ff" id="r_ac61ff77db01f00fcfca62c8d96dec4ff"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#ac61ff77db01f00fcfca62c8d96dec4ff">update</a> ()=0</td></tr>
+<tr class="memdesc:ac61ff77db01f00fcfca62c8d96dec4ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a poll of the hardware to refresh the class state.  <br /></td></tr>
 <tr class="separator:ac61ff77db01f00fcfca62c8d96dec4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86985611b9c47c347c98b4c852300912" id="r_a86985611b9c47c347c98b4c852300912"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a86985611b9c47c347c98b4c852300912">isConnected</a> () const</td></tr>
+<tr class="memdesc:a86985611b9c47c347c98b4c852300912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.    <br /></td></tr>
 <tr class="separator:a86985611b9c47c347c98b4c852300912"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -163,6 +166,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Initialize the hardware (if necessary) </p>
 
 <p>Reimplemented in <a class="el" href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">SimRacing::Pedals</a>, <a class="el" href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">SimRacing::AnalogShifter</a>, and <a class="el" href="class_sim_racing_1_1_handbrake.html#a0b7f6916cd4ac88b32d73a671af458ac">SimRacing::Handbrake</a>.</p>
@@ -194,8 +198,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Check if the device is physically connected to the board. That means it is both present and detected long enough to be considered 'stable'.</p>
+<p>Check if the device is physically connected to the board.   </p>
+<p>That means it is both present and detected long enough to be considered 'stable'.</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise   </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d">SimRacing::Pedals</a>, <a class="el" href="class_sim_racing_1_1_analog_shifter.html#ac8baeaeef50b0982b0c61a161ab6614a">SimRacing::AnalogShifter</a>, and <a class="el" href="class_sim_racing_1_1_handbrake.html#ab968cf671c3e9f6b3c4dbea58b6db65f">SimRacing::Handbrake</a>.</p>
@@ -226,7 +230,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Perform a poll of the hardware to refresh the class state</p>
+
+<p>Perform a poll of the hardware to refresh the class state. </p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise </dd></dl>
 
 <p>Implemented in <a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">SimRacing::Pedals</a>, <a class="el" href="class_sim_racing_1_1_analog_shifter.html#aba4a4be01b42f15119a948e12d0a2f39">SimRacing::AnalogShifter</a>, and <a class="el" href="class_sim_racing_1_1_handbrake.html#aa1cfe2d01f1b1d66d08f304f076a314b">SimRacing::Handbrake</a>.</p>

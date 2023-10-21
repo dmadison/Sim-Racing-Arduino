@@ -122,22 +122,31 @@ Inheritance diagram for SimRacing::Handbrake:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3268ce775d3bdbddeea6981ef42c0e0b" id="r_a3268ce775d3bdbddeea6981ef42c0e0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#a3268ce775d3bdbddeea6981ef42c0e0b">Handbrake</a> (uint8_t pinAx, uint8_t detectPin=NOT_A_PIN)</td></tr>
+<tr class="memdesc:a3268ce775d3bdbddeea6981ef42c0e0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
 <tr class="separator:a3268ce775d3bdbddeea6981ef42c0e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b7f6916cd4ac88b32d73a671af458ac" id="r_a0b7f6916cd4ac88b32d73a671af458ac"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#a0b7f6916cd4ac88b32d73a671af458ac">begin</a> ()</td></tr>
+<tr class="memdesc:a0b7f6916cd4ac88b32d73a671af458ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the pin for reading from the handbrake.  <br /></td></tr>
 <tr class="separator:a0b7f6916cd4ac88b32d73a671af458ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1cfe2d01f1b1d66d08f304f076a314b" id="r_aa1cfe2d01f1b1d66d08f304f076a314b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#aa1cfe2d01f1b1d66d08f304f076a314b">update</a> ()</td></tr>
+<tr class="memdesc:aa1cfe2d01f1b1d66d08f304f076a314b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Polls the handbrake to update its position.  <br /></td></tr>
 <tr class="separator:aa1cfe2d01f1b1d66d08f304f076a314b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b3ca0a06837b95cb3961a96795fcedc" id="r_a1b3ca0a06837b95cb3961a96795fcedc"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#a1b3ca0a06837b95cb3961a96795fcedc">getPosition</a> (long rMin=0, long rMax=100) const</td></tr>
+<tr class="memdesc:a1b3ca0a06837b95cb3961a96795fcedc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the buffered position for the handbrake axis, rescaled to a nominal range using the calibration values.  <br /></td></tr>
 <tr class="separator:a1b3ca0a06837b95cb3961a96795fcedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a017278c3097e6bd6c800ea1a526279" id="r_a4a017278c3097e6bd6c800ea1a526279"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#a4a017278c3097e6bd6c800ea1a526279">getPositionRaw</a> () const</td></tr>
+<tr class="memdesc:a4a017278c3097e6bd6c800ea1a526279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the buffered position for the handbrake, ignoring the calibration data.  <br /></td></tr>
 <tr class="separator:a4a017278c3097e6bd6c800ea1a526279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91a560fe530bb025eaa050802fc820e6" id="r_a91a560fe530bb025eaa050802fc820e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#a91a560fe530bb025eaa050802fc820e6">positionChanged</a> () const</td></tr>
+<tr class="memdesc:a91a560fe530bb025eaa050802fc820e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the handbrake's position has changed since the last update.  <br /></td></tr>
 <tr class="separator:a91a560fe530bb025eaa050802fc820e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c4f5ccb8f4b84a09f8083fb2c066774" id="r_a2c4f5ccb8f4b84a09f8083fb2c066774"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#a2c4f5ccb8f4b84a09f8083fb2c066774">setCalibration</a> (<a class="el" href="struct_sim_racing_1_1_analog_input_1_1_calibration.html">AnalogInput::Calibration</a> newCal)</td></tr>
+<tr class="memdesc:a2c4f5ccb8f4b84a09f8083fb2c066774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the axis' min/max values for rescaling.    <br /></td></tr>
 <tr class="separator:a2c4f5ccb8f4b84a09f8083fb2c066774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad87d44871e346e72ce4ea34f978380bd" id="r_ad87d44871e346e72ce4ea34f978380bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#ad87d44871e346e72ce4ea34f978380bd">serialCalibration</a> (Stream &amp;iface=Serial)</td></tr>
+<tr class="memdesc:ad87d44871e346e72ce4ea34f978380bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an interactive calibration tool using the serial interface.    <br /></td></tr>
 <tr class="separator:ad87d44871e346e72ce4ea34f978380bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab968cf671c3e9f6b3c4dbea58b6db65f" id="r_ab968cf671c3e9f6b3c4dbea58b6db65f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_handbrake.html#ab968cf671c3e9f6b3c4dbea58b6db65f">isConnected</a> () const</td></tr>
+<tr class="memdesc:ab968cf671c3e9f6b3c4dbea58b6db65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.      <br /></td></tr>
 <tr class="separator:ab968cf671c3e9f6b3c4dbea58b6db65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -172,7 +181,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Class constructor</p>
+
+<p>Class constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pinAx</td><td>analog pin number for the handbrake axis </td></tr>
@@ -208,6 +218,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Initializes the pin for reading from the handbrake. </p>
 
 <p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#ad1121a3a58c336931c563ff4d0fc4bdb">SimRacing::Peripheral</a>.</p>
@@ -243,7 +254,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retrieves the buffered position for the handbrake axis, rescaled to a nominal range using the calibration values.</p>
+
+<p>Retrieves the buffered position for the handbrake axis, rescaled to a nominal range using the calibration values. </p>
 <p>By default this is rescaled to an integer percentage (0 - 100)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -274,7 +286,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retrieves the buffered position for the handbrake, ignoring the calibration data.</p>
+
+<p>Retrieves the buffered position for the handbrake, ignoring the calibration data. </p>
 <dl class="section return"><dt>Returns</dt><dd>the handbrake position, buffered </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l01020">1020</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
@@ -304,8 +317,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Check if the device is physically connected to the board. That means it is both present and detected long enough to be considered 'stable'.</p>
+<p>Check if the device is physically connected to the board.     </p>
+<p>That means it is both present and detected long enough to be considered 'stable'.</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise     </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#a86985611b9c47c347c98b4c852300912">SimRacing::Peripheral</a>.</p>
@@ -336,7 +349,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Checks whether the handbrake's position has changed since the last update.</p>
+
+<p>Checks whether the handbrake's position has changed since the last update. </p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the position has changed, 'false' otherwise </dd></dl>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_handbrake_joystick_8ino-example.html#a3">HandbrakeJoystick.ino</a>.</dd>
 </dl>
@@ -361,8 +375,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Runs an interactive calibration tool using the serial interface.</p>
+<p>Runs an interactive calibration tool using the serial interface.   </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iface</td><td>the serial interface to send and receive prompts. Defaults to Serial (CDC USB on most boards).   </td></tr>
@@ -392,8 +405,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Calibrate the axis' min/max values for rescaling.</p>
+<p>Calibrate the axis' min/max values for rescaling.   </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newCal</td><td>the calibration data struct to pass   </td></tr>
@@ -427,7 +439,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Polls the handbrake to update its position.</p>
+
+<p>Polls the handbrake to update its position. </p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the gear has changed, 'false' otherwise </dd></dl>
 
 <p>Implements <a class="el" href="class_sim_racing_1_1_peripheral.html#ac61ff77db01f00fcfca62c8d96dec4ff">SimRacing::Peripheral</a>.</p>

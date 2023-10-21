@@ -126,38 +126,52 @@ Inheritance diagram for SimRacing::LogitechDrivingForceGT_Pedals:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a1ce50c934a99c58f1c4224004afea7dd" id="r_a1ce50c934a99c58f1c4224004afea7dd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a1ce50c934a99c58f1c4224004afea7dd">PedalID</a> = <a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">SimRacing::Pedal</a></td></tr>
+<tr class="memdesc:a1ce50c934a99c58f1c4224004afea7dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scoped alias for <a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846" title="Pedal ID names.">SimRacing::Pedal</a>.  <br /></td></tr>
 <tr class="separator:a1ce50c934a99c58f1c4224004afea7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaef2bb601a3f045a0fd17af4b1334ecb" id="r_aaef2bb601a3f045a0fd17af4b1334ecb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#aaef2bb601a3f045a0fd17af4b1334ecb">LogitechDrivingForceGT_Pedals</a> (uint8_t gasPin, uint8_t brakePin, uint8_t detectPin=NOT_A_PIN)</td></tr>
+<tr class="memdesc:aaef2bb601a3f045a0fd17af4b1334ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.    <br /></td></tr>
 <tr class="separator:aaef2bb601a3f045a0fd17af4b1334ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a922233d275f20df0bdc4545adc0f9064" id="r_a922233d275f20df0bdc4545adc0f9064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_two_pedals.html#a922233d275f20df0bdc4545adc0f9064">setCalibration</a> (<a class="el" href="struct_sim_racing_1_1_analog_input_1_1_calibration.html">AnalogInput::Calibration</a> gasCal, <a class="el" href="struct_sim_racing_1_1_analog_input_1_1_calibration.html">AnalogInput::Calibration</a> brakeCal)</td></tr>
+<tr class="memdesc:a922233d275f20df0bdc4545adc0f9064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the calibration data (min/max) for the pedals.  <br /></td></tr>
 <tr class="separator:a922233d275f20df0bdc4545adc0f9064"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e18b4ead4270de839961be61437043a" id="r_a5e18b4ead4270de839961be61437043a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a5e18b4ead4270de839961be61437043a">setCalibration</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal, <a class="el" href="struct_sim_racing_1_1_analog_input_1_1_calibration.html">AnalogInput::Calibration</a> cal)</td></tr>
+<tr class="memdesc:a5e18b4ead4270de839961be61437043a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate a pedal's min/max values for rescaling.  <br /></td></tr>
 <tr class="separator:a5e18b4ead4270de839961be61437043a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf2a61f94391d0d939a04d8d424918a6" id="r_acf2a61f94391d0d939a04d8d424918a6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">begin</a> ()</td></tr>
+<tr class="memdesc:acf2a61f94391d0d939a04d8d424918a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the hardware (if necessary)    <br /></td></tr>
 <tr class="separator:acf2a61f94391d0d939a04d8d424918a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb4929895a5b8c0065066dd2985bfa09" id="r_abb4929895a5b8c0065066dd2985bfa09"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">update</a> ()</td></tr>
+<tr class="memdesc:abb4929895a5b8c0065066dd2985bfa09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a poll of the hardware to refresh the class state.    <br /></td></tr>
 <tr class="separator:abb4929895a5b8c0065066dd2985bfa09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf64bfa366732c549b7c54a527f1a6d2" id="r_acf64bfa366732c549b7c54a527f1a6d2"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#acf64bfa366732c549b7c54a527f1a6d2">getPosition</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal, long rMin=0, long rMax=100) const</td></tr>
+<tr class="memdesc:acf64bfa366732c549b7c54a527f1a6d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the buffered position for the pedal, rescaled to a nominal range using the calibration values.  <br /></td></tr>
 <tr class="separator:acf64bfa366732c549b7c54a527f1a6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb447325455d5d1a2a8916497e499032" id="r_abb447325455d5d1a2a8916497e499032"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#abb447325455d5d1a2a8916497e499032">getPositionRaw</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal) const</td></tr>
+<tr class="memdesc:abb447325455d5d1a2a8916497e499032"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the buffered position for the pedal, ignoring the calibration data.  <br /></td></tr>
 <tr class="separator:abb447325455d5d1a2a8916497e499032"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa68c7a07235feca59483d2fc5814503f" id="r_aa68c7a07235feca59483d2fc5814503f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#aa68c7a07235feca59483d2fc5814503f">hasPedal</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal) const</td></tr>
+<tr class="memdesc:aa68c7a07235feca59483d2fc5814503f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given pedal is present in the class.  <br /></td></tr>
 <tr class="separator:aa68c7a07235feca59483d2fc5814503f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4fd22880e8caf894c2d6e18ceeacbdb" id="r_ae4fd22880e8caf894c2d6e18ceeacbdb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#ae4fd22880e8caf894c2d6e18ceeacbdb">getNumPedals</a> () const</td></tr>
+<tr class="memdesc:ae4fd22880e8caf894c2d6e18ceeacbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the number of pedals handled by the class.  <br /></td></tr>
 <tr class="separator:ae4fd22880e8caf894c2d6e18ceeacbdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab458ee597251d133ffffcf14c83c11fc" id="r_ab458ee597251d133ffffcf14c83c11fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#ab458ee597251d133ffffcf14c83c11fc">positionChanged</a> () const</td></tr>
+<tr class="memdesc:ab458ee597251d133ffffcf14c83c11fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current pedal positions have changed since the last update.  <br /></td></tr>
 <tr class="separator:ab458ee597251d133ffffcf14c83c11fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33cdb23af5fde195e3aa035bedf269ea" id="r_a33cdb23af5fde195e3aa035bedf269ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a33cdb23af5fde195e3aa035bedf269ea">serialCalibration</a> (Stream &amp;iface=Serial)</td></tr>
+<tr class="memdesc:a33cdb23af5fde195e3aa035bedf269ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an interactive calibration tool using the serial interface.  <br /></td></tr>
 <tr class="separator:a33cdb23af5fde195e3aa035bedf269ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ddfe82b26b91351319e4bcc8dce0f5d" id="r_a1ddfe82b26b91351319e4bcc8dce0f5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d">isConnected</a> () const</td></tr>
+<tr class="memdesc:a1ddfe82b26b91351319e4bcc8dce0f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.      <br /></td></tr>
 <tr class="separator:a1ddfe82b26b91351319e4bcc8dce0f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a79cfb2ea1a2897d73cec3ed0a0804615" id="r_a79cfb2ea1a2897d73cec3ed0a0804615"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a79cfb2ea1a2897d73cec3ed0a0804615">getPedalName</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal)</td></tr>
+<tr class="memdesc:a79cfb2ea1a2897d73cec3ed0a0804615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to get the string name for each pedal.  <br /></td></tr>
 <tr class="separator:a79cfb2ea1a2897d73cec3ed0a0804615"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -186,7 +200,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Scoped alias for <a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846" title="Pedal ID names.">SimRacing::Pedal</a> </p>
+
+<p>Scoped alias for <a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846" title="Pedal ID names.">SimRacing::Pedal</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00279">279</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
@@ -225,8 +240,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Class constructor</p>
+<p>Class constructor.   </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gasPin</td><td>the analog pin for the gas pedal potentiometer </td></tr>
@@ -264,7 +278,6 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
 <p>Initialize the hardware (if necessary)   </p>
 
 <p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#ad1121a3a58c336931c563ff4d0fc4bdb">SimRacing::Peripheral</a>.</p>
@@ -297,7 +310,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieves the number of pedals handled by the class.</p>
+
+<p>Retrieves the number of pedals handled by the class. </p>
 <dl class="section return"><dt>Returns</dt><dd>the number of pedals handled by the class </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00332">332</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
@@ -327,7 +341,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Utility function to get the string name for each pedal.</p>
+
+<p>Utility function to get the string name for each pedal. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pedal</td><td>the pedal to get the name of </td></tr>
@@ -379,7 +394,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieves the buffered position for the pedal, rescaled to a nominal range using the calibration values.</p>
+
+<p>Retrieves the buffered position for the pedal, rescaled to a nominal range using the calibration values. </p>
 <p>By default this is rescaled to an integer percentage.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -420,7 +436,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieves the buffered position for the pedal, ignoring the calibration data.</p>
+
+<p>Retrieves the buffered position for the pedal, ignoring the calibration data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pedal</td><td>the pedal to retrieve position for </td></tr>
@@ -456,7 +473,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Checks if a given pedal is present in the class.</p>
+
+<p>Checks if a given pedal is present in the class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pedal</td><td>the pedal to check </td></tr>
@@ -494,8 +512,8 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Check if the device is physically connected to the board. That means it is both present and detected long enough to be considered 'stable'.</p>
+<p>Check if the device is physically connected to the board.     </p>
+<p>That means it is both present and detected long enough to be considered 'stable'.</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise     </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#a86985611b9c47c347c98b4c852300912">SimRacing::Peripheral</a>.</p>
@@ -526,7 +544,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Checks whether the current pedal positions have changed since the last update.</p>
+
+<p>Checks whether the current pedal positions have changed since the last update. </p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if position has changed, 'false' otherwise </dd></dl>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_joystick_8ino-example.html#a4">PedalsJoystick.ino</a>.</dd>
 </dl>
@@ -558,7 +577,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Runs an interactive calibration tool using the serial interface.</p>
+
+<p>Runs an interactive calibration tool using the serial interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iface</td><td>the serial interface to send and receive prompts. Defaults to Serial (CDC USB on most boards). </td></tr>
@@ -605,7 +625,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the calibration data (min/max) for the pedals</p>
+
+<p>Sets the calibration data (min/max) for the pedals. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gasCal</td><td>the calibration data for the gas pedal </td></tr>
@@ -651,7 +672,8 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Calibrate a pedal's min/max values for rescaling.</p>
+
+<p>Calibrate a pedal's min/max values for rescaling. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pedal</td><td>the pedal to set the calibration of </td></tr>
@@ -687,8 +709,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p></p>
-<p>Perform a poll of the hardware to refresh the class state</p>
+<p>Perform a poll of the hardware to refresh the class state.   </p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise   </dd></dl>
 
 <p>Implements <a class="el" href="class_sim_racing_1_1_peripheral.html#ac61ff77db01f00fcfca62c8d96dec4ff">SimRacing::Peripheral</a>.</p>

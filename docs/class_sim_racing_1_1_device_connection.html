@@ -118,19 +118,25 @@ Public Types</h2></td></tr>
 , <a class="el" href="class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852eac3b259b0bc557470268a9b08a06b7404">Connected</a>
 , <a class="el" href="class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852ea0654aafaf348066c006491163db77393">Unplug</a>
  }</td></tr>
+<tr class="memdesc:a844b40b17f6935de9e20debeb83d852e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The state of the connection, whether it is connected, disconnected, and everywhere in-between.  <a href="class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852e">More...</a><br /></td></tr>
 <tr class="separator:a844b40b17f6935de9e20debeb83d852e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a12edc4dab6d4f49f05bd5e68c6ef5506" id="r_a12edc4dab6d4f49f05bd5e68c6ef5506"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_device_connection.html#a12edc4dab6d4f49f05bd5e68c6ef5506">DeviceConnection</a> (uint8_t pin, bool invert=false, unsigned long detectTime=250)</td></tr>
+<tr class="memdesc:a12edc4dab6d4f49f05bd5e68c6ef5506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
 <tr class="separator:a12edc4dab6d4f49f05bd5e68c6ef5506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a085284c2e4ba8d0c29b50599312ce27c" id="r_a085284c2e4ba8d0c29b50599312ce27c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_device_connection.html#a085284c2e4ba8d0c29b50599312ce27c">poll</a> ()</td></tr>
+<tr class="memdesc:a085284c2e4ba8d0c29b50599312ce27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the pin detects a connection.  <br /></td></tr>
 <tr class="separator:a085284c2e4ba8d0c29b50599312ce27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a383729a5f043ae4d49bcda3711ae99fa" id="r_a383729a5f043ae4d49bcda3711ae99fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852e">ConnectionState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_device_connection.html#a383729a5f043ae4d49bcda3711ae99fa">getState</a> () const</td></tr>
+<tr class="memdesc:a383729a5f043ae4d49bcda3711ae99fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current ConnectionState from the instance.  <br /></td></tr>
 <tr class="separator:a383729a5f043ae4d49bcda3711ae99fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af39bf3c1cef6f3d0b4201c549e4d6376" id="r_af39bf3c1cef6f3d0b4201c549e4d6376"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_device_connection.html#af39bf3c1cef6f3d0b4201c549e4d6376">isConnected</a> () const</td></tr>
+<tr class="memdesc:af39bf3c1cef6f3d0b4201c549e4d6376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.  <br /></td></tr>
 <tr class="separator:af39bf3c1cef6f3d0b4201c549e4d6376"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f92f9642bd490712cd61607336423d6" id="r_a0f92f9642bd490712cd61607336423d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_device_connection.html#a0f92f9642bd490712cd61607336423d6">setStablePeriod</a> (unsigned long t)</td></tr>
+<tr class="memdesc:a0f92f9642bd490712cd61607336423d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows the user to change the stable period of the detector.  <br /></td></tr>
 <tr class="separator:a0f92f9642bd490712cd61607336423d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -149,8 +155,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The state of the connection, whether it is connected, disconnected, and everywhere in-between. This is the type returned by the main '<a class="el" href="class_sim_racing_1_1_device_connection.html#a383729a5f043ae4d49bcda3711ae99fa">getState()</a>' method.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_sim_racing_1_1_device_connection.html#a383729a5f043ae4d49bcda3711ae99fa">getState()</a> </dd></dl>
+
+<p>The state of the connection, whether it is connected, disconnected, and everywhere in-between. </p>
+<p>This is the type returned by the main '<a class="el" href="class_sim_racing_1_1_device_connection.html#a383729a5f043ae4d49bcda3711ae99fa" title="Retrieves the current ConnectionState from the instance.">getState()</a>' method.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_sim_racing_1_1_device_connection.html#a383729a5f043ae4d49bcda3711ae99fa" title="Retrieves the current ConnectionState from the instance.">getState()</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a844b40b17f6935de9e20debeb83d852ea90737477947369d22a5b4cf5f19bb2a6" name="a844b40b17f6935de9e20debeb83d852ea90737477947369d22a5b4cf5f19bb2a6"></a>Disconnected&#160;</td><td class="fielddoc"><p>No connection present. </p>
 </td></tr>
@@ -198,7 +206,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Class constructor</p>
+
+<p>Class constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the pin number being read. Can be 'NOT_A_PIN' to disable. </td></tr>
@@ -227,7 +236,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Retrieves the current ConnectionState from the instance. This allows functions to check the same connection state multiple times without having to re-poll. </p>
+
+<p>Retrieves the current ConnectionState from the instance. </p>
+<p>This allows functions to check the same connection state multiple times without having to re-poll. </p>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00228">228</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
@@ -247,7 +258,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Check if the device is physically connected to the board. That means it is both present and detected long enough to be considered 'stable'.</p>
+
+<p>Check if the device is physically connected to the board. </p>
+<p>That means it is both present and detected long enough to be considered 'stable'.</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00232">232</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
@@ -268,7 +281,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if the pin detects a connection. This polls the input and checks for whether it has been connected sufficiently long enough to be deemed "stable". </p>
+
+<p>Checks if the pin detects a connection. </p>
+<p>This polls the input and checks for whether it has been connected sufficiently long enough to be deemed "stable". </p>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00192">192</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
@@ -289,7 +304,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Allows the user to change the stable period of the detector.</p>
+
+<p>Allows the user to change the stable period of the detector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>the amount of time, in ms, the input must be stable for (no changes) before it's interpreted as 'detected' </td></tr>
