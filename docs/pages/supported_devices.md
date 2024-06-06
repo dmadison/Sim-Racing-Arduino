@@ -1,4 +1,4 @@
-# Supported Devices
+# Supported Devices {#supported_devices}
 
 ### Generic Devices
 
