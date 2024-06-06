@@ -1,7 +1,7 @@
 var class_sim_racing_1_1_pedals =
 [
     [ "PedalID", "class_sim_racing_1_1_pedals.html#a1ce50c934a99c58f1c4224004afea7dd", null ],
-    [ "Pedals", "class_sim_racing_1_1_pedals.html#a6088fd57fbae268180ccfc80fc8b6fed", null ],
+    [ "Pedals", "class_sim_racing_1_1_pedals.html#a2d442897f3836079d8d062c5754d8bea", null ],
     [ "begin", "class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6", null ],
     [ "getNumPedals", "class_sim_racing_1_1_pedals.html#ae4fd22880e8caf894c2d6e18ceeacbdb", null ],
     [ "getPosition", "class_sim_racing_1_1_pedals.html#acf64bfa366732c549b7c54a527f1a6d2", null ],

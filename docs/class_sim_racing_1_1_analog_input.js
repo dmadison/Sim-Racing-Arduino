@@ -1,7 +1,7 @@
 var class_sim_racing_1_1_analog_input =
 [
     [ "Calibration", "struct_sim_racing_1_1_analog_input_1_1_calibration.html", "struct_sim_racing_1_1_analog_input_1_1_calibration" ],
-    [ "AnalogInput", "class_sim_racing_1_1_analog_input.html#a9e0944e9d56a22b473b186f20fe94b92", null ],
+    [ "AnalogInput", "class_sim_racing_1_1_analog_input.html#aefae09a1e1c450312b1ec361d4231ccc", null ],
     [ "getMax", "class_sim_racing_1_1_analog_input.html#a976b853d9a7e3fcb3f3fded684d80285", null ],
     [ "getMin", "class_sim_racing_1_1_analog_input.html#ac3ab238d1490e066b2d57a7477fb117a", null ],
     [ "getPosition", "class_sim_racing_1_1_analog_input.html#a19c9ad6650c86a1ed39f05ed31bdee2f", null ],

@@ -1,6 +1,6 @@
 var class_sim_racing_1_1_handbrake =
 [
-    [ "Handbrake", "class_sim_racing_1_1_handbrake.html#a3268ce775d3bdbddeea6981ef42c0e0b", null ],
+    [ "Handbrake", "class_sim_racing_1_1_handbrake.html#ab6eef2b72a1ad7c38fd0ff8eb79fbaef", null ],
     [ "begin", "class_sim_racing_1_1_handbrake.html#a0b7f6916cd4ac88b32d73a671af458ac", null ],
     [ "getPosition", "class_sim_racing_1_1_handbrake.html#a1b3ca0a06837b95cb3961a96795fcedc", null ],
     [ "getPositionRaw", "class_sim_racing_1_1_handbrake.html#a4a017278c3097e6bd6c800ea1a526279", null ],

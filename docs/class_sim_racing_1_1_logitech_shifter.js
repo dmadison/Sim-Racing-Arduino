@@ -1,6 +1,6 @@
 var class_sim_racing_1_1_logitech_shifter =
 [
-    [ "LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html#aa440daa325b3d373cfbecf6553d5df3f", null ],
+    [ "LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html#a75527c317836ac3b7879160688416c56", null ],
     [ "begin", "class_sim_racing_1_1_logitech_shifter.html#ae9291c889851fbffee747121b770878b", null ],
     [ "gearChanged", "class_sim_racing_1_1_logitech_shifter.html#afa89cfebedb1208816a449334867fe7f", null ],
     [ "getGear", "class_sim_racing_1_1_logitech_shifter.html#aa4766bba9571601cf422866fd02726b6", null ],

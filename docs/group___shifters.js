@@ -21,7 +21,7 @@ var group___shifters =
         [ "x", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html#ac0f84d67896f1ad8f79620c012bcc925", null ],
         [ "y", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html#a0492e43390d2a90e6880f619ba47d1e3", null ]
       ] ],
-      [ "AnalogShifter", "class_sim_racing_1_1_analog_shifter.html#a4d25bacc0cd962d43fec0e3ae7123db2", null ],
+      [ "AnalogShifter", "class_sim_racing_1_1_analog_shifter.html#abb7ec31b026d3ee8993f3f925960635d", null ],
       [ "begin", "class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b", null ],
       [ "gearChanged", "class_sim_racing_1_1_analog_shifter.html#afa89cfebedb1208816a449334867fe7f", null ],
       [ "getGear", "class_sim_racing_1_1_analog_shifter.html#aa4766bba9571601cf422866fd02726b6", null ],
@@ -42,7 +42,7 @@ var group___shifters =
       [ "MinGear", "class_sim_racing_1_1_analog_shifter.html#ad457a8a49919db3c7ec0b70be6cadec1", null ]
     ] ],
     [ "SimRacing::LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html", [
-      [ "LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html#aa440daa325b3d373cfbecf6553d5df3f", null ],
+      [ "LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html#a75527c317836ac3b7879160688416c56", null ],
       [ "begin", "class_sim_racing_1_1_logitech_shifter.html#ae9291c889851fbffee747121b770878b", null ],
       [ "gearChanged", "class_sim_racing_1_1_logitech_shifter.html#afa89cfebedb1208816a449334867fe7f", null ],
       [ "getGear", "class_sim_racing_1_1_logitech_shifter.html#aa4766bba9571601cf422866fd02726b6", null ],

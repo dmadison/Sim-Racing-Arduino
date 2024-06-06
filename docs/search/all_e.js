@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['threepedals_0',['threepedals',['../class_sim_racing_1_1_three_pedals.html',1,'SimRacing::ThreePedals'],['../class_sim_racing_1_1_three_pedals.html#a3198435b269ef096a39a2303306abb76',1,'SimRacing::ThreePedals::ThreePedals()']]],
-  ['twopedals_1',['twopedals',['../class_sim_racing_1_1_two_pedals.html',1,'SimRacing::TwoPedals'],['../class_sim_racing_1_1_two_pedals.html#aca438f043cfbc7a45b0e65df44c9df89',1,'SimRacing::TwoPedals::TwoPedals()']]]
+  ['threepedals_0',['ThreePedals',['../class_sim_racing_1_1_three_pedals.html',1,'SimRacing::ThreePedals'],['../class_sim_racing_1_1_three_pedals.html#ade3ca6b2b62f61ec527f42eedc02ff13',1,'SimRacing::ThreePedals::ThreePedals()']]],
+  ['twopedals_1',['TwoPedals',['../class_sim_racing_1_1_two_pedals.html',1,'SimRacing::TwoPedals'],['../class_sim_racing_1_1_two_pedals.html#a689c309df31953c850afe456ab2ee297',1,'SimRacing::TwoPedals::TwoPedals()']]]
 ];

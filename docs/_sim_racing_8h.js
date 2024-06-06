@@ -8,6 +8,7 @@ var _sim_racing_8h =
     [ "SimRacing::Handbrake", "class_sim_racing_1_1_handbrake.html", "class_sim_racing_1_1_handbrake" ],
     [ "PEDAL_SHIELD_V1_PINS", "_sim_racing_8h.html#aee8041b5e2abaf861dfbc513f07e9b34", null ],
     [ "SHIFTER_SHIELD_V1_PINS", "_sim_racing_8h.html#a8bdc255ffe6b34b9191157febf849eca", null ],
+    [ "PinNum", "_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e", null ],
     [ "Axis", "_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2", [
       [ "X", "_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2a4b7f32a18c6d7f71d8884cc2ace20989", null ],
       [ "Y", "_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2a592d0ec581a5619786534890c2d78f50", null ]
@@ -18,5 +19,6 @@ var _sim_racing_8h =
       [ "Throttle", "_sim_racing_8h.html#gga4f8d4f29f65329fb4ee7e4bf5eec8846ac4f536c5249b4ccf3dd657daf0dd3a1a", null ],
       [ "Brake", "_sim_racing_8h.html#gga4f8d4f29f65329fb4ee7e4bf5eec8846a1b3e19c1b49390ba1b6605d29baf6555", null ],
       [ "Clutch", "_sim_racing_8h.html#gga4f8d4f29f65329fb4ee7e4bf5eec8846a192c8d1cf4b0c1ba83ea284b00c0890a", null ]
-    ] ]
+    ] ],
+    [ "UnusedPin", "_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df", null ]
 ];

@@ -1,7 +1,7 @@
 var class_sim_racing_1_1_analog_shifter =
 [
     [ "GearPosition", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position" ],
-    [ "AnalogShifter", "class_sim_racing_1_1_analog_shifter.html#a4d25bacc0cd962d43fec0e3ae7123db2", null ],
+    [ "AnalogShifter", "class_sim_racing_1_1_analog_shifter.html#abb7ec31b026d3ee8993f3f925960635d", null ],
     [ "begin", "class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b", null ],
     [ "gearChanged", "class_sim_racing_1_1_analog_shifter.html#afa89cfebedb1208816a449334867fe7f", null ],
     [ "getGear", "class_sim_racing_1_1_analog_shifter.html#aa4766bba9571601cf422866fd02726b6", null ],
