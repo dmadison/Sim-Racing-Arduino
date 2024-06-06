@@ -178,7 +178,7 @@ static void readFloat(float& value, Stream& client) {
 
 DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detectTime)
 	:
-	Pin(sanitizePin(pin)), Inverted(invert), stablePeriod(detectTime),  // constants(ish)
+	pin(sanitizePin(pin)), inverted(invert), stablePeriod(detectTime),  // constants(ish)
 
 	/* Assume we're connected on first call
 	*/
@@ -192,7 +192,7 @@ DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detect
 	* the device to be read as connected as soon as the board turns on, without
 	* having to wait an arbitrary amount.
 	*/
-	pinState(!Inverted),
+	pinState(!inverted),
 
 	/* Set the last pin change to right now minus the stable period so it's
 	* read as being already stable. Again, this will make the class return
@@ -202,7 +202,7 @@ DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detect
 
 {
 	if (pin != UnusedPin) {
-		pinMode(Pin, INPUT);  // set pin as input, *no* pull-up
+		pinMode(pin, INPUT);  // set pin as input, *no* pull-up
 	}
 }
 
@@ -265,9 +265,9 @@ void DeviceConnection::setStablePeriod(unsigned long t) {
 }
 
 bool DeviceConnection::readPin() const {
-	if (Pin == UnusedPin) return HIGH;  // if no pin is set, we're always connected
-	const bool state = digitalRead(Pin);
-	return Inverted ? !state : state;
+	if (pin == UnusedPin) return HIGH;  // if no pin is set, we're always connected
+	const bool state = digitalRead(pin);
+	return inverted ? !state : state;
 }
 
 //#########################################################
@@ -275,20 +275,20 @@ bool DeviceConnection::readPin() const {
 //#########################################################
 
 
-AnalogInput::AnalogInput(PinNum p)
-	: Pin(sanitizePin(p)), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
+AnalogInput::AnalogInput(PinNum pin)
+	: pin(sanitizePin(pin)), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
 {
-	if (Pin != UnusedPin) {
-		pinMode(Pin, INPUT);
+	if (pin != UnusedPin) {
+		pinMode(pin, INPUT);
 	}
 }
 
 bool AnalogInput::read() {
 	bool changed = false;
 
-	if (Pin != UnusedPin) {
+	if (pin != UnusedPin) {
 		const int previous = this->position;
-		this->position = analogRead(Pin);
+		this->position = analogRead(pin);
 
 		// check if value is different for 'changed' flag
 		if (previous != this->position) {
@@ -684,13 +684,13 @@ AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum det
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
-	PinReverse(sanitizePin(pinRev)),
+	pinReverse(sanitizePin(pinRev)),
 	detector(detectPin, false)  // not inverted
 {}
 
 void AnalogShifter::begin() {
-	if (this->PinReverse != UnusedPin) {
-		pinMode(PinReverse, INPUT);
+	if (this->pinReverse != UnusedPin) {
+		pinMode(pinReverse, INPUT);
 	}
 	update();  // set initial gear position
 }
@@ -796,10 +796,10 @@ int AnalogShifter::getPositionRaw(Axis ax) const {
 bool AnalogShifter::getReverseButton() const {
 	// if the reverse pin is not set *or* if the device is not currently
 	// connected, avoid reading the floating input and just return 'false'
-	if (PinReverse == UnusedPin || detector.getState() != DeviceConnection::Connected) {
+	if (pinReverse == UnusedPin || detector.getState() != DeviceConnection::Connected) {
 		return false;
 	}
-	return digitalRead(PinReverse);
+	return digitalRead(pinReverse);
 }
 
 void AnalogShifter::setCalibration(

@@ -120,13 +120,13 @@ namespace SimRacing {
 		*/
 		bool readPin() const;
 
-		const PinNum Pin;            ///< The pin number being read from. Can be 'UnusedPin' to disable
-		const bool Inverted;         ///< Whether the input is inverted, so 'LOW' is detected instead of 'HIGH'
+		PinNum pin;                  ///< The pin number being read from. Can be 'UnusedPin' to disable
+		bool inverted;               ///< Whether the input is inverted, so 'LOW' is detected instead of 'HIGH'
 		unsigned long stablePeriod;  ///< The amount of time the input must be stable for (ms)
 
-		ConnectionState state;     ///< The current state of the connection
-		bool pinState;             ///< Buffered state of the input pin, accounting for inversion
-		unsigned long lastChange;  ///< Timestamp of the last pin change, in ms (using millis())
+		ConnectionState state;       ///< The current state of the connection
+		bool pinState;               ///< Buffered state of the input pin, accounting for inversion
+		unsigned long lastChange;    ///< Timestamp of the last pin change, in ms (using millis())
 	};
 
 
@@ -141,9 +141,9 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param p the I/O pin for this input (Arduino numbering)
+		* @param pin the I/O pin for this input (Arduino numbering)
 		*/
-		AnalogInput(PinNum p);
+		AnalogInput(PinNum pin);
 
 		/**
 		* Updates the current value of the axis by polling the ADC
@@ -237,9 +237,9 @@ namespace SimRacing {
 		void setCalibration(Calibration newCal);
 
 	private:
-		const PinNum Pin = UnusedPin;   ///< the digital pin number for this input
-		int position;                   ///< the axis' position in its range, buffered
-		Calibration cal;                ///< the calibration values for the axis
+		PinNum pin;              ///< the digital pin number for this input
+		int position;            ///< the axis' position in its range, buffered
+		Calibration cal;         ///< the calibration values for the axis
 	};
 
 
@@ -393,11 +393,11 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param gasPin the analog pin for the gas pedal potentiometer
-		* @param brakePin the analog pin for the brake pedal potentiometer
-		* @param detectPin the digital pin for device detection (high is detected)
+		* @param pinGas    the analog pin for the gas pedal potentiometer
+		* @param pinBrake  the analog pin for the brake pedal potentiometer
+		* @param pinDetect the digital pin for device detection (high is detected)
 		*/
-		TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = UnusedPin);
+		TwoPedals(PinNum pinGas, PinNum pinBrake, PinNum pinDetect = UnusedPin);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -421,12 +421,12 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param gasPin the analog pin for the gas pedal potentiometer
-		* @param brakePin the analog pin for the brake pedal potentiometer
-		* @param clutchPin the analog pin for the clutch pedal potentiometer
-		* @param detectPin the digital pin for device detection (high is detected)
+		* @param pinGas    the analog pin for the gas pedal potentiometer
+		* @param pinBrake  the analog pin for the brake pedal potentiometer
+		* @param pinClutch the analog pin for the clutch pedal potentiometer
+		* @param pinDetect the digital pin for device detection (high is detected)
 		*/
-		ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = UnusedPin);
+		ThreePedals(PinNum pinGas, PinNum pinBrake, PinNum pinClutch, PinNum pinDetect = UnusedPin);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -552,9 +552,9 @@ namespace SimRacing {
 		* @param pinX the analog input pin for the X axis
 		* @param pinY the analog input pin for the Y axis
 		* @param pinRev the digital input pin for the 'reverse' button
-		* @param detectPin the digital pin for device detection (high is detected)
+		* @param pinDetect the digital pin for device detection (high is detected)
 		*/
-		AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum detectPin = UnusedPin);
+		AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum pinDetect = UnusedPin);
 
 		/**
 		* Initializes the hardware pins for reading the gear states.
@@ -675,7 +675,7 @@ namespace SimRacing {
 		} calibration;
 
 		AnalogInput analogAxis[2];  ///< Axis data for X and Y
-		const PinNum PinReverse;   ///< The pin for the reverse gear button
+		PinNum pinReverse;          ///< The pin for the reverse gear button
 		DeviceConnection detector;  ///< detector instance for checking if the shifter is connected
 	};
 
@@ -691,9 +691,9 @@ namespace SimRacing {
 		* Class constructor
 		*
 		* @param pinAx analog pin number for the handbrake axis
-		* @param detectPin the digital pin for device detection (high is detected)
+		* @param pinDetect the digital pin for device detection (high is detected)
 		*/
-		Handbrake(PinNum pinAx, PinNum detectPin = UnusedPin);
+		Handbrake(PinNum pinAx, PinNum pinDetect = UnusedPin);
 
 		/**
 		* Initializes the pin for reading from the handbrake.
@@ -760,7 +760,7 @@ namespace SimRacing {
 	class LogitechPedals : public ThreePedals {
 	public:
 		/** @copydoc ThreePedals::ThreePedals */
-		LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = UnusedPin);
+		LogitechPedals(PinNum pinGas, PinNum pinBrake, PinNum pinClutch, PinNum pinDetect = UnusedPin);
 	};
 
 	/**
@@ -775,7 +775,7 @@ namespace SimRacing {
 	class LogitechDrivingForceGT_Pedals : public TwoPedals {
 	public:
 		/** @copydoc TwoPedals::TwoPedals */
-		LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = UnusedPin);
+		LogitechDrivingForceGT_Pedals(PinNum pinGas, PinNum pinBrake, PinNum pinDetect = UnusedPin);
 	};
 
 	/**
@@ -787,7 +787,7 @@ namespace SimRacing {
 	class LogitechShifter : public AnalogShifter {
 	public:
 		/** @copydoc AnalogShifter::AnalogShifter */
-		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum detectPin = UnusedPin);
+		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum pinDetect = UnusedPin);
 	};
 
 
