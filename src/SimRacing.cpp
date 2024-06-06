@@ -248,7 +248,7 @@ void DeviceConnection::setStablePeriod(unsigned long t) {
 }
 
 bool DeviceConnection::readPin() const {
-	if (Pin == NOT_A_PIN) return HIGH;  // if no pin is set, we're always connected
+	if (Pin == UnusedPin) return HIGH;  // if no pin is set, we're always connected
 	const bool state = digitalRead(Pin);
 	return Inverted ? !state : state;
 }
@@ -261,7 +261,7 @@ bool DeviceConnection::readPin() const {
 AnalogInput::AnalogInput(PinNum p)
 	: Pin(p), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
 {
-	if (Pin != NOT_A_PIN) {
+	if (Pin != UnusedPin) {
 		pinMode(Pin, INPUT);
 	}
 }
@@ -269,7 +269,7 @@ AnalogInput::AnalogInput(PinNum p)
 bool AnalogInput::read() {
 	bool changed = false;
 
-	if (Pin != NOT_A_PIN) {
+	if (Pin != UnusedPin) {
 		const int previous = this->position;
 		this->position = analogRead(Pin);
 
@@ -662,7 +662,7 @@ AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum det
 	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
 	* exists for reverse, otherwise it's going to be '0' (neutral).
 	*/
-	Shifter(pinRev != NOT_A_PIN ? -1 : 0, 6),
+	Shifter(pinRev != UnusedPin ? -1 : 0, 6),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
@@ -777,7 +777,7 @@ int AnalogShifter::getPositionRaw(Axis ax) const {
 bool AnalogShifter::getReverseButton() const {
 	// if the reverse pin is not set *or* if the device is not currently
 	// connected, avoid reading the floating input and just return 'false'
-	if (PinReverse == NOT_A_PIN || detector.getState() != DeviceConnection::Connected) {
+	if (PinReverse == UnusedPin || detector.getState() != DeviceConnection::Connected) {
 		return false;
 	}
 	return digitalRead(PinReverse);

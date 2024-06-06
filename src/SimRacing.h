@@ -34,7 +34,13 @@ namespace SimRacing {
 	/**
 	* Type alias for pin numbers, using Arduino numbering
 	*/
-	using PinNum = uint8_t;
+	using PinNum = int16_t;
+
+	/**
+	* Dummy pin number signaling that a pin is unused
+	* and can be safely ignored
+	*/
+	const PinNum UnusedPin = -1;
 
 
 	/**
@@ -69,7 +75,7 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param pin the pin number being read. Can be 'NOT_A_PIN' to disable.
+		* @param pin the pin number being read. Can be 'UnusedPin' to disable.
 		* @param invert whether the input is inverted, so 'LOW' is detected instead of 'HIGH'
 		* @param detectTime the amount of time, in ms, the input must be stable for
 		*        before it's interpreted as 'detected'
@@ -114,7 +120,7 @@ namespace SimRacing {
 		*/
 		bool readPin() const;
 
-		const PinNum Pin;            ///< The pin number being read from. Can be 'NOT_A_PIN' to disable
+		const PinNum Pin;            ///< The pin number being read from. Can be 'UnusedPin' to disable
 		const bool Inverted;         ///< Whether the input is inverted, so 'LOW' is detected instead of 'HIGH'
 		unsigned long stablePeriod;  ///< The amount of time the input must be stable for (ms)
 
@@ -231,7 +237,7 @@ namespace SimRacing {
 		void setCalibration(Calibration newCal);
 
 	private:
-		const PinNum Pin = NOT_A_PIN;   ///< the digital pin number for this input
+		const PinNum Pin = UnusedPin;   ///< the digital pin number for this input
 		int position;                   ///< the axis' position in its range, buffered
 		Calibration cal;                ///< the calibration values for the axis
 	};
@@ -391,7 +397,7 @@ namespace SimRacing {
 		* @param brakePin the analog pin for the brake pedal potentiometer
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = NOT_A_PIN);
+		TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = UnusedPin);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -420,7 +426,7 @@ namespace SimRacing {
 		* @param clutchPin the analog pin for the clutch pedal potentiometer
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = NOT_A_PIN);
+		ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = UnusedPin);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -548,7 +554,7 @@ namespace SimRacing {
 		* @param pinRev the digital input pin for the 'reverse' button
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev = NOT_A_PIN, PinNum detectPin = NOT_A_PIN);
+		AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum detectPin = UnusedPin);
 
 		/**
 		* Initializes the hardware pins for reading the gear states.
@@ -687,7 +693,7 @@ namespace SimRacing {
 		* @param pinAx analog pin number for the handbrake axis
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		Handbrake(PinNum pinAx, PinNum detectPin = NOT_A_PIN);
+		Handbrake(PinNum pinAx, PinNum detectPin = UnusedPin);
 
 		/**
 		* Initializes the pin for reading from the handbrake.
@@ -754,7 +760,7 @@ namespace SimRacing {
 	class LogitechPedals : public ThreePedals {
 	public:
 		/** @copydoc ThreePedals::ThreePedals */
-		LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = NOT_A_PIN);
+		LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = UnusedPin);
 	};
 
 	/**
@@ -769,7 +775,7 @@ namespace SimRacing {
 	class LogitechDrivingForceGT_Pedals : public TwoPedals {
 	public:
 		/** @copydoc TwoPedals::TwoPedals */
-		LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = NOT_A_PIN);
+		LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = UnusedPin);
 	};
 
 	/**
@@ -781,7 +787,7 @@ namespace SimRacing {
 	class LogitechShifter : public AnalogShifter {
 	public:
 		/** @copydoc AnalogShifter::AnalogShifter */
-		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = NOT_A_PIN, PinNum detectPin = NOT_A_PIN);
+		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum detectPin = UnusedPin);
 	};
 
 
