@@ -8,7 +8,7 @@ The [Sim Racing Library](https://github.com/dmadison/Sim-Racing-Arduino/) is an 
 
 Install the library using either [the .zip file from the latest release](https://github.com/dmadison/Sim-Racing-Arduino/releases/latest/) or by searching for "Sim Racing" in the libraries manager of the Arduino IDE. [See the Arduino documentation on how to install libraries for more information.](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries)
 
-[Read the documentation](http://dmadison.github.io/Sim-Racing-Arduino/docs/md_pages_supported_devices.html) to check if your device is supported by the library. Follow the wiring instructions on the device page to connect your device to the Arduino.
+[Read the documentation](http://dmadison.github.io/Sim-Racing-Arduino/docs/supported_devices.html) to check if your device is supported by the library. Follow the wiring instructions on the device page to connect your device to the Arduino.
 
 Run one of the library examples in the Arduino IDE by going to `File -> Examples -> Sim Racing Library`. For all peripherals, call `begin()` to initialize the class and `update()` to refresh with new data.
 
