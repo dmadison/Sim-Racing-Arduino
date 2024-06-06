@@ -29,6 +29,21 @@
 
 namespace SimRacing {
 
+/**
+* Take a pin number as an input and sanitize it to a known working value
+* 
+* In an ideal world this would check against the available pins on the micro,
+* but as far as I know the Arduino API does not have a "valid pin" function. 
+* Instead, we'll just accept any positive number as a pin and reject any
+* negative number as invalid ("Unused").
+* 
+* @param pin the pin number to sanitize
+* @returns the pin number, or UnusedPin
+*/
+static constexpr PinNum sanitizePin(PinNum pin) {
+	return pin < 0 ? UnusedPin : pin;
+}
+
 
 /**
 * Invert an input value so it's at the same relative position
@@ -163,7 +178,7 @@ static void readFloat(float& value, Stream& client) {
 
 DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detectTime)
 	:
-	Pin(pin), Inverted(invert), stablePeriod(detectTime),  // constants(ish)
+	Pin(sanitizePin(pin)), Inverted(invert), stablePeriod(detectTime),  // constants(ish)
 
 	/* Assume we're connected on first call
 	*/
@@ -186,7 +201,9 @@ DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detect
 	lastChange(millis() - detectTime)
 
 {
-	pinMode(Pin, INPUT);  // set pin as input, *no* pull-up
+	if (pin != UnusedPin) {
+		pinMode(Pin, INPUT);  // set pin as input, *no* pull-up
+	}
 }
 
 void DeviceConnection::poll() {
@@ -259,7 +276,7 @@ bool DeviceConnection::readPin() const {
 
 
 AnalogInput::AnalogInput(PinNum p)
-	: Pin(p), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
+	: Pin(sanitizePin(p)), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
 {
 	if (Pin != UnusedPin) {
 		pinMode(Pin, INPUT);
@@ -662,17 +679,19 @@ AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum det
 	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
 	* exists for reverse, otherwise it's going to be '0' (neutral).
 	*/
-	Shifter(pinRev != UnusedPin ? -1 : 0, 6),
+	Shifter(sanitizePin(pinRev) != UnusedPin ? -1 : 0, 6),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
-	PinReverse(pinRev),
+	PinReverse(sanitizePin(pinRev)),
 	detector(detectPin, false)  // not inverted
 {}
 
 void AnalogShifter::begin() {
-	pinMode(PinReverse, INPUT);
+	if (this->PinReverse != UnusedPin) {
+		pinMode(PinReverse, INPUT);
+	}
 	update();  // set initial gear position
 }
 
