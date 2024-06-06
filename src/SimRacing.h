@@ -32,6 +32,12 @@
 
 namespace SimRacing {
 	/**
+	* Type alias for pin numbers, using Arduino numbering
+	*/
+	using PinNum = uint8_t;
+
+
+	/**
 	* Enumeration for analog axis names, mapped to integers
 	*/
 	enum Axis : uint8_t {
@@ -68,7 +74,7 @@ namespace SimRacing {
 		* @param detectTime the amount of time, in ms, the input must be stable for
 		*        before it's interpreted as 'detected'
 		*/
-		DeviceConnection(uint8_t pin, bool invert = false, unsigned long detectTime = 250);
+		DeviceConnection(PinNum pin, bool invert = false, unsigned long detectTime = 250);
 
 		/**
 		* Checks if the pin detects a connection. This polls the input and checks
@@ -108,7 +114,7 @@ namespace SimRacing {
 		*/
 		bool readPin() const;
 
-		const uint8_t Pin;           ///< The pin number being read from. Can be 'NOT_A_PIN' to disable
+		const PinNum Pin;            ///< The pin number being read from. Can be 'NOT_A_PIN' to disable
 		const bool Inverted;         ///< Whether the input is inverted, so 'LOW' is detected instead of 'HIGH'
 		unsigned long stablePeriod;  ///< The amount of time the input must be stable for (ms)
 
@@ -131,7 +137,7 @@ namespace SimRacing {
 		*
 		* @param p the I/O pin for this input (Arduino numbering)
 		*/
-		AnalogInput(uint8_t p);
+		AnalogInput(PinNum p);
 
 		/**
 		* Updates the current value of the axis by polling the ADC
@@ -225,7 +231,7 @@ namespace SimRacing {
 		void setCalibration(Calibration newCal);
 
 	private:
-		const uint8_t Pin = NOT_A_PIN;  ///< the digital pin number for this input
+		const PinNum Pin = NOT_A_PIN;   ///< the digital pin number for this input
 		int position;                   ///< the axis' position in its range, buffered
 		Calibration cal;                ///< the calibration values for the axis
 	};
@@ -285,7 +291,7 @@ namespace SimRacing {
 		* @param nPedals the number of pedals stored in said data pointer
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		Pedals(AnalogInput* dataPtr, uint8_t nPedals, uint8_t detectPin);
+		Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin);
 
 		/** @copydoc Peripheral::begin() */
 		virtual void begin();
@@ -385,7 +391,7 @@ namespace SimRacing {
 		* @param brakePin the analog pin for the brake pedal potentiometer
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		TwoPedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin = NOT_A_PIN);
+		TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = NOT_A_PIN);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -414,7 +420,7 @@ namespace SimRacing {
 		* @param clutchPin the analog pin for the clutch pedal potentiometer
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		ThreePedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin = NOT_A_PIN);
+		ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = NOT_A_PIN);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -542,7 +548,7 @@ namespace SimRacing {
 		* @param pinRev the digital input pin for the 'reverse' button
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		AnalogShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev = NOT_A_PIN, uint8_t detectPin = NOT_A_PIN);
+		AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev = NOT_A_PIN, PinNum detectPin = NOT_A_PIN);
 
 		/**
 		* Initializes the hardware pins for reading the gear states.
@@ -663,7 +669,7 @@ namespace SimRacing {
 		} calibration;
 
 		AnalogInput analogAxis[2];  ///< Axis data for X and Y
-		const uint8_t PinReverse;   ///< The pin for the reverse gear button
+		const PinNum PinReverse;   ///< The pin for the reverse gear button
 		DeviceConnection detector;  ///< detector instance for checking if the shifter is connected
 	};
 
@@ -681,7 +687,7 @@ namespace SimRacing {
 		* @param pinAx analog pin number for the handbrake axis
 		* @param detectPin the digital pin for device detection (high is detected)
 		*/
-		Handbrake(uint8_t pinAx, uint8_t detectPin = NOT_A_PIN);
+		Handbrake(PinNum pinAx, PinNum detectPin = NOT_A_PIN);
 
 		/**
 		* Initializes the pin for reading from the handbrake.
@@ -748,7 +754,7 @@ namespace SimRacing {
 	class LogitechPedals : public ThreePedals {
 	public:
 		/** @copydoc ThreePedals::ThreePedals */
-		LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin = NOT_A_PIN);
+		LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin = NOT_A_PIN);
 	};
 
 	/**
@@ -763,7 +769,7 @@ namespace SimRacing {
 	class LogitechDrivingForceGT_Pedals : public TwoPedals {
 	public:
 		/** @copydoc TwoPedals::TwoPedals */
-		LogitechDrivingForceGT_Pedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin = NOT_A_PIN);
+		LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin = NOT_A_PIN);
 	};
 
 	/**
@@ -775,7 +781,7 @@ namespace SimRacing {
 	class LogitechShifter : public AnalogShifter {
 	public:
 		/** @copydoc AnalogShifter::AnalogShifter */
-		LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev = NOT_A_PIN, uint8_t detectPin = NOT_A_PIN);
+		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = NOT_A_PIN, PinNum detectPin = NOT_A_PIN);
 	};
 
 

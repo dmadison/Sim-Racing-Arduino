@@ -161,7 +161,7 @@ static void readFloat(float& value, Stream& client) {
 //                  DeviceConnection                      #
 //#########################################################
 
-DeviceConnection::DeviceConnection(uint8_t pin, bool invert, unsigned long detectTime)
+DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detectTime)
 	:
 	Pin(pin), Inverted(invert), stablePeriod(detectTime),  // constants(ish)
 
@@ -258,7 +258,7 @@ bool DeviceConnection::readPin() const {
 //#########################################################
 
 
-AnalogInput::AnalogInput(uint8_t p)
+AnalogInput::AnalogInput(PinNum p)
 	: Pin(p), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
 {
 	if (Pin != NOT_A_PIN) {
@@ -333,7 +333,7 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 //                       Pedals                           #
 //#########################################################
 
-Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, uint8_t detectPin)
+Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin)
 	: 
 	pedalData(dataPtr),
 	NumPedals(nPedals),
@@ -538,7 +538,7 @@ void Pedals::serialCalibration(Stream& iface) {
 }
 
 
-TwoPedals::TwoPedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin)
+TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
 	: Pedals(pedalData, NumPedals, detectPin),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin) }
 {}
@@ -549,7 +549,7 @@ void TwoPedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::Cal
 }
 
 
-ThreePedals::ThreePedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin)
+ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
 	: Pedals(pedalData, NumPedals, detectPin),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin), AnalogInput(clutchPin) }
 {}
@@ -562,7 +562,7 @@ void ThreePedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::C
 
 
 
-LogitechPedals::LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin)
+LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
 	: ThreePedals(gasPin, brakePin, clutchPin, detectPin)
 {
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
@@ -571,7 +571,7 @@ LogitechPedals::LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchP
 	this->setCalibration({ 904, 48 }, { 944, 286 }, { 881, 59 });
 }
 
-LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin)
+LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
 	: TwoPedals(gasPin, brakePin, detectPin)
 {
 	this->setCalibration({ 646, 0 }, { 473, 1023 });  // taken from calibrating my own pedals
@@ -657,7 +657,7 @@ const float AnalogShifter::CalEngagementPoint = 0.70;
 const float AnalogShifter::CalReleasePoint = 0.50;
 const float AnalogShifter::CalEdgeOffset = 0.60;
 
-AnalogShifter::AnalogShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uint8_t detectPin)
+AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
 	: 
 	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
 	* exists for reverse, otherwise it's going to be '0' (neutral).
@@ -977,7 +977,7 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 	iface.println(F("\n\nCalibration complete! :)\n"));
 }
 
-LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uint8_t detectPin)
+LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
 	: AnalogShifter(pinX, pinY, pinRev, detectPin)
 {
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
@@ -987,7 +987,7 @@ LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uin
 //                      Handbrake                         #
 //#########################################################
 
-Handbrake::Handbrake(uint8_t pinAx, uint8_t detectPin) 
+Handbrake::Handbrake(PinNum pinAx, PinNum detectPin)
 	: 
 	analogAxis(pinAx),
 	detector(detectPin),
