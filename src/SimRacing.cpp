@@ -29,6 +29,21 @@
 
 namespace SimRacing {
 
+/**
+* Take a pin number as an input and sanitize it to a known working value
+* 
+* In an ideal world this would check against the available pins on the micro,
+* but as far as I know the Arduino API does not have a "valid pin" function. 
+* Instead, we'll just accept any positive number as a pin and reject any
+* negative number as invalid ("Unused").
+* 
+* @param pin the pin number to sanitize
+* @returns the pin number, or UnusedPin
+*/
+static constexpr PinNum sanitizePin(PinNum pin) {
+	return pin < 0 ? UnusedPin : pin;
+}
+
 
 /**
 * Invert an input value so it's at the same relative position
@@ -161,9 +176,9 @@ static void readFloat(float& value, Stream& client) {
 //                  DeviceConnection                      #
 //#########################################################
 
-DeviceConnection::DeviceConnection(uint8_t pin, bool invert, unsigned long detectTime)
+DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detectTime)
 	:
-	Pin(pin), Inverted(invert), stablePeriod(detectTime),  // constants(ish)
+	pin(sanitizePin(pin)), inverted(invert), stablePeriod(detectTime),  // constants(ish)
 
 	/* Assume we're connected on first call
 	*/
@@ -177,7 +192,7 @@ DeviceConnection::DeviceConnection(uint8_t pin, bool invert, unsigned long detec
 	* the device to be read as connected as soon as the board turns on, without
 	* having to wait an arbitrary amount.
 	*/
-	pinState(!Inverted),
+	pinState(!inverted),
 
 	/* Set the last pin change to right now minus the stable period so it's
 	* read as being already stable. Again, this will make the class return
@@ -186,7 +201,9 @@ DeviceConnection::DeviceConnection(uint8_t pin, bool invert, unsigned long detec
 	lastChange(millis() - detectTime)
 
 {
-	pinMode(Pin, INPUT);  // set pin as input, *no* pull-up
+	if (pin != UnusedPin) {
+		pinMode(pin, INPUT);  // set pin as input, *no* pull-up
+	}
 }
 
 void DeviceConnection::poll() {
@@ -248,9 +265,9 @@ void DeviceConnection::setStablePeriod(unsigned long t) {
 }
 
 bool DeviceConnection::readPin() const {
-	if (Pin == NOT_A_PIN) return HIGH;  // if no pin is set, we're always connected
-	const bool state = digitalRead(Pin);
-	return Inverted ? !state : state;
+	if (pin == UnusedPin) return HIGH;  // if no pin is set, we're always connected
+	const bool state = digitalRead(pin);
+	return inverted ? !state : state;
 }
 
 //#########################################################
@@ -258,20 +275,20 @@ bool DeviceConnection::readPin() const {
 //#########################################################
 
 
-AnalogInput::AnalogInput(uint8_t p)
-	: Pin(p), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
+AnalogInput::AnalogInput(PinNum pin)
+	: pin(sanitizePin(pin)), position(AnalogInput::Min), cal({AnalogInput::Min, AnalogInput::Max})
 {
-	if (Pin != NOT_A_PIN) {
-		pinMode(Pin, INPUT);
+	if (pin != UnusedPin) {
+		pinMode(pin, INPUT);
 	}
 }
 
 bool AnalogInput::read() {
 	bool changed = false;
 
-	if (Pin != NOT_A_PIN) {
+	if (pin != UnusedPin) {
 		const int previous = this->position;
-		this->position = analogRead(Pin);
+		this->position = analogRead(pin);
 
 		// check if value is different for 'changed' flag
 		if (previous != this->position) {
@@ -333,7 +350,7 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 //                       Pedals                           #
 //#########################################################
 
-Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, uint8_t detectPin)
+Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin)
 	: 
 	pedalData(dataPtr),
 	NumPedals(nPedals),
@@ -538,7 +555,7 @@ void Pedals::serialCalibration(Stream& iface) {
 }
 
 
-TwoPedals::TwoPedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin)
+TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
 	: Pedals(pedalData, NumPedals, detectPin),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin) }
 {}
@@ -549,7 +566,7 @@ void TwoPedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::Cal
 }
 
 
-ThreePedals::ThreePedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin)
+ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
 	: Pedals(pedalData, NumPedals, detectPin),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin), AnalogInput(clutchPin) }
 {}
@@ -562,7 +579,7 @@ void ThreePedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::C
 
 
 
-LogitechPedals::LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchPin, uint8_t detectPin)
+LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
 	: ThreePedals(gasPin, brakePin, clutchPin, detectPin)
 {
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
@@ -571,7 +588,7 @@ LogitechPedals::LogitechPedals(uint8_t gasPin, uint8_t brakePin, uint8_t clutchP
 	this->setCalibration({ 904, 48 }, { 944, 286 }, { 881, 59 });
 }
 
-LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(uint8_t gasPin, uint8_t brakePin, uint8_t detectPin)
+LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
 	: TwoPedals(gasPin, brakePin, detectPin)
 {
 	this->setCalibration({ 646, 0 }, { 473, 1023 });  // taken from calibrating my own pedals
@@ -657,22 +674,24 @@ const float AnalogShifter::CalEngagementPoint = 0.70;
 const float AnalogShifter::CalReleasePoint = 0.50;
 const float AnalogShifter::CalEdgeOffset = 0.60;
 
-AnalogShifter::AnalogShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uint8_t detectPin)
+AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
 	: 
 	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
 	* exists for reverse, otherwise it's going to be '0' (neutral).
 	*/
-	Shifter(pinRev != NOT_A_PIN ? -1 : 0, 6),
+	Shifter(sanitizePin(pinRev) != UnusedPin ? -1 : 0, 6),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
-	PinReverse(pinRev),
+	pinReverse(sanitizePin(pinRev)),
 	detector(detectPin, false)  // not inverted
 {}
 
 void AnalogShifter::begin() {
-	pinMode(PinReverse, INPUT);
+	if (this->pinReverse != UnusedPin) {
+		pinMode(pinReverse, INPUT);
+	}
 	update();  // set initial gear position
 }
 
@@ -777,10 +796,10 @@ int AnalogShifter::getPositionRaw(Axis ax) const {
 bool AnalogShifter::getReverseButton() const {
 	// if the reverse pin is not set *or* if the device is not currently
 	// connected, avoid reading the floating input and just return 'false'
-	if (PinReverse == NOT_A_PIN || detector.getState() != DeviceConnection::Connected) {
+	if (pinReverse == UnusedPin || detector.getState() != DeviceConnection::Connected) {
 		return false;
 	}
-	return digitalRead(PinReverse);
+	return digitalRead(pinReverse);
 }
 
 void AnalogShifter::setCalibration(
@@ -977,7 +996,7 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 	iface.println(F("\n\nCalibration complete! :)\n"));
 }
 
-LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uint8_t detectPin)
+LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
 	: AnalogShifter(pinX, pinY, pinRev, detectPin)
 {
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
@@ -987,7 +1006,7 @@ LogitechShifter::LogitechShifter(uint8_t pinX, uint8_t pinY, uint8_t pinRev, uin
 //                      Handbrake                         #
 //#########################################################
 
-Handbrake::Handbrake(uint8_t pinAx, uint8_t detectPin) 
+Handbrake::Handbrake(PinNum pinAx, PinNum detectPin)
 	: 
 	analogAxis(pinAx),
 	detector(detectPin),
