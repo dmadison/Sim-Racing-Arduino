@@ -605,7 +605,7 @@ LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinN
 //                       Shifter                          #
 //#########################################################
 
-Shifter::Shifter(int8_t min, int8_t max)
+Shifter::Shifter(Gear min, Gear max)
 	: MinGear(min), MaxGear(max)
 {}
 
@@ -716,7 +716,7 @@ bool AnalogShifter::update() {
 	// neutral and then immediately return
 	case(DeviceConnection::Unplug):
 	{
-		const int8_t previousGear = this->getGear();
+		const Gear previousGear = this->getGear();
 
 		analogAxis[Axis::X].setPosition(calibration.neutralX);
 		analogAxis[Axis::Y].setPosition(calibration.neutralY);
@@ -736,13 +736,13 @@ bool AnalogShifter::update() {
 		break;
 	}
 
-	const int8_t previousGear = this->getGear();
+	const Gear previousGear = this->getGear();
 	const bool prevOdd = ((previousGear != -1) && (previousGear & 1));  // were we previously in an odd gear
 	const bool prevEven = (!prevOdd && previousGear != 0);  // were we previously in an even gear
 	
 	const int x = analogAxis[Axis::X].getPosition();
 	const int y = analogAxis[Axis::Y].getPosition();
-	int8_t newGear = 0;
+	Gear newGear = 0;
 
 	// If we're below the 'release' thresholds, we must still be in the previous gear
 	if ((prevOdd && y > calibration.oddRelease) || (prevEven && y < calibration.evenRelease)) {

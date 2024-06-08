@@ -471,12 +471,17 @@ namespace SimRacing {
 	class Shifter : public Peripheral {
 	public:
 		/**
+		* Type alias for gear numbers
+		*/
+		using Gear = int8_t;
+
+		/**
 		* Class constructor
 		* 
 		* @param min the lowest gear possible
 		* @param max the highest gear possible
 		*/
-		Shifter(int8_t min, int8_t max);
+		Shifter(Gear min, Gear max);
 	
 		/**
 		* Returns the currently selected gear.
@@ -486,7 +491,7 @@ namespace SimRacing {
 		*
 		* @return current gear index
 		*/
-		int8_t getGear() const { return currentGear; }
+		Gear getGear() const { return currentGear; }
 
 		/**
 		* Returns a character that represents the given gear.
@@ -537,21 +542,21 @@ namespace SimRacing {
 		*
 		* @return the lowest gear index
 		*/
-		int8_t getGearMin() { return MinGear; }
+		Gear getGearMin() { return MinGear; }
 
 		/**
 		* Retrieves the maximum possible gear index.
 		*
 		* @return the highest gear index
 		*/
-		int8_t getGearMax() { return MaxGear; }
+		Gear getGearMax() { return MaxGear; }
 
 	protected:
-		const int8_t MinGear;  ///< the lowest selectable gear
-		const int8_t MaxGear;  ///< the highest selectable gear
+		const Gear MinGear;  ///< the lowest selectable gear
+		const Gear MaxGear;  ///< the highest selectable gear
 
-		int8_t currentGear;    ///< index of the current gear
-		bool changed;          ///< whether the gear has changed since the previous update
+		Gear currentGear;    ///< index of the current gear
+		bool changed;        ///< whether the gear has changed since the previous update
 	};
 
 
