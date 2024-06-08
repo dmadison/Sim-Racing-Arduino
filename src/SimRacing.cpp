@@ -350,11 +350,11 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 //                       Pedals                           #
 //#########################################################
 
-Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin)
+Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin, bool detectActiveLow)
 	: 
 	pedalData(dataPtr),
 	NumPedals(nPedals),
-	detector(detectPin),
+	detector(detectPin, detectActiveLow),
 	changed(false)
 {}
 
@@ -555,8 +555,8 @@ void Pedals::serialCalibration(Stream& iface) {
 }
 
 
-TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
-	: Pedals(pedalData, NumPedals, detectPin),
+TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin, bool detectActiveLow)
+	: Pedals(pedalData, NumPedals, detectPin, detectActiveLow),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin) }
 {}
 
@@ -566,8 +566,8 @@ void TwoPedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::Cal
 }
 
 
-ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
-	: Pedals(pedalData, NumPedals, detectPin),
+ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin, bool detectActiveLow)
+	: Pedals(pedalData, NumPedals, detectPin, detectActiveLow),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin), AnalogInput(clutchPin) }
 {}
 
@@ -580,7 +580,10 @@ void ThreePedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::C
 
 
 LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
-	: ThreePedals(gasPin, brakePin, clutchPin, detectPin)
+	: ThreePedals(
+		gasPin, brakePin, clutchPin,
+		detectPin, false  // active high
+	)
 {
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
 	// this covers the whole travel range, users may want to back it down for casual
@@ -589,7 +592,10 @@ LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin,
 }
 
 LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
-	: TwoPedals(gasPin, brakePin, detectPin)
+	: TwoPedals(
+		gasPin, brakePin,
+		detectPin, false  // active high
+	)
 {
 	this->setCalibration({ 646, 0 }, { 473, 1023 });  // taken from calibrating my own pedals
 }
@@ -674,7 +680,7 @@ const float AnalogShifter::CalEngagementPoint = 0.70;
 const float AnalogShifter::CalReleasePoint = 0.50;
 const float AnalogShifter::CalEdgeOffset = 0.60;
 
-AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
+AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin, bool detectActiveLow)
 	: 
 	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
 	* exists for reverse, otherwise it's going to be '0' (neutral).
@@ -685,7 +691,7 @@ AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum det
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
 	pinReverse(sanitizePin(pinRev)),
-	detector(detectPin, false)  // not inverted
+	detector(detectPin, detectActiveLow)
 {}
 
 void AnalogShifter::begin() {
@@ -997,7 +1003,10 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 }
 
 LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
-	: AnalogShifter(pinX, pinY, pinRev, detectPin)
+	: AnalogShifter(
+		pinX, pinY, pinRev, 
+		detectPin, false  // active high
+	)
 {
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
 }
@@ -1006,10 +1015,10 @@ LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum
 //                      Handbrake                         #
 //#########################################################
 
-Handbrake::Handbrake(PinNum pinAx, PinNum detectPin)
+Handbrake::Handbrake(PinNum pinAx, PinNum detectPin, boolean detectActiveLow)
 	: 
 	analogAxis(pinAx),
-	detector(detectPin),
+	detector(detectPin, detectActiveLow),
 	changed(false)
 {}
 

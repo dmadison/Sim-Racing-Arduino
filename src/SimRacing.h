@@ -294,11 +294,14 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param dataPtr pointer to the analog input data managed by the class, stored elsewhere
-		* @param nPedals the number of pedals stored in said data pointer
-		* @param detectPin the digital pin for device detection (high is detected)
+		* @param dataPtr         pointer to the analog input data managed by the class,
+		*                        stored elsewhere
+		* @param nPedals         the number of pedals stored in said data pointer
+		* @param detectPin       the digital pin for device detection
+		* @param detectActiveLow whether the device is detected on a high signal (false,
+		*                        default) or a low signal (true)
 		*/
-		Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin);
+		Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin, bool detectActiveLow = false);
 
 		/** @copydoc Peripheral::begin() */
 		virtual void begin();
@@ -394,11 +397,16 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param pinGas    the analog pin for the gas pedal potentiometer
-		* @param pinBrake  the analog pin for the brake pedal potentiometer
-		* @param pinDetect the digital pin for device detection (high is detected)
+		* @param pinGas          the analog pin for the gas pedal potentiometer
+		* @param pinBrake        the analog pin for the brake pedal potentiometer
+		* @param pinDetect       the digital pin for device detection
+		* @param detectActiveLow whether the device is detected on a high signal (false,
+		*                        default) or a low signal (true)
 		*/
-		TwoPedals(PinNum pinGas, PinNum pinBrake, PinNum pinDetect = UnusedPin);
+		TwoPedals(
+			PinNum pinGas, PinNum pinBrake,
+			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
+		);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -422,12 +430,17 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param pinGas    the analog pin for the gas pedal potentiometer
-		* @param pinBrake  the analog pin for the brake pedal potentiometer
-		* @param pinClutch the analog pin for the clutch pedal potentiometer
-		* @param pinDetect the digital pin for device detection (high is detected)
+		* @param pinGas          the analog pin for the gas pedal potentiometer
+		* @param pinBrake        the analog pin for the brake pedal potentiometer
+		* @param pinClutch       the analog pin for the clutch pedal potentiometer
+		* @param pinDetect       the digital pin for device detection
+		* @param detectActiveLow whether the device is detected on a high signal (false,
+		*                        default) or a low signal (true)
 		*/
-		ThreePedals(PinNum pinGas, PinNum pinBrake, PinNum pinClutch, PinNum pinDetect = UnusedPin);
+		ThreePedals(
+			PinNum pinGas, PinNum pinBrake, PinNum pinClutch,
+			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
+		);
 
 		/**
 		* Sets the calibration data (min/max) for the pedals
@@ -550,12 +563,18 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param pinX the analog input pin for the X axis
-		* @param pinY the analog input pin for the Y axis
-		* @param pinRev the digital input pin for the 'reverse' button
-		* @param pinDetect the digital pin for device detection (high is detected)
+		* @param pinX            the analog input pin for the X axis
+		* @param pinY            the analog input pin for the Y axis
+		* @param pinRev          the digital input pin for the 'reverse' button
+		* @param pinDetect       the digital pin for device detection
+		* @param detectActiveLow whether the device is detected on a high signal (false,
+		*                        default) or a low signal (true)
 		*/
-		AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum pinDetect = UnusedPin);
+		AnalogShifter(
+			PinNum pinX, PinNum pinY,
+			PinNum pinRev = UnusedPin,
+			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
+		);
 
 		/**
 		* Initializes the hardware pins for reading the gear states.
@@ -691,10 +710,15 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param pinAx analog pin number for the handbrake axis
-		* @param pinDetect the digital pin for device detection (high is detected)
+		* @param pinAx           analog pin number for the handbrake axis
+		* @param pinDetect       the digital pin for device detection
+		* @param detectActiveLow whether the device is detected on a high signal (false,
+		*                        default) or a low signal (true)
 		*/
-		Handbrake(PinNum pinAx, PinNum pinDetect = UnusedPin);
+		Handbrake(
+			PinNum pinAx,
+			PinNum pinDetect = UnusedPin, boolean detectActiveLow = false
+		);
 
 		/**
 		* Initializes the pin for reading from the handbrake.
@@ -760,7 +784,15 @@ namespace SimRacing {
 	*/
 	class LogitechPedals : public ThreePedals {
 	public:
-		/** @copydoc ThreePedals::ThreePedals */
+		/**
+		* Class constructor
+		*
+		* @param pinGas    the analog pin for the gas pedal potentiometer, DE-9 pin 2
+		* @param pinBrake  the analog pin for the brake pedal potentiometer, DE-9 pin 3
+		* @param pinClutch the analog pin for the clutch pedal potentiometer, DE-9 pin 4
+		* @param pinDetect the digital pin for device detection, DE-9 pin 6. Requires a
+		*                  pull-down resistor.
+		*/
 		LogitechPedals(PinNum pinGas, PinNum pinBrake, PinNum pinClutch, PinNum pinDetect = UnusedPin);
 	};
 
@@ -775,7 +807,14 @@ namespace SimRacing {
 	*/
 	class LogitechDrivingForceGT_Pedals : public TwoPedals {
 	public:
-		/** @copydoc TwoPedals::TwoPedals */
+		/**
+		* Class constructor
+		*
+		* @param pinGas    the analog pin for the gas pedal potentiometer, DE-9 pin 2
+		* @param pinBrake  the analog pin for the brake pedal potentiometer, DE-9 pin 3
+		* @param pinDetect the digital pin for device detection, DE-9 pin 4. Requires a
+		*                  pull-down resistor.
+		*/
 		LogitechDrivingForceGT_Pedals(PinNum pinGas, PinNum pinBrake, PinNum pinDetect = UnusedPin);
 	};
 
@@ -787,7 +826,18 @@ namespace SimRacing {
 	*/
 	class LogitechShifter : public AnalogShifter {
 	public:
-		/** @copydoc AnalogShifter::AnalogShifter */
+		/**
+		* Class constructor
+		* 
+		* @param pinX      the analog input pin for the X axis, DE-9 pin 4
+		* @param pinY      the analog input pin for the Y axis, DE-9 pin 8
+		* @param pinRev    the digital input pin for the 'reverse' button, DE-9 pin 2
+		* @param pinDetect the digital pin for device detection, DE-9 pin 7. Requires
+		*                  a pull-down resistor.
+		* 
+		* @note In order to get the 'reverse' signal from the shifter, the chip select
+		*       pin (DE-9 pin 3) needs to be pulled up to VCC.
+		*/
 		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum pinDetect = UnusedPin);
 	};
 
