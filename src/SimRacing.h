@@ -75,12 +75,13 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param pin the pin number being read. Can be 'UnusedPin' to disable.
-		* @param invert whether the input is inverted, so 'LOW' is detected instead of 'HIGH'
+		* @param pin        the pin number being read. Can be 'UnusedPin' to disable.
+		* @param activeLow  whether the device is detected on a high signal (false, 
+		*                   default) or a low signal (true)
 		* @param detectTime the amount of time, in ms, the input must be stable for
-		*        before it's interpreted as 'detected'
+		*                   before it's interpreted as 'detected'
 		*/
-		DeviceConnection(PinNum pin, bool invert = false, unsigned long detectTime = 250);
+		DeviceConnection(PinNum pin, bool activeLow = false, unsigned long detectTime = 250);
 
 		/**
 		* Checks if the pin detects a connection. This polls the input and checks

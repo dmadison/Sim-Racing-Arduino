@@ -176,9 +176,9 @@ static void readFloat(float& value, Stream& client) {
 //                  DeviceConnection                      #
 //#########################################################
 
-DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detectTime)
+DeviceConnection::DeviceConnection(PinNum pin, bool activeLow, unsigned long detectTime)
 	:
-	pin(sanitizePin(pin)), inverted(invert), stablePeriod(detectTime),  // constants(ish)
+	pin(sanitizePin(pin)), inverted(activeLow), stablePeriod(detectTime),  // constants(ish)
 
 	/* Assume we're connected on first call
 	*/
