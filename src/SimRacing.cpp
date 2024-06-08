@@ -692,12 +692,12 @@ const float AnalogShifter::CalEngagementPoint = 0.70;
 const float AnalogShifter::CalReleasePoint = 0.50;
 const float AnalogShifter::CalEdgeOffset = 0.60;
 
-AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin, bool detectActiveLow)
-	: 
-	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
-	* exists for reverse, otherwise it's going to be '0' (neutral).
-	*/
-	Shifter(sanitizePin(pinRev) != UnusedPin ? -1 : 0, 6),
+AnalogShifter::AnalogShifter(
+	Gear gearMin, Gear gearMax,
+	PinNum pinX, PinNum pinY, PinNum pinRev,
+	PinNum detectPin, bool detectActiveLow
+) : 
+	Shifter(gearMin, gearMax),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
@@ -1014,6 +1014,7 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 
 LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
 	: AnalogShifter(
+		-1, 6,  // includes reverse and gears 1-6
 		pinX, pinY, pinRev, 
 		detectPin, false  // active high
 	)

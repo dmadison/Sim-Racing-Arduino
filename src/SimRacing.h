@@ -582,14 +582,23 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
+		* @param gearMin         the lowest gear possible
+		* @param gearMax         the highest gear possible
 		* @param pinX            the analog input pin for the X axis
 		* @param pinY            the analog input pin for the Y axis
 		* @param pinRev          the digital input pin for the 'reverse' button
 		* @param pinDetect       the digital pin for device detection
-		* @param detectActiveLow whether the device is detected on a high signal (false,
-		*                        default) or a low signal (true)
+		* @param detectActiveLow whether the device is detected on a high signal
+		*                         (false, default) or a low signal (true)
+		* 
+		* @note With the way the class is designed, the lowest possible gear is
+		*       -1 (reverse), and the highest possible gear is 6. Setting the
+		*       arguments lower/higher than this will have no effect. Setting
+		*       the arguments within this range will limit to those gears,
+		*       and selecting gears out of range will result in neutral.
 		*/
 		AnalogShifter(
+			Gear gearMin, Gear gearMax,
 			PinNum pinX, PinNum pinY,
 			PinNum pinRev = UnusedPin,
 			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
