@@ -607,7 +607,19 @@ LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinN
 
 Shifter::Shifter(Gear min, Gear max)
 	: MinGear(min), MaxGear(max)
-{}
+{
+	this->currentGear = this->previousGear = 0;  // neutral
+}
+
+void Shifter::setGear(Gear gear) {
+	// if gear is out of range, set it to neutral
+	if (gear < MinGear || gear > MaxGear) {
+		gear = 0;
+	}
+
+	this->previousGear = this->currentGear;
+	this->currentGear = gear;
+}
 
 char Shifter::getGearChar(int gear) {
 	char c = '?';
@@ -715,24 +727,22 @@ bool AnalogShifter::update() {
 	// on an unplug event, we want to reset our position back to
 	// neutral and then immediately return
 	case(DeviceConnection::Unplug):
-	{
-		const Gear previousGear = this->getGear();
 
+		// set axis values to calibrated neutral
 		analogAxis[Axis::X].setPosition(calibration.neutralX);
 		analogAxis[Axis::Y].setPosition(calibration.neutralY);
 
-		if (previousGear != 0) changed = true;
-		currentGear = 0;
-		return changed;
-		break;
-	}
+		// set gear to neutral
+		this->setGear(0);
 
-	// if the device is either disconnected or just plugged in and unstable, set gear
-	// 'changed' to false and then immediately return false to save on processing
+		return this->gearChanged();
+		break;
+
+	// if the device is either disconnected or just plugged in and unstable,
+	// immediately return false to save on processing
 	case(DeviceConnection::PlugIn):
 	case(DeviceConnection::Disconnected):
-		changed = false;
-		return changed;
+		return false;
 		break;
 	}
 
@@ -783,10 +793,10 @@ bool AnalogShifter::update() {
 		}
 	}
 
-	changed = (newGear != previousGear) ? 1 : 0;
-	currentGear = newGear;
+	// finally, store the newly calculated gear
+	this->setGear(newGear);
 
-	return changed;
+	return this->gearChanged();
 }
 
 long AnalogShifter::getPosition(Axis ax, long min, long max) const {

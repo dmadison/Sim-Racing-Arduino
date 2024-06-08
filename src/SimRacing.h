@@ -535,7 +535,9 @@ namespace SimRacing {
 		*
 		* @return 'true' if gear has changed, 'false' otherwise
 		*/
-		bool gearChanged() const { return changed; }
+		bool gearChanged() const { 
+			return this->currentGear != this->previousGear;
+		}
 
 		/**
 		* Retrieves the minimum possible gear index.
@@ -552,11 +554,23 @@ namespace SimRacing {
 		Gear getGearMax() { return MaxGear; }
 
 	protected:
+		/**
+		* Changes the currently set gear, internally
+		* 
+		* This function sanitizes the newly selected gear with MinGear / MaxGear,
+		* and handles caching the previous value for checking if the gear has
+		* changed.
+		* 
+		* @param gear the new gear value to set
+		*/
+		void setGear(Gear gear);
+
+	private:
 		const Gear MinGear;  ///< the lowest selectable gear
 		const Gear MaxGear;  ///< the highest selectable gear
 
 		Gear currentGear;    ///< index of the current gear
-		bool changed;        ///< whether the gear has changed since the previous update
+		Gear previousGear;   ///< index of the last selected gear
 	};
 
 
