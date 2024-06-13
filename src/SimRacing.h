@@ -722,6 +722,17 @@ namespace SimRacing {
 
 	private:
 		/**
+		* Read the state of the reverse button
+		* 
+		* This function should *only* be called as part of updateState(bool),
+		* to update the state of the device.
+		* 
+		* @returns the state of the reverse button, 'true' if pressed,
+		*          'false' otherwise
+		*/
+		virtual bool readReverseButton();
+
+		/**
 		* Distance from neutral on Y to register a gear as
 		* being engaged (as a percentage of distance from
 		* neutral to Y max, 0-1). Used for calibration.
@@ -756,6 +767,7 @@ namespace SimRacing {
 
 		AnalogInput analogAxis[2];  ///< Axis data for X and Y
 		PinNum pinReverse;          ///< The pin for the reverse gear button
+		bool reverseState;          ///< Buffered value for the state of the reverse gear button
 	};
 
 	/// @} Shifters

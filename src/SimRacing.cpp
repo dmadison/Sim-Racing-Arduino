@@ -741,7 +741,8 @@ AnalogShifter::AnalogShifter(
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
-	pinReverse(sanitizePin(pinRev))
+	pinReverse(sanitizePin(pinRev)),
+	reverseState(false)
 {}
 
 void AnalogShifter::begin() {
@@ -759,6 +760,9 @@ bool AnalogShifter::updateState(bool connected) {
 		analogAxis[Axis::X].setPosition(calibration.neutralX);
 		analogAxis[Axis::Y].setPosition(calibration.neutralY);
 
+		// set reverse state to unpressed
+		this->reverseState = false;
+
 		// set gear to neutral
 		this->setGear(0);
 
@@ -771,6 +775,9 @@ bool AnalogShifter::updateState(bool connected) {
 	analogAxis[Axis::Y].read();
 	const int x = analogAxis[Axis::X].getPosition();
 	const int y = analogAxis[Axis::Y].getPosition();
+
+	// poll the reverse button and cache in the class
+	this->reverseState = this->readReverseButton();
 
 	// check previous gears for comparison
 	const Gear previousGear = this->getGear();
@@ -834,13 +841,19 @@ int AnalogShifter::getPositionRaw(Axis ax) const {
 	return analogAxis[ax].getPositionRaw();
 }
 
-bool AnalogShifter::getReverseButton() const {
-	// if the reverse pin is not set *or* if the device is not currently
-	// connected, avoid reading the floating input and just return 'false'
+bool AnalogShifter::readReverseButton() {
+	// if the reverse pin is not set, avoid reading the
+	// floating input and just return 'false'
 	if (pinReverse == UnusedPin) {
 		return false;
 	}
 	return digitalRead(pinReverse);
+}
+
+bool AnalogShifter::getReverseButton() const {
+	// return the cached reverse state from updateState(bool)
+	// do NOT poll the button!
+	return this->reverseState;
 }
 
 void AnalogShifter::setCalibration(
