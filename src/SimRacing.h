@@ -106,7 +106,8 @@ namespace SimRacing {
 		bool isConnected() const;
 
 		/**
-		* Allows the user to change the stable period of the detector.
+		* Set how long the detection pin must be stable for before the device
+		* is considered to be 'connected'
 		*
 		* @param t the amount of time, in ms, the input must be stable for
 		*          (no changes) before it's interpreted as 'detected'
@@ -250,6 +251,19 @@ namespace SimRacing {
 	class Peripheral {
 	public:
 		/**
+		* Class Constructor
+		* 
+		* @param detector pointer to a device connection instance, to use for
+		*                 determining if the peripheral is connected
+		*/
+		Peripheral(DeviceConnection* detector = nullptr);
+
+		/**
+		* Class destructor
+		*/
+		virtual ~Peripheral() {}
+
+		/**
 		* Initialize the hardware (if necessary)
 		*/
 		virtual void begin() {};
@@ -257,12 +271,38 @@ namespace SimRacing {
 		/**
 		* Perform a poll of the hardware to refresh the class state
 		*
-		* @return 'true' if device state changed, 'false' otherwise
+		* @returns 'true' if device state changed, 'false' otherwise
 		*/
-		virtual bool update() = 0;
+		bool update();
 
-		/** @copydoc DeviceConnection::isConnected() */
-		virtual bool isConnected() const { return true; }
+		/**
+		* Check if the device is physically connected to the board. That means
+		* it is both present and detected long enough to be considered 'stable'.
+		*
+		* @returns 'true' if the device is connected, 'false' otherwise
+		*/
+		bool isConnected();
+
+		/** @copydoc DeviceConnection::setStablePeriod(unsigned long) */
+		void setStablePeriod(unsigned long t);
+
+	protected:
+		/**
+		* Perform an internal poll of the hardware to refresh the class state
+		* 
+		* This function is called from within the public update() in order to
+		* refresh the cached state of the peripheral. It needs to be defined
+		* in every derived class. This function is the *only* place where the
+		* cached device state should be changed.
+		* 
+		* @param connected the state of the device connection
+		* 
+		* @returns 'true' if device state changed, 'false' otherwise
+		*/
+		virtual bool updateState(bool connected) = 0;
+
+	private:
+		DeviceConnection* detector;  ///< Pointer to a device connection instance
 	};
 
 
@@ -294,20 +334,19 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param dataPtr         pointer to the analog input data managed by the class,
-		*                        stored elsewhere
-		* @param nPedals         the number of pedals stored in said data pointer
-		* @param detectPin       the digital pin for device detection
-		* @param detectActiveLow whether the device is detected on a high signal (false,
-		*                        default) or a low signal (true)
+		* @param dataPtr  pointer to the analog input data managed by the class,
+		*                 stored elsewhere
+		* @param nPedals  the number of pedals stored in said data pointer
+		* @param detector pointer to a device connection instance, to use for
+		*                 determining if the peripheral is connected
 		*/
-		Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin, bool detectActiveLow = false);
+		Pedals(
+			AnalogInput* dataPtr, uint8_t nPedals,
+			DeviceConnection* detector = nullptr
+		);
 
 		/** @copydoc Peripheral::begin() */
 		virtual void begin();
-
-		/** @copydoc Peripheral::update() */
-		virtual bool update();
 
 		/**
 		* Retrieves the buffered position for the pedal, rescaled to a
@@ -370,9 +409,6 @@ namespace SimRacing {
 		*/
 		void serialCalibration(Stream& iface = Serial);
 		
-		/** @copydoc Peripheral::isConnected() */
-		bool isConnected() const { return detector.isConnected(); }
-
 		/**
 		* Utility function to get the string name for each pedal.
 		*
@@ -381,10 +417,13 @@ namespace SimRacing {
 		*/
 		static String getPedalName(PedalID pedal);
 
+	protected:
+		/** @copydoc Peripheral::updateState(bool) */
+		virtual bool updateState(bool connected);
+
 	private:
 		AnalogInput* pedalData;     ///< pointer to the pedal data
 		const int NumPedals;        ///< number of pedals managed by this class
-		DeviceConnection detector;  ///< detector instance for checking if the pedals are connected
 		bool changed;               ///< whether the pedal position has changed since the previous update
 	};
 
@@ -397,15 +436,14 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param pinGas          the analog pin for the gas pedal potentiometer
-		* @param pinBrake        the analog pin for the brake pedal potentiometer
-		* @param pinDetect       the digital pin for device detection
-		* @param detectActiveLow whether the device is detected on a high signal (false,
-		*                        default) or a low signal (true)
+		* @param pinGas   the analog pin for the gas pedal potentiometer
+		* @param pinBrake the analog pin for the brake pedal potentiometer
+		* @param detector pointer to a device connection instance, to use for
+		*                 determining if the peripheral is connected
 		*/
 		TwoPedals(
 			PinNum pinGas, PinNum pinBrake,
-			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
+			DeviceConnection* detector = nullptr
 		);
 
 		/**
@@ -430,16 +468,15 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param pinGas          the analog pin for the gas pedal potentiometer
-		* @param pinBrake        the analog pin for the brake pedal potentiometer
-		* @param pinClutch       the analog pin for the clutch pedal potentiometer
-		* @param pinDetect       the digital pin for device detection
-		* @param detectActiveLow whether the device is detected on a high signal (false,
-		*                        default) or a low signal (true)
+		* @param pinGas    the analog pin for the gas pedal potentiometer
+		* @param pinBrake  the analog pin for the brake pedal potentiometer
+		* @param pinClutch the analog pin for the clutch pedal potentiometer
+		* @param detector  pointer to a device connection instance, to use for
+		*                  determining if the peripheral is connected
 		*/
 		ThreePedals(
 			PinNum pinGas, PinNum pinBrake, PinNum pinClutch,
-			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
+			DeviceConnection* detector = nullptr
 		);
 
 		/**
@@ -478,10 +515,12 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param min the lowest gear possible
-		* @param max the highest gear possible
+		* @param min       the lowest gear possible
+		* @param max       the highest gear possible
+		* @param detector  pointer to a device connection instance, to use for
+		*                  determining if the peripheral is connected
 		*/
-		Shifter(Gear min, Gear max);
+		Shifter(Gear min, Gear max, DeviceConnection* detector = nullptr);
 	
 		/**
 		* Returns the currently selected gear.
@@ -582,14 +621,13 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param gearMin         the lowest gear possible
-		* @param gearMax         the highest gear possible
-		* @param pinX            the analog input pin for the X axis
-		* @param pinY            the analog input pin for the Y axis
-		* @param pinRev          the digital input pin for the 'reverse' button
-		* @param pinDetect       the digital pin for device detection
-		* @param detectActiveLow whether the device is detected on a high signal
-		*                         (false, default) or a low signal (true)
+		* @param gearMin  the lowest gear possible
+		* @param gearMax  the highest gear possible
+		* @param pinX     the analog input pin for the X axis
+		* @param pinY     the analog input pin for the Y axis
+		* @param pinRev   the digital input pin for the 'reverse' button
+		* @param detector pointer to a device connection instance, to use for
+		*                 determining if the peripheral is connected
 		* 
 		* @note With the way the class is designed, the lowest possible gear is
 		*       -1 (reverse), and the highest possible gear is 6. Setting the
@@ -601,7 +639,7 @@ namespace SimRacing {
 			Gear gearMin, Gear gearMax,
 			PinNum pinX, PinNum pinY,
 			PinNum pinRev = UnusedPin,
-			PinNum pinDetect = UnusedPin, bool detectActiveLow = false
+			DeviceConnection* detector = nullptr
 		);
 
 		/**
@@ -610,13 +648,6 @@ namespace SimRacing {
 		* Should be called in `setup()` before reading from the shifter.
 		*/
 		virtual void begin();
-
-		/**
-		* Polls the hardware to update the current gear state.
-		*
-		* @return 'true' if the gear has changed, 'false' otherwise
-		*/
-		virtual bool update();
 
 		/** @copydoc AnalogInput::getPosition()
 		*   @param ax the axis to get the position of
@@ -685,8 +716,9 @@ namespace SimRacing {
 		*/
 		void serialCalibration(Stream& iface = Serial);
 
-		/** @copydoc Peripheral::isConnected() */
-		bool isConnected() const { return detector.isConnected(); }
+	protected:
+		/** @copydoc Peripheral::updateState(bool) */
+		virtual bool updateState(bool connected);
 
 	private:
 		/**
@@ -724,7 +756,6 @@ namespace SimRacing {
 
 		AnalogInput analogAxis[2];  ///< Axis data for X and Y
 		PinNum pinReverse;          ///< The pin for the reverse gear button
-		DeviceConnection detector;  ///< detector instance for checking if the shifter is connected
 	};
 
 	/// @} Shifters
@@ -754,13 +785,6 @@ namespace SimRacing {
 		virtual void begin();
 
 		/**
-		* Polls the handbrake to update its position.
-		*
-		* @return 'true' if the gear has changed, 'false' otherwise
-		*/
-		virtual bool update();
-
-		/**
 		* Retrieves the buffered position for the handbrake axis, rescaled to a
 		* nominal range using the calibration values.
 		*
@@ -786,7 +810,7 @@ namespace SimRacing {
 		*
 		* @return 'true' if the position has changed, 'false' otherwise
 		*/
-		bool positionChanged() const { return changed; }
+		bool positionChanged() const { return this->changed; }
 
 		/// @copydoc AnalogInput::setCalibration()
 		void setCalibration(AnalogInput::Calibration newCal);
@@ -794,13 +818,14 @@ namespace SimRacing {
 		/// @copydoc AnalogShifter::serialCalibration()
 		void serialCalibration(Stream& iface = Serial);
 
-		/** @copydoc Peripheral::isConnected() */
-		bool isConnected() const { return detector.isConnected(); }
+	protected:
+		/** @copydoc Peripheral::updateState(bool) */
+		virtual bool updateState(bool connected);
 
 	private:
-		AnalogInput analogAxis;     ///< axis data for the handbrake's position
-		DeviceConnection detector;  ///< detector instance for checking if the handbrake is connected
-		bool changed;               ///< whether the handbrake position has changed since the previous update
+		AnalogInput analogAxis;      ///< axis data for the handbrake's position
+		DeviceConnection detectObj;  ///< detector instance for checking if the handbrake is connected
+		bool changed;                ///< whether the handbrake position has changed since the previous update
 	};
 
 
@@ -822,6 +847,9 @@ namespace SimRacing {
 		*                  pull-down resistor.
 		*/
 		LogitechPedals(PinNum pinGas, PinNum pinBrake, PinNum pinClutch, PinNum pinDetect = UnusedPin);
+
+	private:
+		DeviceConnection detectObj;  ///< detector instance for checking if the pedals are connected
 	};
 
 	/**
@@ -844,6 +872,9 @@ namespace SimRacing {
 		*                  pull-down resistor.
 		*/
 		LogitechDrivingForceGT_Pedals(PinNum pinGas, PinNum pinBrake, PinNum pinDetect = UnusedPin);
+
+	private:
+		DeviceConnection detectObj;  ///< detector instance for checking if the pedals are connected
 	};
 
 	/**
@@ -867,6 +898,9 @@ namespace SimRacing {
 		*       pin (DE-9 pin 3) needs to be pulled up to VCC.
 		*/
 		LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev = UnusedPin, PinNum pinDetect = UnusedPin);
+
+	private:
+		DeviceConnection detectObj;  ///< detector instance for checking if the shifter is connected
 	};
 
 

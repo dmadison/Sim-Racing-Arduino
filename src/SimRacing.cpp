@@ -345,16 +345,53 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 	this->cal = newCal;
 }
 
+//#########################################################
+//                     Peripheral                         #
+//#########################################################
+
+Peripheral::Peripheral(DeviceConnection* detector)
+	: detector(detector)
+{}
+
+bool Peripheral::update() {
+	// if the detector exists, poll for state
+	if (this->detector) {
+		this->detector->poll();
+	}
+
+	// get the connected state from the detector
+	const bool connected = this->isConnected();
+
+	// call the derived class update function
+	return this->updateState(connected);
+}
+
+bool Peripheral::isConnected() {
+	// if detector exists, return state
+	if (this->detector) {
+		return this->detector->isConnected();
+	}
+
+	// otherwise, assume always connected
+	return true;
+}
+
+void Peripheral::setStablePeriod(unsigned long t) {
+	// if detector exists, set the stable period
+	if (this->detector) {
+		this->detector->setStablePeriod(t);
+	}
+}
 
 //#########################################################
 //                       Pedals                           #
 //#########################################################
 
-Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin, bool detectActiveLow)
+Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, DeviceConnection* detector)
 	: 
+	Peripheral(detector),
 	pedalData(dataPtr),
 	NumPedals(nPedals),
-	detector(detectPin, detectActiveLow),
 	changed(false)
 {}
 
@@ -362,26 +399,29 @@ void Pedals::begin() {
 	update();  // set initial pedal position
 }
 
-bool Pedals::update() {
-	changed = false;
+bool Pedals::updateState(bool connected) {
+	this->changed = false;
 
-	detector.poll();
-	if (detector.getState() == DeviceConnection::Connected) {
-		// if connected, read all pedal positions
+	// if we're connected, read all pedal positions
+	if (connected) {
 		for (int i = 0; i < getNumPedals(); ++i) {
 			changed |= pedalData[i].read();
 		}
 	}
-	else if (detector.getState() == DeviceConnection::Unplug) {
-		// on unplug event, zero all pedals
+
+	// otherwise, zero all pedals
+	else {
 		for (int i = 0; i < getNumPedals(); ++i) {
 			const int min = pedalData[i].getMin();
-			pedalData[i].setPosition(min);
+			const int prev = pedalData[i].getPositionRaw();
+			if (min != prev) {
+				pedalData[i].setPosition(min);
+				changed = true;
+			}
 		}
-		changed = true;  // set flag so we know everything moved to 0
 	}
 
-	return changed;
+	return this->changed;
 }
 
 long Pedals::getPosition(PedalID pedal, long rMin, long rMax) const {
@@ -555,8 +595,8 @@ void Pedals::serialCalibration(Stream& iface) {
 }
 
 
-TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin, bool detectActiveLow)
-	: Pedals(pedalData, NumPedals, detectPin, detectActiveLow),
+TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, DeviceConnection* detector)
+	: Pedals(pedalData, NumPedals, detector),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin) }
 {}
 
@@ -566,8 +606,8 @@ void TwoPedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::Cal
 }
 
 
-ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin, bool detectActiveLow)
-	: Pedals(pedalData, NumPedals, detectPin, detectActiveLow),
+ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, DeviceConnection* detector)
+	: Pedals(pedalData, NumPedals, detector),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin), AnalogInput(clutchPin) }
 {}
 
@@ -578,12 +618,10 @@ void ThreePedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::C
 }
 
 
-
 LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
-	: ThreePedals(
-		gasPin, brakePin, clutchPin,
-		detectPin, false  // active high
-	)
+	: 
+	ThreePedals(gasPin, brakePin, clutchPin, &this->detectObj),
+	detectObj(detectPin, false)  // active high
 {
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
 	// this covers the whole travel range, users may want to back it down for casual
@@ -592,10 +630,9 @@ LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin,
 }
 
 LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
-	: TwoPedals(
-		gasPin, brakePin,
-		detectPin, false  // active high
-	)
+	: 
+	TwoPedals(gasPin, brakePin, &this->detectObj),
+	detectObj(detectPin, false)  // active high
 {
 	this->setCalibration({ 646, 0 }, { 473, 1023 });  // taken from calibrating my own pedals
 }
@@ -605,8 +642,10 @@ LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinN
 //                       Shifter                          #
 //#########################################################
 
-Shifter::Shifter(Gear min, Gear max)
-	: MinGear(min), MaxGear(max)
+Shifter::Shifter(Gear min, Gear max, DeviceConnection* detector)
+	:
+	Peripheral(detector),
+	MinGear(min), MaxGear(max)
 {
 	this->currentGear = this->previousGear = 0;  // neutral
 }
@@ -695,15 +734,14 @@ const float AnalogShifter::CalEdgeOffset = 0.60;
 AnalogShifter::AnalogShifter(
 	Gear gearMin, Gear gearMax,
 	PinNum pinX, PinNum pinY, PinNum pinRev,
-	PinNum detectPin, bool detectActiveLow
+	DeviceConnection* detector
 ) : 
-	Shifter(gearMin, gearMax),
+	Shifter(gearMin, gearMax, detector),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
-	pinReverse(sanitizePin(pinRev)),
-	detector(detectPin, detectActiveLow)
+	pinReverse(sanitizePin(pinRev))
 {}
 
 void AnalogShifter::begin() {
@@ -713,21 +751,10 @@ void AnalogShifter::begin() {
 	update();  // set initial gear position
 }
 
-bool AnalogShifter::update() {
-	detector.poll();
-
-	switch (detector.getState()) {
-
-	// connected! poll the ADC for new analog axis data
-	case(DeviceConnection::Connected):
-		analogAxis[Axis::X].read();
-		analogAxis[Axis::Y].read();
-		break;
-
-	// on an unplug event, we want to reset our position back to
-	// neutral and then immediately return
-	case(DeviceConnection::Unplug):
-
+bool AnalogShifter::updateState(bool connected) {
+	// if not connected, reset our position back to neutral
+	// and immediately return
+	if (!connected) {
 		// set axis values to calibrated neutral
 		analogAxis[Axis::X].setPosition(calibration.neutralX);
 		analogAxis[Axis::Y].setPosition(calibration.neutralY);
@@ -735,23 +762,21 @@ bool AnalogShifter::update() {
 		// set gear to neutral
 		this->setGear(0);
 
+		// status changed if gear changed
 		return this->gearChanged();
-		break;
-
-	// if the device is either disconnected or just plugged in and unstable,
-	// immediately return false to save on processing
-	case(DeviceConnection::PlugIn):
-	case(DeviceConnection::Disconnected):
-		return false;
-		break;
 	}
 
+	// poll the analog axes for new data
+	analogAxis[Axis::X].read();
+	analogAxis[Axis::Y].read();
+	const int x = analogAxis[Axis::X].getPosition();
+	const int y = analogAxis[Axis::Y].getPosition();
+
+	// check previous gears for comparison
 	const Gear previousGear = this->getGear();
 	const bool prevOdd = ((previousGear != -1) && (previousGear & 1));  // were we previously in an odd gear
 	const bool prevEven = (!prevOdd && previousGear != 0);  // were we previously in an even gear
-	
-	const int x = analogAxis[Axis::X].getPosition();
-	const int y = analogAxis[Axis::Y].getPosition();
+
 	Gear newGear = 0;
 
 	// If we're below the 'release' thresholds, we must still be in the previous gear
@@ -812,7 +837,7 @@ int AnalogShifter::getPositionRaw(Axis ax) const {
 bool AnalogShifter::getReverseButton() const {
 	// if the reverse pin is not set *or* if the device is not currently
 	// connected, avoid reading the floating input and just return 'false'
-	if (pinReverse == UnusedPin || detector.getState() != DeviceConnection::Connected) {
+	if (pinReverse == UnusedPin) {
 		return false;
 	}
 	return digitalRead(pinReverse);
@@ -1015,9 +1040,9 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
 	: AnalogShifter(
 		-1, 6,  // includes reverse and gears 1-6
-		pinX, pinY, pinRev, 
-		detectPin, false  // active high
-	)
+		pinX, pinY, pinRev, &this->detectObj),
+
+		detectObj(detectPin, false)  // active high
 {
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
 }
@@ -1028,8 +1053,9 @@ LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum
 
 Handbrake::Handbrake(PinNum pinAx, PinNum detectPin, boolean detectActiveLow)
 	: 
+	Peripheral(&this->detectObj),
 	analogAxis(pinAx),
-	detector(detectPin, detectActiveLow),
+	detectObj(detectPin, detectActiveLow),
 	changed(false)
 {}
 
@@ -1037,19 +1063,26 @@ void Handbrake::begin() {
 	update();  // set initial handbrake position
 }
 
-bool Handbrake::update() {
-	changed = false;
+bool Handbrake::updateState(bool connected) {
+	this->changed = false;
 
-	detector.poll();
-	if (detector.getState() == DeviceConnection::Connected) {
-		changed = analogAxis.read();
-	}
-	else if (detector.getState() == DeviceConnection::Unplug) {
-		analogAxis.setPosition(analogAxis.getMin());
-		changed = true;
+	// if connected, read state of the axis
+	if (connected) {
+		this->changed = this->analogAxis.read();
 	}
 
-	return changed;
+	// otherwise, set axis to its minimum (idle) position
+	else {
+		const int min  = this->analogAxis.getMin();
+		const int prev = this->analogAxis.getPositionRaw();
+
+		if (min != prev) {
+			this->analogAxis.setPosition(min);
+			this->changed = true;
+		}
+	}
+
+	return this->changed;
 }
 
 long Handbrake::getPosition(long rMin, long rMax) const {
