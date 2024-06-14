@@ -915,6 +915,167 @@ namespace SimRacing {
 		DeviceConnection detectObj;  ///< detector instance for checking if the shifter is connected
 	};
 
+	/**
+	* @brief Interface with the Logitech G27 shifter
+	* @ingroup Shifters
+	*
+	* The G27 shifter includes the same analog shifter as the Logitech Driving
+	* Force shifter (implemented in the LogitechShifter class), as well as
+	* a directional pad and eight buttons.
+	*
+	* @see https://en.wikipedia.org/wiki/Logitech_G27
+	*/
+	class LogitechShifterG27 : public LogitechShifter {
+	public:
+		/**
+		* @brief Enumeration of button values
+		* 
+		* Buttons 1-4 are the red buttons, from left to right. The directional
+		* pad is read as four separate buttons. The black buttons use cardinal
+		* directions.
+		* 
+		* These values represent the bit offset from LSB. Data is read in
+		* MSB first.
+		*/
+		enum Button : uint8_t {
+			BUTTON_UNUSED1    = 15,  ///< Unused shift register pin
+			BUTTON_REVERSE    = 14,  ///< Reverse button (press down on the shifter)
+			BUTTON_UNUSED2    = 13,  ///< Unused shift register pin
+			BUTTON_SEQUENTIAL = 12,  ///< Sequential mode button (turn the dial counter-clockwise)
+			BUTTON_3          = 11,  ///< 3rd red button (mid right)
+			BUTTON_2          = 10,  ///< 2nd red button (mid left)
+			BUTTON_4          = 9,   ///< 4th red button (far right)
+			BUTTON_1          = 8,   ///< 1st red button (far left)
+			BUTTON_NORTH      = 7,   ///< The top black button
+			BUTTON_EAST       = 6,   ///< The right black button
+			BUTTON_WEST       = 5,   ///< The left black button
+			BUTTON_SOUTH      = 4,   ///< The bottom black button
+			DPAD_RIGHT        = 3,   ///< Right button of the directional pad
+			DPAD_LEFT         = 2,   ///< Left button of the directional pad
+			DPAD_DOWN         = 1,   ///< Down button of the directional pad
+			DPAD_UP           = 0,   ///< Top button of the directional pad
+		};
+
+		/**
+		* Class constructor
+		*
+		* @param pinX      analog input pin for the X axis, DE-9 pin 4
+		* @param pinY      analog input pin for the Y axis, DE-9 pin 8
+		* @param pinLatch  digital output pin to pulse to latch data, DE-9 pin 3
+		* @param pinClock  digital output pin to pulse as a clock, DE-9 pin 7
+		* @param pinData   digital input pin to use for reading data, DE-9 pin 2
+		* @param pinDetect the digital input pin for device detection, DE-9 pin 1.
+		*                  Requires a pull-down resistor.
+		* @param pinLed    digital output pin to light the power LED on connection,
+		*                  DE-9 pin 5. Requires a 100 Ohm series resistor.
+		*/
+		LogitechShifterG27(
+			PinNum pinX, PinNum pinY,
+			PinNum pinLatch, PinNum pinClock, PinNum pinData,
+			PinNum pinDetect = UnusedPin,
+			PinNum pinLed = UnusedPin
+		);
+
+		/**
+		* Initializes the hardware pins for reading the gear states and
+		* the buttons.
+		*/
+		virtual void begin();
+
+		/**
+		* Retrieve the state of a single button
+		*
+		* @param button The button to retrieve
+		* @returns The state of the button
+		*/
+		bool getButton(Button button) const;
+
+		/**
+		* Checks whether a button has changed between updates
+		*
+		* @param button The button to check
+		* @returns 'true' if the button's state has changed, 'false' otherwise
+		*/
+		bool getButtonChanged(Button button) const;
+
+		/**
+		* Get the directional pad angle in degrees
+		*
+		* This is useful for using the directional pad as a "hatswitch", in USB
+		*
+		* @returns the directional pad value in degrees (0-360), or '-1' if no
+		*          directional pad buttons are pressed
+		*/
+		int getDpadAngle() const;
+
+		/**
+		* Checks if any of the buttons have changed since the last update
+		*
+		* @returns 'true' if any buttons have changed state, 'false' otherwise
+		*/
+		bool buttonsChanged() const;
+
+	protected:
+		/** @copydoc Peripheral::updateState(bool) */
+		virtual bool updateState(bool connected);
+
+	private:
+		/**
+		* Extracts a button value from a given data word
+		* 
+		* @param button The button to extract state for
+		* @param data   Packed data word containing button states
+		* 
+		* @returns The state of the button
+		*/
+		static bool extractButton(Button button, uint16_t data) {
+			// convert button to single bit with offset, and perform
+			// a bitwise 'AND' to get the bit value
+			return data & (1 << (uint8_t) button);
+		}
+
+		/**
+		* Store the current button data for reference and replace it with
+		* a new value
+		* 
+		* @param newStates The new button states to store
+		*/
+		void cacheButtons(uint16_t newStates);
+
+		/**
+		* Set the pin modes for all pins
+		*
+		* @param enabled 'true' to set the pins to their active configuration,
+		*                'false' to set them to idle / safe
+		*/
+		void setPinModes(bool enabled);
+
+		/**
+		* Shift the button data out from the shift register
+		* 
+		* @returns the 16-bit data from the shift registers
+		*/
+		uint16_t readShiftRegisters();
+
+		/** @copydoc AnalogShifter::readReverseButton() */
+		virtual bool readReverseButton();
+
+		// Pins for the shift register interface
+		PinNum pinLatch;             ///< Pin to pulse to latch data, DE-9 pin 3
+		PinNum pinClock;             ///< Pin to pulse as a clock, DE-9 pin 7
+		PinNum pinData;              ///< Pin to use for reading data, DE-9 pin 2
+
+		// Generic I/O pins
+		PinNum pinLed;               ///< Pin to light the power LED, DE-9 pin 5
+
+		// I/O state
+		bool pinModesSet;            ///< Flag for whether the output pins are enabled / driven
+
+		// Button states
+		uint16_t buttonStates;       ///< the state of the buttons, as a packed word (where 0 = unpressed and 1 = pressed)
+		uint16_t previousButtons;    ///< the previous state of the buttons, for comparison
+	};
+
 
 #if defined(__AVR_ATmega32U4__) || defined(SIM_RACING_DOXYGEN)
 	/**

@@ -1060,6 +1060,231 @@ LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
 }
 
+
+LogitechShifterG27::LogitechShifterG27(
+	PinNum pinX, PinNum pinY,
+	PinNum pinLatch, PinNum pinClock, PinNum pinData,
+	PinNum pinDetect,
+	PinNum pinLed
+) :
+	LogitechShifter(pinX, pinY, UnusedPin, pinDetect),
+
+	pinLatch(sanitizePin(pinLatch)), pinClock(sanitizePin(pinClock)), pinData(sanitizePin(pinData)),
+	pinLed(sanitizePin(pinLed))
+{
+	this->pinModesSet = false;
+	this->buttonStates = this->previousButtons = 0x0000;  // zero all button data
+}
+
+void LogitechShifterG27::cacheButtons(uint16_t newStates) {
+	this->previousButtons = this->buttonStates;  // save current to previous
+	this->buttonStates = newStates;  // replace current with new value
+}
+
+void LogitechShifterG27::setPinModes(bool enabled) {
+	// check if pins are valid. if one or more pins is unused,
+	// this isn't going to work and we shouldn't bother setting
+	// any of the pin states
+	if (
+		this->pinData  == UnusedPin ||
+		this->pinLatch == UnusedPin ||
+		this->pinClock == UnusedPin)
+	{
+		return;
+	}
+
+	// set up data pin to read from regardless
+	pinMode(this->pinData, INPUT);
+
+	// enabled = drive the output pins
+	if (enabled) {
+		// note: writing the output before setting the
+		// pin mode so that we don't accidentally drive
+		// the wrong direction momentarily
+
+		// set latch pin as output, HIGH on idle
+		digitalWrite(this->pinLatch, HIGH);
+		pinMode(this->pinLatch, OUTPUT);
+
+		// set clock pin as output, LOW on idle
+		digitalWrite(this->pinClock, LOW);
+		pinMode(this->pinClock, OUTPUT);
+
+		// if we have an LED pin, set it to output and turn
+		// the LED on (active low)
+		if (this->pinLed != UnusedPin) {
+			digitalWrite(this->pinLed, LOW);
+			pinMode(this->pinLed, OUTPUT);
+		}
+	}
+
+	// disabled = leave output pins as high-z
+	else {
+		// note: setting the mode before writing the
+		// output for the same reason; changing in
+		// high-z mode is safer
+
+		// set latch pin as high impedance, with pull-up
+		pinMode(this->pinLatch, INPUT);
+		digitalWrite(this->pinLatch, HIGH);
+
+		// set clock pin as high impedance, no pull-up
+		pinMode(this->pinClock, INPUT);
+		digitalWrite(this->pinClock, LOW);
+
+		// if we have an LED pin, set it to input, LOW on idle
+		if (this->pinLed != UnusedPin) {
+			pinMode(this->pinLed, INPUT);
+			digitalWrite(this->pinLed, LOW);
+		}
+	}
+
+	this->pinModesSet = enabled;
+}
+
+uint16_t LogitechShifterG27::readShiftRegisters() {
+	// if the pin outputs are not set, quit (none pressed)
+	if (!this->pinModesSet) return 0x0000;
+
+	uint16_t data = 0x0000;
+
+	// pulse shift register latch from high to low to high, 12 us
+	// (this timing is *completely* arbitrary, but it's nice to have
+	//  *some* delay so that much faster MCUs don't blow through it)
+	digitalWrite(this->pinLatch, LOW);
+	delayMicroseconds(12);
+	digitalWrite(this->pinLatch, HIGH);
+	delayMicroseconds(12);
+
+	// clock is pullsed from LOW to HIGH on every bit,
+	// and then left to idle low
+	for (int i = 0; i < 16; ++i) {
+		digitalWrite(this->pinClock, LOW);
+		const bool state = digitalRead(this->pinData);
+		if (state) data |= 1 << (15 - i);  // store data in word, MSB-first
+		digitalWrite(this->pinClock, HIGH);
+		delayMicroseconds(6);
+	}
+	digitalWrite(this->pinClock, LOW);
+
+	return data;
+}
+
+void LogitechShifterG27::begin() {
+	// disable pin outputs. this sets the initial
+	// 'safe' state. the outputs will be enabled
+	// by the 'updateState(bool)' function when needed.
+	this->setPinModes(0);
+
+	// call the begin() class of the base, which will also
+	// poll 'update()' on our behalf
+	this->AnalogShifter::begin();
+}
+
+bool LogitechShifterG27::updateState(bool connected) {
+	bool changed = false;
+
+	// if we're connected, set the pin modes, read the
+	// shift registers, and cache the data
+	if (connected) {
+		if (!this->pinModesSet) {
+			this->setPinModes(1);
+		}
+
+		const uint16_t data = this->readShiftRegisters();
+		this->cacheButtons(data);
+		changed |= this->buttonsChanged();
+	}
+
+	// if we're *not* connected, reset the pin modes and
+	// set no buttons pressed
+	else {
+		if (this->pinModesSet) {
+			this->setPinModes(0);
+		}
+
+		this->cacheButtons(0x0000);
+		changed |= this->buttonsChanged();
+	}
+
+	// we also need to update the data for the analog shifter
+	changed |= AnalogShifter::updateState(connected);
+
+	return changed;
+}
+
+bool LogitechShifterG27::buttonsChanged() const {
+	return this->buttonStates != this->previousButtons;
+}
+
+bool LogitechShifterG27::getButton(Button button) const {
+	return this->extractButton(button, this->buttonStates);
+}
+
+bool LogitechShifterG27::getButtonChanged(Button button) const {
+	return this->getButton(button) != this->extractButton(button, this->previousButtons);
+}
+
+int LogitechShifterG27::getDpadAngle() const {
+	const Button pads[4] = {
+		DPAD_UP,
+		DPAD_RIGHT,
+		DPAD_DOWN,
+		DPAD_LEFT,
+	};
+
+	// combine pads to a bitfield (nybble)
+	uint8_t dpad = 0x00;
+	for (uint8_t i = 0; i < 4; ++i) {
+		dpad |= (this->getButton(pads[i]) << i);
+	}
+
+	// The hatswitch value is from 0-7 proceeding clockwise
+	// from top (0 is 'up', 1 is 'up + right', etc.). I don't
+	// know of a great way to do this, so have this naive
+	// lookup table with a built-in SOCD cleaner
+
+	// For this, simultaneous opposing cardinal directions
+	// are neutral (because this is presumably used for
+	// navigation only, and not fighting games. Probably).
+
+	// bitfield to hatswitch lookup table
+	const uint8_t hat_table[16] = {
+		8, // 0b0000, Unpressed
+		0, // 0b0001, Up
+		2, // 0b0010, Right
+		1, // 0b0011, Right + Up
+		4, // 0b0100, Down
+		8, // 0b0101, Down + Up (SOCD None)
+		3, // 0b0110, Down + Right
+		2, // 0b0111, Down + Right + Up (SOCD Right)
+		6, // 0b1000, Left
+		7, // 0b1001, Left + Up
+		8, // 0b1010, Left + Right (SOCD None)
+		0, // 0b1011, Left + Right + Up (SOCD Up)
+		5, // 0b1100, Left + Down
+		6, // 0b1101, Left + Down + Up (SOCD Left)
+		4, // 0b1110, Left + Down + Right (SOCD Down)
+		8, // 0b1111, Left + Down + Right + Up (SOCD None)
+	};
+
+	// multiply the 0-8 value by 45 to get it in degrees
+	int16_t angle = hat_table[dpad & 0x0F] * 45;
+
+	// edge case: if no buttons are pressed, the angle is '-1'
+	if (angle == 360) angle = -1;
+
+	return angle;
+}
+
+bool LogitechShifterG27::readReverseButton() {
+	// this virtual function is provided for the sake of the AnalogShifter base
+	// class, which can use this to get the button state from the shift register
+	// without needing to interface with the shift registers themselves
+	return this->getButton(BUTTON_REVERSE);
+}
+
+
 //#########################################################
 //                      Handbrake                         #
 //#########################################################
