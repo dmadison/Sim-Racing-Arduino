@@ -11,3 +11,4 @@
 
 - @subpage logitech_pedals
 - @subpage logitech_shifter
+- @subpage logitech_shifter_g25
