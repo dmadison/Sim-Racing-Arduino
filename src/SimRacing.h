@@ -1076,6 +1076,106 @@ namespace SimRacing {
 		uint16_t previousButtons;    ///< the previous state of the buttons, for comparison
 	};
 
+	/**
+	* @brief Interface with the Logitech G25 shifter
+	* @ingroup Shifters
+	*
+	* The G25 shifter includes the same analog shifter as the Logitech Driving
+	* Force shifter (implemented in the LogitechShifter class), the buttons
+	* included with the G27 shifter (implemented in the LogitechShifterG27
+	* class), and a mode switch between H-pattern and sequential shift modes.
+	*
+	* @see https://en.wikipedia.org/wiki/Logitech_G25
+	*/
+	class LogitechShifterG25 : public LogitechShifterG27 {
+	public:
+		/**
+		  * @copydoc LogitechShifterG27::LogitechShifterG27(PinNum, PinNum,
+		  *          PinNum, PinNum, PinNum, PinNum, PinNum)
+		  */
+		LogitechShifterG25(
+			PinNum pinX, PinNum pinY,
+			PinNum pinLatch, PinNum pinClock, PinNum pinData,
+			PinNum pinDetect = UnusedPin,
+			PinNum pinLed = UnusedPin
+		);
+
+		/** @copydoc LogitechShifterG27::begin() */
+		virtual void begin();
+
+		/**
+		* Check if the shifter is in sequential shifting mode
+		* 
+		* @returns 'true' if the shifter is in sequential shifting mode,
+		*          'false' if the shifter is in H-pattern shifting mode.
+		*/
+		bool inSequentialMode() const;
+
+		/**
+		* Check if the sequential shifter is shifted up
+		* 
+		* @returns 'true' if the sequential shifter is shifted up,
+		*          'false' otherwise
+		*/
+		bool getShiftUp() const;
+
+		/**
+		* Check if the sequential shifter is shifted down
+		*
+		* @returns 'true' if the sequential shifter is shifted down,
+		*          'false' otherwise
+		*/
+		bool getShiftDown() const;
+
+		/**
+		* Calibrate the sequential shifter for more accurate shifting.
+		* 
+		* @param neutral      the Y position of the shifter in neutral
+		* @param up           the Y position of the shifter in sequential 'up'
+		* @param down         the Y position of the shifter in sequential 'down'
+		* @param engagePoint  distance from neutral on Y to register a gear as
+		*                     being engaged (as a percentage of distance from
+		*                     neutral to Y max, 0-1)
+		* @param releasePoint distance from neutral on Y to go back into neutral 
+		*                     from an engaged gear (as a percentage of distance
+		*                     from neutral to Y max, 0-1)
+		*/
+		void setCalibrationSequential(int neutral, int up, int down, float engagePoint, float releasePoint);
+
+		/** @copydoc AnalogShifter::serialCalibration(Stream&) */
+		void serialCalibrationSequential(Stream& iface = Serial);
+
+	protected:
+		/** @copydoc Peripheral::updateState(bool) */
+		virtual bool updateState(bool connected);
+
+	private:
+		/**
+		* Distance from neutral on Y to register a gear as
+		* being engaged (as a percentage of distance from
+		* neutral to Y max, 0-1). Used for calibration.
+		*/
+		static const float CalEngagementPoint; 
+
+		/**
+		* Distance from neutral on Y to go back into neutral 
+		* from an engaged gear (as a percentage of distance
+		* from neutral to Y max, 0-1). Used for calibration.
+		*/
+		static const float CalReleasePoint;
+
+		bool   sequentialProcess;  ///< Flag to indicate whether we are processing sequential shifts
+		int8_t sequentialState;    ///< Tri-state flag for the shift direction. 1 (Up), 0 (Neutral), -1 (Down).
+
+		/*** Internal calibration struct */
+		struct SequentialCalibration {
+			int   upTrigger;  ///< Threshold to set the sequential shift as 'up'
+			int   upRelease;  ///< Threshold to clear the 'up' sequential shift
+			int downTrigger;  ///< Threshold to set the sequential shift as 'down'
+			int downRelease;  ///< Threshold to clear the 'down' sequential shift
+		} seqCalibration;
+	};
+
 
 #if defined(__AVR_ATmega32U4__) || defined(SIM_RACING_DOXYGEN)
 	/**

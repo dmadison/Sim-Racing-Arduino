@@ -1285,6 +1285,271 @@ bool LogitechShifterG27::readReverseButton() {
 }
 
 
+/*
+* Static calibration constants
+* These values are arbitrary - just what worked well with my own shifter.
+*/
+const float LogitechShifterG25::CalEngagementPoint = 0.70;
+const float LogitechShifterG25::CalReleasePoint = 0.50;
+
+LogitechShifterG25::LogitechShifterG25(
+	PinNum pinX, PinNum pinY,
+	PinNum pinLatch, PinNum pinClock, PinNum pinData,
+	PinNum pinDetect,
+	PinNum pinLed
+) :
+	LogitechShifterG27(
+		pinX, pinY,
+		pinLatch, pinClock, pinData,
+		pinDetect,
+		pinLed
+	),
+
+	sequentialProcess(false),  // not in sequential mode
+	sequentialState(0)         // no sequential buttons pressed
+{
+	// using the values from my own shifter
+	this->setCalibrationSequential(425, 619, 257, 0.70, 0.50);
+}
+
+void LogitechShifterG25::begin() {
+	this->sequentialProcess = false;  // clear process flag
+	this->sequentialState = 0;        // clear any pressed buttons
+
+	this->LogitechShifterG27::begin();  // call base class begin()
+}
+
+bool LogitechShifterG25::updateState(bool connected) {
+	// call the base class to update the state of the
+	// buttons and the H-pattern shifter
+	bool changed = this->LogitechShifterG27::updateState(connected);
+
+	// if we're connected and in sequential mode...
+	if (connected && this->inSequentialMode()) {
+
+		// clear 'changed', because this will falsely report a change
+		// if we've "shifted" into 2nd/4th in the process of sequential
+		// shifting
+		changed = false;
+
+		// force neutral gear, ignoring the H-pattern selection
+		this->setGear(0);
+
+		// edge case: if we've not just switched into sequential mode,
+		// we need to ignore the H-pattern gear change (to 2/4, and then
+		// set by us to neutral). We can do that, hackily, by setting to
+		// neutral again to clear the cached gear for comparison.
+		if (this->sequentialProcess) {
+			this->setGear(0);
+		}
+
+		// read the raw y axis value, ignoring the H-pattern calibration
+		const int y = this->getPositionRaw(Axis::Y);
+
+		// save the previous state for reference
+		const int8_t prevState = this->sequentialState;
+
+		// if we're neutral, check for up/down shift
+		if (this->sequentialState == 0) {
+			     if (y >= this->seqCalibration.upTrigger)   this->sequentialState =  1;
+			else if (y <= this->seqCalibration.downTrigger) this->sequentialState = -1;
+		}
+
+		// if we're in up-shift mode, check for release
+		else if ((this->sequentialState == 1) && (y < this->seqCalibration.upRelease)) {
+			this->sequentialState = 0;
+		}
+
+		// if we're in down-shift mode, check for release
+		else if ((this->sequentialState == -1) && (y > this->seqCalibration.downRelease)) {
+			this->sequentialState = 0;
+		}
+
+		// set the 'changed' flag if the sequential state changed
+		if (prevState != this->sequentialState) {
+			changed = true;
+		}
+		// otherwise, set 'changed' based on the buttons *only*
+		else {
+			changed = this->buttonsChanged();
+		}
+
+		// set 'process' flag to handle edge case on subsequent updates
+		this->sequentialProcess = true;
+	}
+
+	// if we're not connected or if the sequential mode has been disabled,
+	// clear the sequential flags if they have been set
+	else {
+		if (this->sequentialProcess) {
+			this->sequentialProcess = false;  // not in sequential mode
+			this->sequentialState = 0;        // no sequential buttons pressed
+			changed = true;
+		}
+	}
+
+	return changed;
+}
+
+bool LogitechShifterG25::inSequentialMode() const {
+	return this->getButton(BUTTON_SEQUENTIAL);
+}
+
+bool LogitechShifterG25::getShiftUp() const {
+	return this->sequentialState == 1;
+}
+
+bool LogitechShifterG25::getShiftDown() const {
+	return this->sequentialState == -1;
+}
+
+void LogitechShifterG25::setCalibrationSequential(int neutral, int up, int down, float engagePoint, float releasePoint) {
+	// limit percentage thresholds
+	engagePoint  = floatPercent(engagePoint);
+	releasePoint = floatPercent(releasePoint);
+
+	// prevent release point from being higher than engage
+	// (which will prevent the shifter from working at all)
+	if (releasePoint > engagePoint) {
+		releasePoint = engagePoint;
+	}
+
+	// calculate ranges
+	const int upRange   = up - neutral;
+	const int downRange = neutral - down;
+
+	// calculate calibration points
+	this->seqCalibration.upTrigger   = neutral + (upRange * engagePoint);
+	this->seqCalibration.upRelease   = neutral + (upRange * releasePoint);
+
+	this->seqCalibration.downTrigger = neutral - (downRange * engagePoint);
+	this->seqCalibration.downRelease = neutral - (downRange * releasePoint);
+}
+
+void LogitechShifterG25::serialCalibrationSequential(Stream& iface) {
+	// err if not connected
+	if (this->isConnected() == false) {
+		iface.print(F("Error! Cannot perform calibration, "));
+		iface.print(F("shifter"));
+		iface.println(F(" is not connected."));
+		return;
+	}
+
+	const char* separator = "------------------------------------";
+
+	iface.println();
+	iface.println(F("Sim Racing Library G25 Sequential Shifter Calibration"));
+	iface.println(separator);
+	iface.println();
+
+	while (this->inSequentialMode() == false) {
+		iface.print(F("Please press down on the shifter and move the dial counter-clockwise to put the shifter into sequential mode"));
+		iface.print(F(". Send any character to continue."));
+		iface.println(F(" Send 'q' to quit."));
+		iface.println();
+
+		waitClient(iface);
+		this->update();
+
+		// quit if user sends 'q'
+		if (iface.read() == 'q') {
+			iface.println(F("Quitting sequential calibration! Goodbye <3"));
+			iface.println();
+			return;
+		}
+
+		// send an error if we're still not there
+		if (this->inSequentialMode() == false) {
+			iface.println(F("Error: The shifter is not in sequential mode"));
+			iface.println();
+		}
+	}
+
+	float engagementPoint = LogitechShifterG25::CalEngagementPoint;
+	float releasePoint = LogitechShifterG25::CalReleasePoint;
+
+	const uint8_t NumPoints = 3;
+	const char* directions[2] = {
+		"up",
+		"down",
+	};
+	int data[NumPoints];
+
+	int& neutral = data[0];
+	int& yMax    = data[1];
+	int& yMin    = data[2];
+
+	for (uint8_t i = 0; i < NumPoints; ++i) {
+		if (i == 0) {
+			iface.print(F("Leave the gear shifter in neutral"));
+		}
+		else {
+			iface.print(F("Please move the gear shifter to sequentially shift "));
+			iface.print(directions[i - 1]);
+			iface.print(F(" and hold it there"));
+		}
+		iface.println(F(". Send any character to continue."));
+		waitClient(iface);
+
+		this->update();
+		data[i] = this->getPositionRaw(Axis::Y);
+		iface.println();  // spacing
+	}
+
+	iface.println(F("These settings are optional. Send 'y' to customize. Send any other character to continue with the default values."));
+
+	iface.print(F("  * Shift Engagement Point: \t"));
+	iface.println(engagementPoint);
+
+	iface.print(F("  * Shift Release Point:   \t"));
+	iface.println(releasePoint);
+
+	iface.println();
+
+	waitClient(iface);
+
+	if (iface.read() == 'y') {
+		iface.println(F("Set the engagement point as a floating point percentage. This is the percentage away from the neutral axis on Y to start shifting."));
+		readFloat(engagementPoint, iface);
+		iface.println();
+
+		iface.println(F("Set the release point as a floating point percentage. This is the percentage away from the neutral axis on Y to stop shifting. It must be less than the engagement point."));
+		readFloat(releasePoint, iface);
+		iface.println();
+	}
+
+	flushClient(iface);
+
+	// apply and print
+	this->setCalibrationSequential(neutral, yMax, yMin, engagementPoint, releasePoint);
+
+	iface.println(F("Here is your calibration:"));
+	iface.println(separator);
+	iface.println();
+
+	iface.print(F("shifter.setCalibrationSequential( "));
+
+	iface.print(neutral);
+	iface.print(", ");
+	iface.print(yMax);
+	iface.print(", ");
+	iface.print(yMin);
+	iface.print(", ");
+
+	iface.print(engagementPoint);
+	iface.print(", ");
+	iface.print(releasePoint);
+	iface.print(");");
+	iface.println();
+
+	iface.println();
+	iface.println(separator);
+	iface.println();
+
+	iface.println(F("Paste this line into the setup() function to calibrate on startup."));
+	iface.println(F("\n\nCalibration complete! :)\n"));
+}
+
 //#########################################################
 //                      Handbrake                         #
 //#########################################################
