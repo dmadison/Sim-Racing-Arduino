@@ -2,6 +2,8 @@
 
 The [Logitech G25](https://en.wikipedia.org/wiki/Logitech_G25) and [Logitech G27](https://en.wikipedia.org/wiki/Logitech_G27) shifters are implemented using the SimRacing::LogitechShifterG25 and SimRacing::LogitechShifterG27 classes, respectively. The G25 and G27 shifters function identically, except for the lack of sequential mode on the G27.
 
+See the LogitechShifterG25_Print.ino, LogitechShifterG27_Print.ino, LogitechShifterG25_Joystick.ino, and LogitechShifterG27_Joystick.ino examples for reference.
+
 These notes are based off of disassembling my own G25 shifter, with the internal PCB marked "202339-0000 REV. A1".
 
 ## Connector
