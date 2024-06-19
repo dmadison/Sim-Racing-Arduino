@@ -916,6 +916,30 @@ namespace SimRacing {
 	};
 
 	/**
+	* @brief Interface with the Logitech G923 shifter
+	* @ingroup Shifters
+	*
+	* @see https://www.logitechg.com/en-us/products/driving/g923-trueforce-sim-racing-wheel.html
+	*/
+	using LogitechShifterG923 = LogitechShifter;
+
+	/**
+	* @brief Interface with the Logitech G29 shifter
+	* @ingroup Shifters
+	*
+	* @see https://en.wikipedia.org/wiki/Logitech_G29
+	*/
+	using LogitechShifterG29 = LogitechShifter;
+
+	/**
+	* @brief Interface with the Logitech G920 shifter
+	* @ingroup Shifters
+	*
+	* @see https://en.wikipedia.org/wiki/Logitech_G29
+	*/
+	using LogitechShifterG920 = LogitechShifter;
+
+	/**
 	* @brief Interface with the Logitech G27 shifter
 	* @ingroup Shifters
 	*
