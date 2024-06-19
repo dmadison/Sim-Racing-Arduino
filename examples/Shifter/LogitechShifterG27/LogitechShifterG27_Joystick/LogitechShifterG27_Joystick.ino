@@ -31,6 +31,8 @@
 #include <SimRacing.h>
 #include <Joystick.h>
 
+//  Power (VCC): DE-9 pin 9
+// Ground (GND): DE-9 pin 6
 const int Pin_ShifterX      = A0;  // DE-9 pin 4
 const int Pin_ShifterY      = A2;  // DE-9 pin 8
 

@@ -41,6 +41,9 @@ const bool SendAnalogAxis = false;
 // games, but can be useful for custom controller purposes.
 const bool SendReverseRaw = false;
 
+//  Power (VCC): DE-9 pin 9
+// Ground (GND): DE-9 pin 6
+// Note: DE-9 pin 3 (CS) needs to be pulled-up to VCC!
 const int Pin_ShifterX   = A0;  // DE-9 pin 4
 const int Pin_ShifterY   = A2;  // DE-9 pin 8
 const int Pin_ShifterRev = 2;   // DE-9 pin 2
