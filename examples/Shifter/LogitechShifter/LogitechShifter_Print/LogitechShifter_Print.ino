@@ -21,8 +21,9 @@
  */
 
  /**
- * @details Reads and prints the current gear over serial.
- * @example ShiftPrint.ino
+ * @details Reads from the Logitech Driving Force shifter (included with
+ *          the G923 / G920 / G29 wheels) and prints the data over serial.
+ * @example LogitechShifter_Print.ino
  */
 
 #include <SimRacing.h>

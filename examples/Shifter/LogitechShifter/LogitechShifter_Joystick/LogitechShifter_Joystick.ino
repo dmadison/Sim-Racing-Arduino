@@ -21,8 +21,9 @@
  */
 
  /**
- * @details Emulates the shifter as a joystick over USB.
- * @example ShiftJoystick.ino
+ * @details Emulates the Logitech Driving Force shifter (included with
+ *          the G923 / G920 / G29 wheels) as a joystick over USB.
+ * @example LogitechShifter_Joystick.ino
  */
 
 // This example requires the Arduino Joystick Library
