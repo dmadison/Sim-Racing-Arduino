@@ -1,8 +1,8 @@
-# Logitech Driving Force Shifter {#logitech_shifter}
+# Logitech Driving Force Shifter (G923 / G920 / G29) {#logitech_shifter}
 
-The [Logitech Driving Force Shifter](https://www.logitechg.com/en-us/products/driving/driving-force-shifter.html) is implemented using the SimRacing::LogitechShifter class.
+The [Logitech Driving Force Shifter](https://www.logitechg.com/en-us/products/driving/driving-force-shifter.html) is implemented using the SimRacing::LogitechShifter class. This shifter is included with the [G923](https://www.logitechg.com/en-us/products/driving/g923-trueforce-sim-racing-wheel.html), [G920](https://en.wikipedia.org/wiki/Logitech_G29), and [G29](https://en.wikipedia.org/wiki/Logitech_G29) wheels.
 
-See the ShiftPrint.ino and ShiftJoystick.ino examples for reference.
+See the LogitechShifter_Print.ino and LogitechShifter_Joystick.ino examples for reference.
 
 ## Adapters
 
