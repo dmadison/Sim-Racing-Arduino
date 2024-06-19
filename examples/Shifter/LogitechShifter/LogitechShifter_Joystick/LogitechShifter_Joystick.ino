@@ -41,9 +41,9 @@ const bool SendAnalogAxis = false;
 // games, but can be useful for custom controller purposes.
 const bool SendReverseRaw = false;
 
-const int Pin_ShifterX   = A0;
-const int Pin_ShifterY   = A2;
-const int Pin_ShifterRev = 2;
+const int Pin_ShifterX   = A0;  // DE-9 pin 4
+const int Pin_ShifterY   = A2;  // DE-9 pin 8
+const int Pin_ShifterRev = 2;   // DE-9 pin 2
 
 SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
 //SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
