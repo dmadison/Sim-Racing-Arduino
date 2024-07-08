@@ -1074,6 +1074,9 @@ LogitechShifterG27::LogitechShifterG27(
 {
 	this->pinModesSet = false;
 	this->buttonStates = this->previousButtons = 0x0000;  // zero all button data
+
+	// using the calibration from my G25 shifter, which is probably closer than the Driving Force
+	this->setCalibration({ 508, 435 }, { 310, 843 }, { 303, 8 }, { 516, 827 }, { 540, 14 }, { 713, 846 }, { 704, 17 });
 }
 
 void LogitechShifterG27::cacheButtons(uint16_t newStates) {
