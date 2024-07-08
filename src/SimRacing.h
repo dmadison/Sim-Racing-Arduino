@@ -281,7 +281,7 @@ namespace SimRacing {
 		*
 		* @returns 'true' if the device is connected, 'false' otherwise
 		*/
-		bool isConnected();
+		bool isConnected() const;
 
 		/** @copydoc DeviceConnection::setStablePeriod(unsigned long) */
 		void setStablePeriod(unsigned long t);

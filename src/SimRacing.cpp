@@ -366,7 +366,7 @@ bool Peripheral::update() {
 	return this->updateState(connected);
 }
 
-bool Peripheral::isConnected() {
+bool Peripheral::isConnected() const {
 	// if detector exists, return state
 	if (this->detector) {
 		return this->detector->isConnected();
