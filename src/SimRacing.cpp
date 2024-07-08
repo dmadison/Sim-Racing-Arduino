@@ -1159,7 +1159,7 @@ uint16_t LogitechShifterG27::readShiftRegisters() {
 	digitalWrite(this->pinLatch, HIGH);
 	delayMicroseconds(12);
 
-	// clock is pullsed from LOW to HIGH on every bit,
+	// clock is pulsed from LOW to HIGH on every bit,
 	// and then left to idle low
 	for (int i = 0; i < 16; ++i) {
 		digitalWrite(this->pinClock, LOW);
