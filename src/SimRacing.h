@@ -1280,43 +1280,6 @@ namespace SimRacing {
 	*/
 	template<>
 	LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>();
-
-
-	/**
-	* Pin definitions for the Parts Not Included Logitech Shifter Shield,
-	* designed for the SparkFun Pro Micro:
-	* 
-	* * X Wiper: A1
-	* * Y Wiper: A0
-	* * Reverse Pin: 14
-	* * Detect Pin: A2
-	* 
-	* This macro can be inserted directly into the constructor in place of the
-	* normal pin definitions:
-	* 
-	* @code{.cpp}
-	* SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
-	* @endcode
-	*/
-	#define SHIFTER_SHIELD_V1_PINS A1, A0, 14, A2
-
-	/**
-	* Pin definitions for the Parts Not Included Logitech Pedals Shield,
-	* designed for the SparkFun Pro Micro:
-	*
-	* * Gas Wiper:    A2
-	* * Brake Wiper:  A1
-	* * Clutch Wiper: A0
-	* * Detect Pin:   10
-	*
-	* This macro can be inserted directly into the constructor in place of the
-	* normal pin definitions:
-	*
-	* @code{.cpp}
-	* SimRacing::LogitechPedals pedals(PEDAL_SHIELD_V1_PINS);
-	* @endcode
-	*/
-	#define PEDAL_SHIELD_V1_PINS A2, A1, A0, 10
 #endif
 
 }  // end SimRacing namespace
