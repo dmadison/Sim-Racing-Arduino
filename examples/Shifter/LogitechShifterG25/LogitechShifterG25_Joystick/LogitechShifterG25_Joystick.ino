@@ -50,6 +50,7 @@ SimRacing::LogitechShifterG25 shifter(
 	Pin_ShifterLatch, Pin_ShifterClock, Pin_ShifterData,
 	Pin_ShifterDetect, Pin_ShifterLED
 );
+//SimRacing::LogitechShifterG25 shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifterG25, 2>();
 
 // Set this option to 'true' to send the shifter's X/Y position
 // as a joystick. This is not needed for most games.

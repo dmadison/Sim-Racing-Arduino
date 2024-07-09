@@ -46,6 +46,7 @@ SimRacing::LogitechShifterG25 shifter(
 	Pin_ShifterLatch, Pin_ShifterClock, Pin_ShifterData,
 	Pin_ShifterDetect, Pin_ShifterLED
 );
+//SimRacing::LogitechShifterG25 shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifterG25, 2>();
 
 // alias so we don't need to type so much
 using ShifterButton = SimRacing::LogitechShifterG25::Button;

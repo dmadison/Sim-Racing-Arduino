@@ -36,7 +36,7 @@ const int Pin_ShifterY   = A2;  // DE-9 pin 8
 const int Pin_ShifterRev = 2;   // DE-9 pin 2
 
 SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
-//SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
+//SimRacing::LogitechShifter shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifter, 2>();
 
 const unsigned long PrintSpeed = 1500;  // ms
 unsigned long lastPrint = 0;

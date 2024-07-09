@@ -29,6 +29,83 @@
 
 namespace SimRacing {
 
+#if defined(__AVR_ATmega32U4__) || defined(SIM_RACING_DOXYGEN)
+
+template<>
+LogitechPedals CreateShieldObject<LogitechPedals, 1>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 6
+	// Ground (GND): DE-9 pin 1
+
+	const PinNum Pin_Gas    = A2;  // DE-9 pin 2
+	const PinNum Pin_Brake  = A1;  // DE-9 pin 3
+	const PinNum Pin_Clutch = A0;  // DE-9 pin 4
+	const PinNum Pin_Detect = 10;  // DE-9 pin 6, requires 10k Ohm pull-down
+
+	return LogitechPedals(Pin_Gas, Pin_Brake, Pin_Clutch, Pin_Detect);
+}
+
+template<>
+LogitechPedals CreateShieldObject<LogitechPedals, 2>() {
+	// version 2 of the pedals shield has the same pinout,
+	// so we can use the v1 function
+	return CreateShieldObject<LogitechPedals, 1>();
+}
+
+template<>
+LogitechShifter CreateShieldObject<LogitechShifter, 1>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 7
+	// Ground (GND): DE-9 pin 6
+	// DE-9 pin 3 (CS) needs to be pulled-up to VCC
+
+	const PinNum Pin_X_Wiper = A1;  // DE-9 pin 4
+	const PinNum Pin_Y_Wiper = A0;  // DE-9 pin 8
+	const PinNum Pin_DataOut = 14;  // DE-9 pin 2
+	const PinNum Pin_Detect  = A2;  // DE-9 pin 7, requires 10k Ohm pull-down
+
+	return LogitechShifter(Pin_X_Wiper, Pin_Y_Wiper, Pin_DataOut, Pin_Detect);
+}
+
+template<>
+LogitechShifter CreateShieldObject<LogitechShifter, 2>() {
+	// version 2 of the shifter shield has the same data pinout for
+	// the Driving Force shifter, so we can use the v1 function
+	return CreateShieldObject<LogitechShifter, 1>();
+}
+
+/**
+* Helper function to create either a LogitechShifterG27 or LogitechShifterG25
+* object using the v2 shifter shield pinout, as both use the same pins.
+*/
+template<class T>
+static T CreateShieldShifter() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 1
+	// Ground (GND): DE-9 pin 6
+
+	const PinNum Pin_X_Wiper  = A1;  // DE-9 pin 4
+	const PinNum Pin_Y_Wiper  = A0;  // DE-9 pin 8
+	const PinNum Pin_DataOut  = 14;  // DE-9 pin 2
+
+	const PinNum Pin_Latch    = 10;  // DE-9 pin 3, aka chip select, requires 10k Ohm pull-up
+	const PinNum Pin_Clock    = A2;  // DE-9 pin 7, should have 470 Ohm resistor to prevent shorts
+
+	const PinNum Pin_Detect   = 15;  // DE-9 pin 1, requires 10k Ohm pull-down
+	const PinNum Pin_LED      = 16;  // DE-9 pin 5, requires 100-120 Ohm series resistor
+
+	return T(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_Detect, Pin_LED);
+}
+
+template<>
+LogitechShifterG27 CreateShieldObject<LogitechShifterG27, 2>() {
+	return CreateShieldShifter<LogitechShifterG27>();
+}
+
+template<>
+LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>() {
+	return CreateShieldShifter<LogitechShifterG25>();
+}
+#endif  // ATmega32U4 for shield functions
+
+
 /**
 * Take a pin number as an input and sanitize it to a known working value
 * 

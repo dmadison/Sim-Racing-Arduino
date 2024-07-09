@@ -1203,6 +1203,86 @@ namespace SimRacing {
 
 #if defined(__AVR_ATmega32U4__) || defined(SIM_RACING_DOXYGEN)
 	/**
+	* Create an object for use with one of the Sim Racing Shields, designed
+	* for the SparkFun Pro Micro (32U4).
+	*
+	* This is a convenience function, so that users with a shield don't need to
+	* look up or remember the pin assignments for their hardware.
+	*
+	* @code{.cpp}
+	* // Generic Usage
+	* auto myObject = SimRacing::CreateShieldObject<ObjectType, Version>();
+	*
+	* // Creating a LogitechShifter object for the v2 shifter shield
+	* auto myShifter = SimRacing::CreateShieldObject<LogitechShifter, 2>();
+	* @endcode
+	*
+	* The following classes are supported for the Pedals shield, v1:
+	*     * SimRacing::LogitechPedals
+	*
+	* The following classes are supported for the Shifter shield, v1:
+	*     * SimRacing::LogitechShifter (Driving Force)
+	*     * SimRacing::LogitechShifterG923 (alias)
+	*     * SimRacing::LogitechShifterG920 (alias)
+	*     * SimRacing::LogitechShifterG29 (alias)
+	*
+	* Version 2 of the shifter shield includes support for all of the classes
+	* from v1, as well as the following:
+	*     * SimRacing::LogitechShifterG27
+	*     * SimRacing::LogitechShifterG25
+	*
+	* @note The default version of this template is undefined, so trying to
+	*       create a class that is unsupported by the shield will generate
+	*       a linker error. This is intentional.
+	*
+	* @tparam T       The class to create
+	* @tparam Version The major version number of the shield
+	*
+	* @returns class instance, using the hardware pins on the shield
+	*
+	* @see https://github.com/dmadison/Sim-Racing-Shields
+	*/
+	template<class T, uint8_t Version>
+	T CreateShieldObject();
+
+	/**
+	* Create a LogitechPedals object for the Pedals Shield v1
+	*/
+	template<>
+	LogitechPedals CreateShieldObject<LogitechPedals, 1>();
+
+	/**
+	* Create a LogitechPedals object for the Pedals Shield v2
+	*/
+	template<>
+	LogitechPedals CreateShieldObject<LogitechPedals, 2>();
+
+	/**
+	* Create a LogitechShifter object for the Shifter Shield v1
+	*/
+	template<>
+	LogitechShifter CreateShieldObject<LogitechShifter, 1>();
+
+	/**
+	* Create a LogitechShifter object for the Shifter Shield v2
+	*/
+	template<>
+	LogitechShifter CreateShieldObject<LogitechShifter, 2>();
+
+	/**
+	* Create a LogitechShifterG27 object for the Shifter Shield v2
+	*/
+	template<>
+	LogitechShifterG27 CreateShieldObject<LogitechShifterG27, 2>();
+
+	/**
+	* Create a LogitechShifterG25 object for the Shifter Shield v2
+	*/
+	template<>
+	LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>();
+
+
+	/**
 	* Pin definitions for the Parts Not Included Logitech Shifter Shield,
 	* designed for the SparkFun Pro Micro:
 	* 

@@ -32,7 +32,7 @@ const int Pin_Brake  = A1;
 const int Pin_Clutch = A0;
 
 SimRacing::LogitechPedals pedals(Pin_Gas, Pin_Brake, Pin_Clutch);
-//SimRacing::LogitechPedals pedals(PEDAL_SHIELD_V1_PINS);
+//SimRacing::LogitechPedals pedals = SimRacing::CreateShieldObject<SimRacing::LogitechPedals, 1>();
 
 
 void setup() {

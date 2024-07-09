@@ -45,6 +45,12 @@ LogitechShifterG25	KEYWORD1
 Handbrake	KEYWORD1
 
 #######################################
+# Functions (KEYWORD2)
+#######################################
+
+CreateShieldObject	KEYWORD2
+
+#######################################
 # Peripheral Class Methods and Functions (KEYWORD2)
 #######################################
 
