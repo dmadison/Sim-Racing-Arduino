@@ -35,7 +35,15 @@ const int Pin_ShifterX   = A0;  // DE-9 pin 4
 const int Pin_ShifterY   = A2;  // DE-9 pin 8
 const int Pin_ShifterRev = 2;   // DE-9 pin 2
 
-SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
+// This pin requires an extra resistor! If you have made the proper
+// connections, change the pin number to the one you're using
+const int Pin_ShifterDetect = SimRacing::UnusedPin;  // DE-9 pin 7, requires pull-down resistor
+
+SimRacing::LogitechShifter shifter(
+	Pin_ShifterX, Pin_ShifterY,
+	Pin_ShifterRev,
+	Pin_ShifterDetect
+);
 //SimRacing::LogitechShifter shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifter, 2>();
 
 const unsigned long PrintSpeed = 1500;  // ms
