@@ -34,11 +34,11 @@ Note that the DE-9 connector is often erroneously referred to as DB-9. These are
 
 Pin #2 (Data Output) is connected directly to the output of the EEPROM, and connected to the output of the shift registers through a 1000 Ohm resistor.
 
-Pin #3 (Latch / Chip Select) is shared between the onboard EEPROM and the shift registers. It is normally HIGH. It must be pulsed once (HIGH / LOW / HIGH) to latch the data into the shift registers. Holding it low instructs the EEPROM to listen for commands.
+Pin #3 (Latch / Chip Select) is shared between the onboard EEPROM and the shift registers. It is floating but should typically be held HIGH by the microcontroller. It must be pulsed once (HIGH / LOW / HIGH) to latch the data into the shift registers. Holding it LOW instructs the EEPROM to listen for commands.
 
 Pin #5 (Data In) is used exclusively by the EEPROM. It is also connected to the "Power" LED through a 330 Ohm resistor. Driving this pin LOW will turn on the LED. As the "Sequential Mode" LED is connected using a 470 Ohm resistor, I would recommend using a 100-120 Ohm resistor in series so that the pair are closer in brightness.
 
-Pin #7 (Clock) is connected to the clock inputs of both the EEPROM and the shift registers. It is normally LOW and must be pulsed HIGH to send or receive data. Be wary of driving this pin to ground without protection, as this pin is also used as a joint power input for the [Logitech Driving Force Shifter](@ref logitech_shifter).
+Pin #7 (Clock) is connected to the clock inputs of both the EEPROM and the shift registers. It is floating but should typically be held LOW by the microcontroller. Pulsing the pin HIGH (LOW / HIGH / LOW) will shift one bit of data. Be wary of driving this pin to ground without protection, as this pin is also used as a joint power input for the [Logitech Driving Force Shifter](@ref logitech_shifter).
 
 The power pins (#1 / #9) are connected together within the DE-9 connector. Either one can be used, but it is recommended to use #9 for better forwards-compatibility with the [Logitech Driving Force Shifter](@ref logitech_shifter).
 
