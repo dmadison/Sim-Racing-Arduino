@@ -1247,6 +1247,21 @@ uint16_t LogitechShifterG27::readShiftRegisters() {
 	}
 	digitalWrite(this->pinClock, LOW);
 
+	// edge case: two of the bits (0x8000 and 0x2000) are connected only to
+	// pull-down resistors, and should theoretically never be high. If they,
+	// and all other bits, *are* high, then we are not reading from a shifter
+	// that has shift registers. The "Driving Force" (G29/G920/G923) shifter
+	// has its data output connected to the 'reverse' button through a buffer,
+	// and will report 'high' if the reverse button is pressed no matter how
+	// many times the clock is pulsed.
+	//
+	// QED: we are connected to a "Driving Force" shifter, and not a G27.
+	// That's okay! If we set the state of the 'reverse' button and clear
+	// all others, we can still behave like a G27.
+	if (data == 0xFFFF) {
+		data = (1 << (uint8_t) Button::BUTTON_REVERSE);
+	}
+
 	return data;
 }
 
