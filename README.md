@@ -24,7 +24,8 @@ Run one of the library examples in the Arduino IDE by going to `File -> Examples
 * [Logitech Two Pedal Peripheral (Gas, Brake)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html)
 * [Logitech Three Pedal Peripheral (Gas, Brake, Clutch)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html)
 * [Logitech Driving Force Shifter (G923 / G920 / G29)](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter.html)
-* [Logitech G25 / G27 Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter_g25.html)
+* [Logitech G27 Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter_g27.html)
+* [Logitech G25 Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter_g25.html)
 
 ## Adapters
 
