@@ -1173,7 +1173,10 @@ namespace SimRacing {
 		*                     from an engaged gear (as a percentage of distance
 		*                     from neutral to Y max, 0-1)
 		*/
-		void setCalibrationSequential(int neutral, int up, int down, float engagePoint, float releasePoint);
+		void setCalibrationSequential(int neutral, int up, int down,
+			float engagePoint  = LogitechShifterG25::CalEngagementPoint,
+			float releasePoint = LogitechShifterG25::CalReleasePoint
+		);
 
 		/** @copydoc AnalogShifter::serialCalibration(Stream&) */
 		void serialCalibrationSequential(Stream& iface = Serial);
