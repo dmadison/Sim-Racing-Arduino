@@ -430,10 +430,6 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 //                     Peripheral                         #
 //#########################################################
 
-Peripheral::Peripheral(DeviceConnection* detector)
-	: detector(detector)
-{}
-
 bool Peripheral::update() {
 	// if the detector exists, poll for state
 	if (this->detector) {
@@ -457,6 +453,10 @@ bool Peripheral::isConnected() const {
 	return true;
 }
 
+void Peripheral::setDetectPtr(DeviceConnection* d) {
+	this->detector = d;
+}
+
 void Peripheral::setStablePeriod(unsigned long t) {
 	// if detector exists, set the stable period
 	if (this->detector) {
@@ -468,9 +468,8 @@ void Peripheral::setStablePeriod(unsigned long t) {
 //                       Pedals                           #
 //#########################################################
 
-Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, DeviceConnection* detector)
+Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals)
 	: 
-	Peripheral(detector),
 	pedalData(dataPtr),
 	NumPedals(nPedals),
 	changed(false)
@@ -676,8 +675,8 @@ void Pedals::serialCalibration(Stream& iface) {
 }
 
 
-TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, DeviceConnection* detector)
-	: Pedals(pedalData, NumPedals, detector),
+TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin)
+	: Pedals(pedalData, NumPedals),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin) }
 {}
 
@@ -687,8 +686,8 @@ void TwoPedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::Cal
 }
 
 
-ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, DeviceConnection* detector)
-	: Pedals(pedalData, NumPedals, detector),
+ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin)
+	: Pedals(pedalData, NumPedals),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin), AnalogInput(clutchPin) }
 {}
 
@@ -701,9 +700,11 @@ void ThreePedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::C
 
 LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
 	: 
-	ThreePedals(gasPin, brakePin, clutchPin, &this->detectObj),
+	ThreePedals(gasPin, brakePin, clutchPin),
 	detectObj(detectPin, false)  // active high
 {
+	this->setDetectPtr(&this->detectObj);
+
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
 	// this covers the whole travel range, users may want to back it down for casual
 	// use (esp. for the brake travel)
@@ -712,9 +713,10 @@ LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin,
 
 LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
 	: 
-	TwoPedals(gasPin, brakePin, &this->detectObj),
+	TwoPedals(gasPin, brakePin),
 	detectObj(detectPin, false)  // active high
 {
+	this->setDetectPtr(&this->detectObj);
 	this->setCalibration({ 646, 0 }, { 473, 1023 });  // taken from calibrating my own pedals
 }
 
@@ -723,9 +725,8 @@ LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinN
 //                       Shifter                          #
 //#########################################################
 
-Shifter::Shifter(Gear min, Gear max, DeviceConnection* detector)
+Shifter::Shifter(Gear min, Gear max)
 	:
-	Peripheral(detector),
 	MinGear(min), MaxGear(max)
 {
 	this->currentGear = this->previousGear = 0;  // neutral
@@ -814,10 +815,9 @@ const float AnalogShifter::CalEdgeOffset = 0.60;
 
 AnalogShifter::AnalogShifter(
 	Gear gearMin, Gear gearMax,
-	PinNum pinX, PinNum pinY, PinNum pinRev,
-	DeviceConnection* detector
+	PinNum pinX, PinNum pinY, PinNum pinRev
 ) : 
-	Shifter(gearMin, gearMax, detector),
+	Shifter(gearMin, gearMax),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
@@ -1132,12 +1132,15 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 }
 
 LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
-	: AnalogShifter(
+	: 
+	AnalogShifter(
 		-1, 6,  // includes reverse and gears 1-6
-		pinX, pinY, pinRev, &this->detectObj),
+		pinX, pinY, pinRev
+	),
 
-		detectObj(detectPin, false)  // active high
+	detectObj(detectPin, false)  // active high
 {
+	this->setDetectPtr(&this->detectObj);
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
 }
 
@@ -1654,11 +1657,9 @@ void LogitechShifterG25::serialCalibrationSequential(Stream& iface) {
 //                      Handbrake                         #
 //#########################################################
 
-Handbrake::Handbrake(PinNum pinAx, PinNum detectPin, boolean detectActiveLow)
+Handbrake::Handbrake(PinNum pinAx)
 	: 
-	Peripheral(&this->detectObj),
 	analogAxis(pinAx),
-	detectObj(detectPin, detectActiveLow),
 	changed(false)
 {}
 

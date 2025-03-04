@@ -251,14 +251,6 @@ namespace SimRacing {
 	class Peripheral {
 	public:
 		/**
-		* Class Constructor
-		* 
-		* @param detector pointer to a device connection instance, to use for
-		*                 determining if the peripheral is connected
-		*/
-		Peripheral(DeviceConnection* detector = nullptr);
-
-		/**
 		* Class destructor
 		*/
 		virtual ~Peripheral() {}
@@ -301,6 +293,20 @@ namespace SimRacing {
 		*/
 		virtual bool updateState(bool connected) = 0;
 
+		/**
+		* Sets the pointer to the detector object
+		*
+		* The detector object is used to check if the peripheral is connected
+		* to the microcontroller. The object is polled on every update.
+		*
+		* Although the detector instance is accessed via the Peripheral class,
+		* it is the responsibility of the dervied class to store the
+		* DeviceConnection object and manage its lifetime.
+		*
+		* @param d pointer to the detector object
+		*/
+		void setDetectPtr(DeviceConnection* d);
+
 	private:
 		DeviceConnection* detector;  ///< Pointer to a device connection instance
 	};
@@ -337,12 +343,9 @@ namespace SimRacing {
 		* @param dataPtr  pointer to the analog input data managed by the class,
 		*                 stored elsewhere
 		* @param nPedals  the number of pedals stored in said data pointer
-		* @param detector pointer to a device connection instance, to use for
-		*                 determining if the peripheral is connected
 		*/
 		Pedals(
-			AnalogInput* dataPtr, uint8_t nPedals,
-			DeviceConnection* detector = nullptr
+			AnalogInput* dataPtr, uint8_t nPedals
 		);
 
 		/** @copydoc Peripheral::begin() */
@@ -438,12 +441,9 @@ namespace SimRacing {
 		*
 		* @param pinGas   the analog pin for the gas pedal potentiometer
 		* @param pinBrake the analog pin for the brake pedal potentiometer
-		* @param detector pointer to a device connection instance, to use for
-		*                 determining if the peripheral is connected
 		*/
 		TwoPedals(
-			PinNum pinGas, PinNum pinBrake,
-			DeviceConnection* detector = nullptr
+			PinNum pinGas, PinNum pinBrake
 		);
 
 		/**
@@ -471,12 +471,9 @@ namespace SimRacing {
 		* @param pinGas    the analog pin for the gas pedal potentiometer
 		* @param pinBrake  the analog pin for the brake pedal potentiometer
 		* @param pinClutch the analog pin for the clutch pedal potentiometer
-		* @param detector  pointer to a device connection instance, to use for
-		*                  determining if the peripheral is connected
 		*/
 		ThreePedals(
-			PinNum pinGas, PinNum pinBrake, PinNum pinClutch,
-			DeviceConnection* detector = nullptr
+			PinNum pinGas, PinNum pinBrake, PinNum pinClutch
 		);
 
 		/**
@@ -515,12 +512,10 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param min       the lowest gear possible
-		* @param max       the highest gear possible
-		* @param detector  pointer to a device connection instance, to use for
-		*                  determining if the peripheral is connected
+		* @param min the lowest gear possible
+		* @param max the highest gear possible
 		*/
-		Shifter(Gear min, Gear max, DeviceConnection* detector = nullptr);
+		Shifter(Gear min, Gear max);
 	
 		/**
 		* Returns the currently selected gear.
@@ -621,13 +616,11 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		* 
-		* @param gearMin  the lowest gear possible
-		* @param gearMax  the highest gear possible
-		* @param pinX     the analog input pin for the X axis
-		* @param pinY     the analog input pin for the Y axis
-		* @param pinRev   the digital input pin for the 'reverse' button
-		* @param detector pointer to a device connection instance, to use for
-		*                 determining if the peripheral is connected
+		* @param gearMin the lowest gear possible
+		* @param gearMax the highest gear possible
+		* @param pinX    the analog input pin for the X axis
+		* @param pinY    the analog input pin for the Y axis
+		* @param pinRev  the digital input pin for the 'reverse' button
 		* 
 		* @note With the way the class is designed, the lowest possible gear is
 		*       -1 (reverse), and the highest possible gear is 6. Setting the
@@ -638,8 +631,7 @@ namespace SimRacing {
 		AnalogShifter(
 			Gear gearMin, Gear gearMax,
 			PinNum pinX, PinNum pinY,
-			PinNum pinRev = UnusedPin,
-			DeviceConnection* detector = nullptr
+			PinNum pinRev = UnusedPin
 		);
 
 		/**
@@ -781,15 +773,9 @@ namespace SimRacing {
 		/**
 		* Class constructor
 		*
-		* @param pinAx           analog pin number for the handbrake axis
-		* @param pinDetect       the digital pin for device detection
-		* @param detectActiveLow whether the device is detected on a high signal (false,
-		*                        default) or a low signal (true)
+		* @param pinAx analog pin number for the handbrake axis
 		*/
-		Handbrake(
-			PinNum pinAx,
-			PinNum pinDetect = UnusedPin, boolean detectActiveLow = false
-		);
+		Handbrake(PinNum pinAx);
 
 		/**
 		* Initializes the pin for reading from the handbrake.
@@ -836,7 +822,6 @@ namespace SimRacing {
 
 	private:
 		AnalogInput analogAxis;      ///< axis data for the handbrake's position
-		DeviceConnection detectObj;  ///< detector instance for checking if the handbrake is connected
 		bool changed;                ///< whether the handbrake position has changed since the previous update
 	};
 
