@@ -986,9 +986,9 @@ namespace SimRacing {
 		* @param pinX      analog input pin for the X axis, DE-9 pin 4
 		* @param pinY      analog input pin for the Y axis, DE-9 pin 8
 		* @param pinLatch  digital output pin to pulse to latch data, DE-9 pin 3
-		* @param pinClock  digital output pin to pulse as a clock, DE-9 pin 7
+		* @param pinClock  digital output pin to pulse as a clock, DE-9 pin 1
 		* @param pinData   digital input pin to use for reading data, DE-9 pin 2
-		* @param pinDetect the digital input pin for device detection, DE-9 pin 1.
+		* @param pinDetect the digital input pin for device detection, DE-9 pin 7.
 		*                  Requires a pull-down resistor.
 		* @param pinLed    digital output pin to light the power LED on connection,
 		*                  DE-9 pin 5. Requires a 100 Ohm series resistor.
@@ -997,7 +997,7 @@ namespace SimRacing {
 			PinNum pinX, PinNum pinY,
 			PinNum pinLatch, PinNum pinClock, PinNum pinData,
 			PinNum pinDetect = UnusedPin,
-			PinNum pinLed = UnusedPin
+			PinNum pinLed    = UnusedPin
 		);
 
 		/**
@@ -1086,7 +1086,7 @@ namespace SimRacing {
 
 		// Pins for the shift register interface
 		PinNum pinLatch;             ///< Pin to pulse to latch data, DE-9 pin 3
-		PinNum pinClock;             ///< Pin to pulse as a clock, DE-9 pin 7
+		PinNum pinClock;             ///< Pin to pulse as a clock, DE-9 pin 1
 		PinNum pinData;              ///< Pin to use for reading data, DE-9 pin 2
 
 		// Generic I/O pins
@@ -1114,14 +1114,23 @@ namespace SimRacing {
 	class LogitechShifterG25 : public LogitechShifterG27 {
 	public:
 		/**
-		  * @copydoc LogitechShifterG27::LogitechShifterG27(PinNum, PinNum,
-		  *          PinNum, PinNum, PinNum, PinNum, PinNum)
-		  */
+		* Class constructor
+		*
+		* @param pinX      analog input pin for the X axis, DE-9 pin 4
+		* @param pinY      analog input pin for the Y axis, DE-9 pin 8
+		* @param pinLatch  digital output pin to pulse to latch data, DE-9 pin 3
+		* @param pinClock  digital output pin to pulse as a clock, DE-9 pin 7
+		* @param pinData   digital input pin to use for reading data, DE-9 pin 2
+		* @param pinDetect the digital input pin for device detection, DE-9 pin 1.
+		*                  Requires a pull-down resistor.
+		* @param pinLed    digital output pin to light the power LED on connection,
+		*                  DE-9 pin 5. Requires a 100 Ohm series resistor.
+		*/
 		LogitechShifterG25(
 			PinNum pinX, PinNum pinY,
 			PinNum pinLatch, PinNum pinClock, PinNum pinData,
 			PinNum pinDetect = UnusedPin,
-			PinNum pinLed = UnusedPin
+			PinNum pinLed    = UnusedPin
 		);
 
 		/** @copydoc LogitechShifterG27::begin() */

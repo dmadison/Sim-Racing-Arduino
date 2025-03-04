@@ -72,12 +72,26 @@ LogitechShifter CreateShieldObject<LogitechShifter, 2>() {
 	return CreateShieldObject<LogitechShifter, 1>();
 }
 
-/**
-* Helper function to create either a LogitechShifterG27 or LogitechShifterG25
-* object using the v2 shifter shield pinout, as both use the same pins.
-*/
-template<class T>
-static T CreateShieldShifter() {
+template<>
+LogitechShifterG27 CreateShieldObject<LogitechShifterG27, 2>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 7
+	// Ground (GND): DE-9 pin 6
+
+	const PinNum Pin_X_Wiper  = A1;  // DE-9 pin 4
+	const PinNum Pin_Y_Wiper  = A0;  // DE-9 pin 8
+	const PinNum Pin_DataOut  = 14;  // DE-9 pin 2
+
+	const PinNum Pin_Latch    = 10;  // DE-9 pin 3, aka chip select, requires 10k Ohm pull-up
+	const PinNum Pin_Clock    = 15;  // DE-9 pin 1, should have 470 Ohm resistor to prevent shorts
+
+	const PinNum Pin_Detect   = A2;  // DE-9 pin 7, requires 10k Ohm pull-down
+	const PinNum Pin_LED      = 16;  // DE-9 pin 5, requires 100-120 Ohm series resistor
+
+	return LogitechShifterG27(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_Detect, Pin_LED);
+}
+
+template<>
+LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>() {
 	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 1
 	// Ground (GND): DE-9 pin 6
 
@@ -91,17 +105,7 @@ static T CreateShieldShifter() {
 	const PinNum Pin_Detect   = 15;  // DE-9 pin 1, requires 10k Ohm pull-down
 	const PinNum Pin_LED      = 16;  // DE-9 pin 5, requires 100-120 Ohm series resistor
 
-	return T(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_Detect, Pin_LED);
-}
-
-template<>
-LogitechShifterG27 CreateShieldObject<LogitechShifterG27, 2>() {
-	return CreateShieldShifter<LogitechShifterG27>();
-}
-
-template<>
-LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>() {
-	return CreateShieldShifter<LogitechShifterG25>();
+	return LogitechShifterG25(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_Detect, Pin_LED);
 }
 #endif  // ATmega32U4 for shield functions
 
