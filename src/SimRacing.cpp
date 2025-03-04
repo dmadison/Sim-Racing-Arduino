@@ -1156,8 +1156,8 @@ LogitechShifterG27::LogitechShifterG27(
 	this->pinModesSet = false;
 	this->buttonStates = this->previousButtons = 0x0000;  // zero all button data
 
-	// using the calibration from my G25 shifter, which is probably closer than the Driving Force
-	this->setCalibration({ 508, 435 }, { 310, 843 }, { 303, 8 }, { 516, 827 }, { 540, 14 }, { 713, 846 }, { 704, 17 });
+	// using the calibration values from my own G27 shifter
+	this->setCalibration({ 453, 470 }, { 247, 828 }, { 258, 6 }, { 449, 878 }, { 472, 5 }, { 645, 880 }, { 651, 21 });
 }
 
 void LogitechShifterG27::cacheButtons(uint16_t newStates) {
@@ -1407,8 +1407,9 @@ LogitechShifterG25::LogitechShifterG25(
 	sequentialProcess(false),  // not in sequential mode
 	sequentialState(0)         // no sequential buttons pressed
 {
-	// using the values from my own shifter
-	this->setCalibrationSequential(425, 619, 257, 0.70, 0.50);
+	// using the calibration values from my own G25 shifter
+	this->setCalibration({ 508, 435 }, { 310, 843 }, { 303, 8 }, { 516, 827 }, { 540, 14 }, { 713, 846 }, { 704, 17 });
+	this->setCalibrationSequential(425, 619, 257);
 }
 
 void LogitechShifterG25::begin() {
