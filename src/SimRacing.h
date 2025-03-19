@@ -1024,6 +1024,29 @@ namespace SimRacing {
 		*/
 		bool buttonsChanged() const;
 
+		/**
+		* Sets the state of the shifter's power LED
+		*
+		* If the shifter is currently connected, this function will turn the
+		* power LED on and off. If the shifter is not connected, this will
+		* buffer the commanded state and set the LED when the shifter is next
+		* connected.
+		*
+		* @note The update() function must be called in order to push the
+		*       commanded state to the shifter.
+		*
+		* @param state the state to set: 1 = on, 0 = off
+		*/
+		void setPowerLED(bool state);
+
+		/**
+		* Gets the commanded state of the shifter's power LED
+		* 
+		* @returns 'true' if the power LED is commanded to be on, 'false'
+		*          if it's commanded to be off.
+		*/
+		bool getPowerLED() const { return this->ledState; }
+
 	protected:
 		/** @copydoc Peripheral::updateState(bool) */
 		virtual bool updateState(bool connected);
@@ -1079,6 +1102,7 @@ namespace SimRacing {
 
 		// I/O state
 		bool pinModesSet;            ///< Flag for whether the output pins are enabled / driven
+		bool ledState;               ///< Commanded state of the power LED output, DE-9 pin 5
 
 		// Button states
 		uint16_t buttonStates;       ///< the state of the buttons, as a packed word (where 0 = unpressed and 1 = pressed)

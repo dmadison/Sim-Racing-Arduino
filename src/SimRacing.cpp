@@ -1157,6 +1157,7 @@ LogitechShifterG27::LogitechShifterG27(
 	pinLed(sanitizePin(pinLed))
 {
 	this->pinModesSet = false;
+	this->setPowerLED(1);  // power LED on by default
 	this->buttonStates = this->previousButtons = 0x0000;  // zero all button data
 
 	// using the calibration values from my own G27 shifter
@@ -1197,10 +1198,10 @@ void LogitechShifterG27::setPinModes(bool enabled) {
 		digitalWrite(this->pinClock, LOW);
 		pinMode(this->pinClock, OUTPUT);
 
-		// if we have an LED pin, set it to output and turn
-		// the LED on (active low)
+		// if we have an LED pin, set it to output and write the
+		// commanded state (inverted, as the LED is active-low)
 		if (this->pinLed != UnusedPin) {
-			digitalWrite(this->pinLed, LOW);
+			digitalWrite(this->pinLed, !(this->ledState));
 			pinMode(this->pinLed, OUTPUT);
 		}
 	}
@@ -1227,6 +1228,10 @@ void LogitechShifterG27::setPinModes(bool enabled) {
 	}
 
 	this->pinModesSet = enabled;
+}
+
+void LogitechShifterG27::setPowerLED(bool state) {
+	this->ledState = state;
 }
 
 uint16_t LogitechShifterG27::readShiftRegisters() {
@@ -1291,6 +1296,10 @@ bool LogitechShifterG27::updateState(bool connected) {
 	if (connected) {
 		if (!this->pinModesSet) {
 			this->setPinModes(1);
+		}
+
+		if (this->pinLed != UnusedPin) {
+			digitalWrite(this->pinLed, !(this->ledState));  // active low
 		}
 
 		const uint16_t data = this->readShiftRegisters();

@@ -149,6 +149,8 @@ getButton	KEYWORD2
 getButtonChanged	KEYWORD2
 getDpadAngle	KEYWORD2
 buttonsChanged	KEYWORD2
+setPowerLED	KEYWORD2
+getPowerLED	KEYWORD2
 
 #######################################
 # LogitechShifterG25 Methods and Functions (KEYWORD2)
