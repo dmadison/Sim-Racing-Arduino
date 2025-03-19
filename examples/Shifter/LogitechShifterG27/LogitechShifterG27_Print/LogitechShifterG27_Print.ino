@@ -49,7 +49,7 @@ const int Pin_ShifterDetect = SimRacing::UnusedPin;  // DE-9 pin 7
 SimRacing::LogitechShifterG27 shifter(
 	Pin_ShifterX, Pin_ShifterY,
 	Pin_ShifterLatch, Pin_ShifterClock, Pin_ShifterData,
-	Pin_ShifterDetect, Pin_ShifterLED
+	Pin_ShifterLED, Pin_ShifterDetect
 );
 //SimRacing::LogitechShifterG27 shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifterG27, 2>();
 

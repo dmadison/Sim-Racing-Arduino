@@ -973,16 +973,16 @@ namespace SimRacing {
 		* @param pinLatch  digital output pin to pulse to latch data, DE-9 pin 3
 		* @param pinClock  digital output pin to pulse as a clock, DE-9 pin 1
 		* @param pinData   digital input pin to use for reading data, DE-9 pin 2
-		* @param pinDetect the digital input pin for device detection, DE-9 pin 7.
-		*                  Requires a pull-down resistor.
 		* @param pinLed    digital output pin to light the power LED on connection,
 		*                  DE-9 pin 5
+		* @param pinDetect digital input pin for device detection, DE-9 pin 7.
+		*                  Requires a pull-down resistor.
 		*/
 		LogitechShifterG27(
 			PinNum pinX, PinNum pinY,
 			PinNum pinLatch, PinNum pinClock, PinNum pinData,
-			PinNum pinDetect = UnusedPin,
-			PinNum pinLed    = UnusedPin
+			PinNum pinLed    = UnusedPin,
+			PinNum pinDetect = UnusedPin
 		);
 
 		/**
@@ -1106,16 +1106,16 @@ namespace SimRacing {
 		* @param pinLatch  digital output pin to pulse to latch data, DE-9 pin 3
 		* @param pinClock  digital output pin to pulse as a clock, DE-9 pin 7
 		* @param pinData   digital input pin to use for reading data, DE-9 pin 2
-		* @param pinDetect the digital input pin for device detection, DE-9 pin 1.
-		*                  Requires a pull-down resistor.
 		* @param pinLed    digital output pin to light the power LED on connection,
 		*                  DE-9 pin 5
+		* @param pinDetect digital input pin for device detection, DE-9 pin 1.
+		*                  Requires a pull-down resistor.
 		*/
 		LogitechShifterG25(
 			PinNum pinX, PinNum pinY,
 			PinNum pinLatch, PinNum pinClock, PinNum pinData,
-			PinNum pinDetect = UnusedPin,
-			PinNum pinLed    = UnusedPin
+			PinNum pinLed    = UnusedPin,
+			PinNum pinDetect = UnusedPin
 		);
 
 		/** @copydoc LogitechShifterG27::begin() */
