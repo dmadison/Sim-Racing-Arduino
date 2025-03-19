@@ -85,7 +85,7 @@ LogitechShifterG27 CreateShieldObject<LogitechShifterG27, 2>() {
 	const PinNum Pin_Clock    = 15;  // DE-9 pin 1, should have 470 Ohm resistor to prevent shorts
 
 	const PinNum Pin_Detect   = A2;  // DE-9 pin 7, requires 10k Ohm pull-down
-	const PinNum Pin_LED      = 16;  // DE-9 pin 5, requires 100-120 Ohm series resistor
+	const PinNum Pin_LED      = 16;  // DE-9 pin 5, has a 100-120 Ohm series resistor
 
 	return LogitechShifterG27(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_Detect, Pin_LED);
 }
@@ -103,7 +103,7 @@ LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>() {
 	const PinNum Pin_Clock    = A2;  // DE-9 pin 7, should have 470 Ohm resistor to prevent shorts
 
 	const PinNum Pin_Detect   = 15;  // DE-9 pin 1, requires 10k Ohm pull-down
-	const PinNum Pin_LED      = 16;  // DE-9 pin 5, requires 100-120 Ohm series resistor
+	const PinNum Pin_LED      = 16;  // DE-9 pin 5, has a 100-120 Ohm series resistor
 
 	return LogitechShifterG25(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_Detect, Pin_LED);
 }

@@ -976,7 +976,7 @@ namespace SimRacing {
 		* @param pinDetect the digital input pin for device detection, DE-9 pin 7.
 		*                  Requires a pull-down resistor.
 		* @param pinLed    digital output pin to light the power LED on connection,
-		*                  DE-9 pin 5. Requires a 100 Ohm series resistor.
+		*                  DE-9 pin 5
 		*/
 		LogitechShifterG27(
 			PinNum pinX, PinNum pinY,
@@ -1109,7 +1109,7 @@ namespace SimRacing {
 		* @param pinDetect the digital input pin for device detection, DE-9 pin 1.
 		*                  Requires a pull-down resistor.
 		* @param pinLed    digital output pin to light the power LED on connection,
-		*                  DE-9 pin 5. Requires a 100 Ohm series resistor.
+		*                  DE-9 pin 5
 		*/
 		LogitechShifterG25(
 			PinNum pinX, PinNum pinY,

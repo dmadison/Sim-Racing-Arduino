@@ -36,10 +36,17 @@ const int Pin_ShifterLatch  = 5;   // DE-9 pin 3
 const int Pin_ShifterClock  = 6;   // DE-9 pin 7
 const int Pin_ShifterData   = 7;   // DE-9 pin 2
 
-// These pins require extra resistors! If you have made the proper
-// connections, change the pin numbers to the ones you're using
-const int Pin_ShifterDetect = SimRacing::UnusedPin;  // DE-9 pin 1, requires pull-down resistor
-const int Pin_ShifterLED    = SimRacing::UnusedPin;  // DE-9 pin 5, requires 100-120 Ohm series resistor
+// This pin is optional! You do not need to connect it in order
+// to read data from the shifter. Connecting it and changing the
+// pin number below will light the power LED. On the G25, I
+// recommend using a 100 Ohm resistor in series to match the
+// brightness of the sequential mode LED.
+const int Pin_ShifterLED = SimRacing::UnusedPin;  // DE-9 pin 5
+
+// This pin requies a pull-down resistor! If you have made the proper
+// connections, change the pin number to the one you're using. Setting
+// it will zero data when the shifter is disconnected.
+const int Pin_ShifterDetect = SimRacing::UnusedPin;  // DE-9 pin 1
 
 SimRacing::LogitechShifterG25 shifter(
 	Pin_ShifterX, Pin_ShifterY,
