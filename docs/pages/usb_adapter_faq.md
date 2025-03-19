@@ -22,6 +22,15 @@ All of these adapters are **only** compatible with the advertised shifter (i.e. 
 Yes, but it requires some additional resistors. The [Sim Racing Shifter Shield](https://github.com/dmadison/Sim-Racing-Shields/) I designed supports all three shifters, as does its included firmware. Take a look at the schematic for reference.
 
 
+### Why is the power LED off for my G25 / G27 adapter? How do I turn it on?
+
+The power LED is controlled separately, and isn't required for the adapter to function (which is why it's not included in the tutorial video).
+
+The control pin for the power LED is DE-9 pin 5. If you connect that pin to ground (GND) on the Arduino, the LED will always be on. If you connect that pin to one of the Arduino's I/O pins and pass the pin number to the shifter object's constructor, you can control its state using the `SimRacing::LogitechShifterG27::setPowerLED(bool)` function.
+
+On the G25, I would recommend adding a 100 Ohm resistor in series so that the power and sequential mode LEDs are similar in brightness. You can add a series resistor on either shifter to reduce the brightness of the LED.
+
+
 ### Can I make a USB adapter with both a shifter and pedals?
 
 Yes! Although you'll need to get your hands a little dirty with the code.
