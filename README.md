@@ -29,7 +29,7 @@ Run one of the library examples in the Arduino IDE by going to `File -> Examples
 
 ## Adapters
 
-Open source shields are available to connect the [Logitech Three Pedal Peripheral](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html) and the [Logitech Driving Force Shifter](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter.html) to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the adapter appears with a custom identity and "Sim Racing" name over USB. You can use these shields to build an inexpensive USB HID adapter.
+Open source shields are available to connect the [Logitech Three Pedal Peripheral](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_pedals.html) and the Logitech shifters ([Driving Force](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter.html) / [G27](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter_g27.html) / [G25](http://dmadison.github.io/Sim-Racing-Arduino/docs/logitech_shifter_g25.html)) to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the adapter appears with a custom identity and "Sim Racing" name over USB. You can use these shields to build an inexpensive USB HID adapter.
 
 You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields).
 
