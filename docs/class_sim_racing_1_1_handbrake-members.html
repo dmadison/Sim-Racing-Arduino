@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -113,12 +113,16 @@ $(function(){initNavTree('class_sim_racing_1_1_handbrake.html',''); initResizabl
   <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#a0b7f6916cd4ac88b32d73a671af458ac">begin</a>()</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#a1b3ca0a06837b95cb3961a96795fcedc">getPosition</a>(long rMin=0, long rMax=100) const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#a4a017278c3097e6bd6c800ea1a526279">getPositionRaw</a>() const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#ab6eef2b72a1ad7c38fd0ff8eb79fbaef">Handbrake</a>(PinNum pinAx, PinNum pinDetect=UnusedPin)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#ab968cf671c3e9f6b3c4dbea58b6db65f">isConnected</a>() const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#aa10378ec481f22eb3f9409eb9265996b">Handbrake</a>(PinNum pinAx)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html#a09efde3d204dd17a2b2d540d8f5e2cdd">isConnected</a>() const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html">SimRacing::Peripheral</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#a91a560fe530bb025eaa050802fc820e6">positionChanged</a>() const</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#ad87d44871e346e72ce4ea34f978380bd">serialCalibration</a>(Stream &amp;iface=Serial)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#a2c4f5ccb8f4b84a09f8083fb2c066774">setCalibration</a>(AnalogInput::Calibration newCal)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#aa1cfe2d01f1b1d66d08f304f076a314b">update</a>()</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html#a1ed61c5009ee94839945006b533595be">setDetectPtr</a>(DeviceConnection *d)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html">SimRacing::Peripheral</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html#af7067327ac54e668a567b925903e8a12">setStablePeriod</a>(unsigned long t)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html">SimRacing::Peripheral</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">update</a>()</td><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html">SimRacing::Peripheral</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html#ab9797293c376a72db492f4bd477d9a30">updateState</a>(bool connected)</td><td class="entry"><a class="el" href="class_sim_racing_1_1_handbrake.html">SimRacing::Handbrake</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html#a9dfe75a1ec879563195ad55aebc1b058">~Peripheral</a>()</td><td class="entry"><a class="el" href="class_sim_racing_1_1_peripheral.html">SimRacing::Peripheral</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pedal_0',['Pedal',['../group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846',1,'SimRacing']]]
+  ['connectionstate_0',['ConnectionState',['../class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852e',1,'SimRacing::DeviceConnection']]]
 ];

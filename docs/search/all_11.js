@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['y_0',['Y',['../_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2a592d0ec581a5619786534890c2d78f50',1,'SimRacing']]],
-  ['y_1',['y',['../struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html#a0492e43390d2a90e6880f619ba47d1e3',1,'SimRacing::AnalogShifter::GearPosition']]]
+  ['of_20an_20arduino_20leonardo_0',['Can I use an Arduino Uno / Arduino Nano / Arduino Mega instead of an Arduino Leonardo?',['../usb_adapter_faq.html#autotoc_md34',1,'']]],
+  ['off_20for_20my_20g25_20g27_20adapter_20how_20do_20i_20turn_20it_20on_1',['Why is the power LED off for my G25 / G27 adapter? How do I turn it on?',['../usb_adapter_faq.html#autotoc_md32',1,'']]],
+  ['on_2',['Why is the power LED off for my G25 / G27 adapter? How do I turn it on?',['../usb_adapter_faq.html#autotoc_md32',1,'']]],
+  ['one_20pin_3',['I don&apos;t know how to solder. How do I connect multiple wires to one pin?',['../usb_adapter_faq.html#autotoc_md38',1,'']]]
 ];

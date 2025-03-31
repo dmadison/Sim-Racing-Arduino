@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['pedals_0',['Pedals',['../class_sim_racing_1_1_pedals.html#a2d442897f3836079d8d062c5754d8bea',1,'SimRacing::Pedals']]],
-  ['poll_1',['poll',['../class_sim_racing_1_1_device_connection.html#a085284c2e4ba8d0c29b50599312ce27c',1,'SimRacing::DeviceConnection']]],
-  ['positionchanged_2',['positionChanged',['../class_sim_racing_1_1_pedals.html#ab458ee597251d133ffffcf14c83c11fc',1,'SimRacing::Pedals::positionChanged()'],['../class_sim_racing_1_1_handbrake.html#a91a560fe530bb025eaa050802fc820e6',1,'SimRacing::Handbrake::positionChanged()']]]
+  ['logitechdrivingforcegt_5fpedals_0',['LogitechDrivingForceGT_Pedals',['../class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html#a8c23edc89298e6b1436f888d0a03b608',1,'SimRacing::LogitechDrivingForceGT_Pedals']]],
+  ['logitechpedals_1',['LogitechPedals',['../class_sim_racing_1_1_logitech_pedals.html#ad45dbc4612543146f115f2d9d535eaa5',1,'SimRacing::LogitechPedals']]],
+  ['logitechshifter_2',['LogitechShifter',['../class_sim_racing_1_1_logitech_shifter.html#a75527c317836ac3b7879160688416c56',1,'SimRacing::LogitechShifter']]],
+  ['logitechshifterg25_3',['LogitechShifterG25',['../class_sim_racing_1_1_logitech_shifter_g25.html#a7fa640760fdb6577417cc8689b46ae8e',1,'SimRacing::LogitechShifterG25']]],
+  ['logitechshifterg27_4',['LogitechShifterG27',['../class_sim_racing_1_1_logitech_shifter_g27.html#a637afdb29fa51c751106b430e2bcffa7',1,'SimRacing::LogitechShifterG27']]]
 ];

@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -108,6 +108,7 @@ $(function(){initNavTree('class_sim_racing_1_1_logitech_driving_force_g_t___peda
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_sim_racing_1_1_logitech_driving_force_g_t___pedals-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SimRacing::LogitechDrivingForceGT_Pedals Class Reference<div class="ingroups"><a class="el" href="group___pedals.html">Pedals</a></div></div></div>
 </div><!--header-->
@@ -138,7 +139,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8c23edc89298e6b1436f888d0a03b608" id="r_a8c23edc89298e6b1436f888d0a03b608"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c23edc89298e6b1436f888d0a03b608">LogitechDrivingForceGT_Pedals</a> (<a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinGas, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinBrake, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinDetect=<a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a>)</td></tr>
-<tr class="memdesc:a8c23edc89298e6b1436f888d0a03b608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.     <br /></td></tr>
+<tr class="memdesc:a8c23edc89298e6b1436f888d0a03b608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
 <tr class="separator:a8c23edc89298e6b1436f888d0a03b608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a922233d275f20df0bdc4545adc0f9064" id="r_a922233d275f20df0bdc4545adc0f9064"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_two_pedals.html#a922233d275f20df0bdc4545adc0f9064">setCalibration</a> (<a class="el" href="struct_sim_racing_1_1_analog_input_1_1_calibration.html">AnalogInput::Calibration</a> gasCal, <a class="el" href="struct_sim_racing_1_1_analog_input_1_1_calibration.html">AnalogInput::Calibration</a> brakeCal)</td></tr>
 <tr class="memdesc:a922233d275f20df0bdc4545adc0f9064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the calibration data (min/max) for the pedals.  <br /></td></tr>
@@ -149,9 +150,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acf2a61f94391d0d939a04d8d424918a6" id="r_acf2a61f94391d0d939a04d8d424918a6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">begin</a> ()</td></tr>
 <tr class="memdesc:acf2a61f94391d0d939a04d8d424918a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the hardware (if necessary)     <br /></td></tr>
 <tr class="separator:acf2a61f94391d0d939a04d8d424918a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb4929895a5b8c0065066dd2985bfa09" id="r_abb4929895a5b8c0065066dd2985bfa09"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">update</a> ()</td></tr>
-<tr class="memdesc:abb4929895a5b8c0065066dd2985bfa09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a poll of the hardware to refresh the class state.     <br /></td></tr>
-<tr class="separator:abb4929895a5b8c0065066dd2985bfa09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf64bfa366732c549b7c54a527f1a6d2" id="r_acf64bfa366732c549b7c54a527f1a6d2"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#acf64bfa366732c549b7c54a527f1a6d2">getPosition</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal, long rMin=0, long rMax=100) const</td></tr>
 <tr class="memdesc:acf64bfa366732c549b7c54a527f1a6d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the buffered position for the pedal, rescaled to a nominal range using the calibration values.  <br /></td></tr>
 <tr class="separator:acf64bfa366732c549b7c54a527f1a6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,22 +168,37 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a33cdb23af5fde195e3aa035bedf269ea" id="r_a33cdb23af5fde195e3aa035bedf269ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a33cdb23af5fde195e3aa035bedf269ea">serialCalibration</a> (Stream &amp;iface=Serial)</td></tr>
 <tr class="memdesc:a33cdb23af5fde195e3aa035bedf269ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an interactive calibration tool using the serial interface.  <br /></td></tr>
 <tr class="separator:a33cdb23af5fde195e3aa035bedf269ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ddfe82b26b91351319e4bcc8dce0f5d" id="r_a1ddfe82b26b91351319e4bcc8dce0f5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d">isConnected</a> () const</td></tr>
-<tr class="memdesc:a1ddfe82b26b91351319e4bcc8dce0f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.        <br /></td></tr>
-<tr class="separator:a1ddfe82b26b91351319e4bcc8dce0f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a885be402ddfc00d584550d2624115e44" id="r_a885be402ddfc00d584550d2624115e44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">update</a> ()</td></tr>
+<tr class="memdesc:a885be402ddfc00d584550d2624115e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a poll of the hardware to refresh the class state.  <br /></td></tr>
+<tr class="separator:a885be402ddfc00d584550d2624115e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09efde3d204dd17a2b2d540d8f5e2cdd" id="r_a09efde3d204dd17a2b2d540d8f5e2cdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a09efde3d204dd17a2b2d540d8f5e2cdd">isConnected</a> () const</td></tr>
+<tr class="memdesc:a09efde3d204dd17a2b2d540d8f5e2cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.  <br /></td></tr>
+<tr class="separator:a09efde3d204dd17a2b2d540d8f5e2cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7067327ac54e668a567b925903e8a12" id="r_af7067327ac54e668a567b925903e8a12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#af7067327ac54e668a567b925903e8a12">setStablePeriod</a> (unsigned long t)</td></tr>
+<tr class="memdesc:af7067327ac54e668a567b925903e8a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set how long the detection pin must be stable for before the device is considered to be 'connected'.     <br /></td></tr>
+<tr class="separator:af7067327ac54e668a567b925903e8a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a79cfb2ea1a2897d73cec3ed0a0804615" id="r_a79cfb2ea1a2897d73cec3ed0a0804615"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a79cfb2ea1a2897d73cec3ed0a0804615">getPedalName</a> (<a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846">PedalID</a> pedal)</td></tr>
 <tr class="memdesc:a79cfb2ea1a2897d73cec3ed0a0804615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to get the string name for each pedal.  <br /></td></tr>
 <tr class="separator:a79cfb2ea1a2897d73cec3ed0a0804615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a9db11e1bd951a5aaf02bfb0c1cc18b8e" id="r_a9db11e1bd951a5aaf02bfb0c1cc18b8e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_pedals.html#a9db11e1bd951a5aaf02bfb0c1cc18b8e">updateState</a> (bool connected)</td></tr>
+<tr class="memdesc:a9db11e1bd951a5aaf02bfb0c1cc18b8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform an internal poll of the hardware to refresh the class state.     <br /></td></tr>
+<tr class="separator:a9db11e1bd951a5aaf02bfb0c1cc18b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed61c5009ee94839945006b533595be" id="r_a1ed61c5009ee94839945006b533595be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a1ed61c5009ee94839945006b533595be">setDetectPtr</a> (<a class="el" href="class_sim_racing_1_1_device_connection.html">DeviceConnection</a> *d)</td></tr>
+<tr class="memdesc:a1ed61c5009ee94839945006b533595be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pointer to the detector object.  <br /></td></tr>
+<tr class="separator:a1ed61c5009ee94839945006b533595be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface with the Logitech Driving Force GT pedals (Gas + Brake) </p>
 <p>Note that this is the older wheel made for the PS3. It is not the modern "Driving Force" wheel.</p>
 <dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Logitech_Driving_Force_GT">https://en.wikipedia.org/wiki/Logitech_Driving_Force_GT</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00775">775</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00861">861</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a1ce50c934a99c58f1c4224004afea7dd" name="a1ce50c934a99c58f1c4224004afea7dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ce50c934a99c58f1c4224004afea7dd">&#9670;&#160;</a></span>PedalID</h2>
@@ -209,7 +222,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Scoped alias for <a class="el" href="group___pedals.html#ga4f8d4f29f65329fb4ee7e4bf5eec8846" title="Pedal ID names.">SimRacing::Pedal</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00291">291</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00338">338</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
@@ -238,17 +251,17 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Class constructor.    </p>
+<p>Class constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pinGas</td><td>the analog pin for the gas pedal potentiometer </td></tr>
-    <tr><td class="paramname">pinBrake</td><td>the analog pin for the brake pedal potentiometer </td></tr>
-    <tr><td class="paramname">pinDetect</td><td>the digital pin for device detection (high is detected)    </td></tr>
+    <tr><td class="paramname">pinGas</td><td>the analog pin for the gas pedal potentiometer, DE-9 pin 2 </td></tr>
+    <tr><td class="paramname">pinBrake</td><td>the analog pin for the brake pedal potentiometer, DE-9 pin 3 </td></tr>
+    <tr><td class="paramname">pinDetect</td><td>the digital pin for device detection, DE-9 pin 4. Requires a pull-down resistor. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00591">591</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00714">714</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -282,7 +295,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_joystick_8ino-example.html#a2">PedalsJoystick.ino</a>, and <a class="el" href="_pedals_print_8ino-example.html#a1">PedalsPrint.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00361">361</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00478">478</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,7 +325,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Retrieves the number of pedals handled by the class. </p>
 <dl class="section return"><dt>Returns</dt><dd>the number of pedals handled by the class </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00344">344</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00390">390</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +361,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the name of the pedal, as a String </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00407">407</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00527">527</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -398,7 +411,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_joystick_8ino-example.html#a5">PedalsJoystick.ino</a>, and <a class="el" href="_pedals_print_8ino-example.html#a5">PedalsPrint.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00387">387</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00507">507</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -434,7 +447,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the axis position, buffered </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00392">392</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00512">512</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,12 +485,12 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_joystick_8ino-example.html#a1">PedalsJoystick.ino</a>, and <a class="el" href="_pedals_print_8ino-example.html#a4">PedalsPrint.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00397">397</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00517">517</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a1ddfe82b26b91351319e4bcc8dce0f5d" name="a1ddfe82b26b91351319e4bcc8dce0f5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ddfe82b26b91351319e4bcc8dce0f5d">&#9670;&#160;</a></span>isConnected()</h2>
+<a id="a09efde3d204dd17a2b2d540d8f5e2cdd" name="a09efde3d204dd17a2b2d540d8f5e2cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09efde3d204dd17a2b2d540d8f5e2cdd">&#9670;&#160;</a></span>isConnected()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -486,7 +499,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SimRacing::Pedals::isConnected </td>
+          <td class="memname">bool SimRacing::Peripheral::isConnected </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -494,18 +507,16 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Check if the device is physically connected to the board.       </p>
+<p>Check if the device is physically connected to the board. </p>
 <p>That means it is both present and detected long enough to be considered 'stable'.</p>
-<dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise       </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise </dd></dl>
 
-<p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#a86985611b9c47c347c98b4c852300912">SimRacing::Peripheral</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00370">370</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00446">446</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -537,7 +548,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_joystick_8ino-example.html#a4">PedalsJoystick.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00351">351</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00397">397</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
@@ -574,7 +585,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_print_8ino-example.html#a2">PedalsPrint.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00427">427</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00547">547</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -614,7 +625,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00401">401</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00521">521</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -654,12 +665,12 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00563">563</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00683">683</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
-<a id="abb4929895a5b8c0065066dd2985bfa09" name="abb4929895a5b8c0065066dd2985bfa09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb4929895a5b8c0065066dd2985bfa09">&#9670;&#160;</a></span>update()</h2>
+<a id="a1ed61c5009ee94839945006b533595be" name="a1ed61c5009ee94839945006b533595be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed61c5009ee94839945006b533595be">&#9670;&#160;</a></span>setDetectPtr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -668,7 +679,79 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SimRacing::Pedals::update </td>
+          <td class="memname">void SimRacing::Peripheral::setDetectPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sim_racing_1_1_device_connection.html">DeviceConnection</a> *</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the pointer to the detector object. </p>
+<p>The detector object is used to check if the peripheral is connected to the microcontroller. The object is polled on every update.</p>
+<p>Although the detector instance is accessed via the <a class="el" href="class_sim_racing_1_1_peripheral.html" title="Abstract class for all peripherals.">Peripheral</a> class, it is the responsibility of the dervied class to store the <a class="el" href="class_sim_racing_1_1_device_connection.html" title="Used for tracking whether a device is connected to a specific pin and stable.">DeviceConnection</a> object and manage its lifetime.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>pointer to the detector object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00456">456</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af7067327ac54e668a567b925903e8a12" name="af7067327ac54e668a567b925903e8a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7067327ac54e668a567b925903e8a12">&#9670;&#160;</a></span>setStablePeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimRacing::Peripheral::setStablePeriod </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set how long the detection pin must be stable for before the device is considered to be 'connected'.    </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the amount of time, in ms, the input must be stable for (no changes) before it's interpreted as 'detected'    </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00460">460</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a885be402ddfc00d584550d2624115e44" name="a885be402ddfc00d584550d2624115e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885be402ddfc00d584550d2624115e44">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SimRacing::Peripheral::update </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -676,19 +759,56 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Perform a poll of the hardware to refresh the class state.    </p>
-<dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise    </dd></dl>
-
-<p>Implements <a class="el" href="class_sim_racing_1_1_peripheral.html#ac61ff77db01f00fcfca62c8d96dec4ff">SimRacing::Peripheral</a>.</p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_pedals_joystick_8ino-example.html#a3">PedalsJoystick.ino</a>, and <a class="el" href="_pedals_print_8ino-example.html#a3">PedalsPrint.ino</a>.</dd>
+<p>Perform a poll of the hardware to refresh the class state. </p>
+<dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_handbrake_joystick_8ino-example.html#a2">HandbrakeJoystick.ino</a>, <a class="el" href="_handbrake_print_8ino-example.html#a3">HandbrakePrint.ino</a>, <a class="el" href="_logitech_shifter_g25__joystick_8ino-example.html#a4">LogitechShifterG25_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g25__print_8ino-example.html#a5">LogitechShifterG25_Print.ino</a>, <a class="el" href="_logitech_shifter_g27__joystick_8ino-example.html#a4">LogitechShifterG27_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g27__print_8ino-example.html#a5">LogitechShifterG27_Print.ino</a>, <a class="el" href="_logitech_shifter__joystick_8ino-example.html#a3">LogitechShifter_Joystick.ino</a>, <a class="el" href="_logitech_shifter__print_8ino-example.html#a4">LogitechShifter_Print.ino</a>, <a class="el" href="_pedals_joystick_8ino-example.html#a3">PedalsJoystick.ino</a>, and <a class="el" href="_pedals_print_8ino-example.html#a3">PedalsPrint.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00365">365</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00433">433</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9db11e1bd951a5aaf02bfb0c1cc18b8e" name="a9db11e1bd951a5aaf02bfb0c1cc18b8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db11e1bd951a5aaf02bfb0c1cc18b8e">&#9670;&#160;</a></span>updateState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SimRacing::Pedals::updateState </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>connected</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform an internal poll of the hardware to refresh the class state.    </p>
+<p>This function is called from within the public <a class="el" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44" title="Perform a poll of the hardware to refresh the class state.">update()</a> in order to refresh the cached state of the peripheral. It needs to be defined in every derived class. This function is the <em>only</em> place where the cached device state should be changed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connected</td><td>the state of the device connection</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise    </dd></dl>
+
+<p>Implements <a class="el" href="class_sim_racing_1_1_peripheral.html#ab64c7d045fcb560e9d3d773b19a04262">SimRacing::Peripheral</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00482">482</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>

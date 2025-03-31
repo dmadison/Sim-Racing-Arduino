@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['arduino_0',['Sim Racing Library for Arduino',['../index.html',1,'']]]
+  ['adapter_20faq_0',['USB Adapter FAQ',['../usb_adapter_faq.html',1,'']]],
+  ['arduino_1',['Sim Racing Library for Arduino',['../index.html',1,'']]]
 ];

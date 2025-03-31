@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['racing_20library_20for_20arduino_0',['Sim Racing Library for Arduino',['../index.html',1,'']]]
+  ['pedals_0',['Logitech Pedals',['../logitech_pedals.html',1,'supported_devices']]]
 ];

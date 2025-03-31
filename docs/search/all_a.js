@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['max_0',['Max',['../class_sim_racing_1_1_analog_input.html#a894db8eceb62bf4675f396495b73e965',1,'SimRacing::AnalogInput']]],
-  ['max_1',['max',['../struct_sim_racing_1_1_analog_input_1_1_calibration.html#a2e7b0e318ff9f90e6a5b77146a4436e0',1,'SimRacing::AnalogInput::Calibration']]],
-  ['maxgear_2',['MaxGear',['../class_sim_racing_1_1_shifter.html#a4332d053fe568f8c6aee66259c2ab7c1',1,'SimRacing::Shifter']]],
-  ['min_3',['Min',['../class_sim_racing_1_1_analog_input.html#ad042ffdf25fcbd05e231fd7a9e6b3e37',1,'SimRacing::AnalogInput']]],
-  ['min_4',['min',['../struct_sim_racing_1_1_analog_input_1_1_calibration.html#ab60f31d7b725a63e0aa1bd0e45d306f9',1,'SimRacing::AnalogInput::Calibration']]],
-  ['mingear_5',['MinGear',['../class_sim_racing_1_1_shifter.html#ad457a8a49919db3c7ec0b70be6cadec1',1,'SimRacing::Shifter']]]
+  ['handbrake_0',['Handbrake',['../class_sim_racing_1_1_handbrake.html',1,'SimRacing::Handbrake'],['../class_sim_racing_1_1_handbrake.html#aa10378ec481f22eb3f9409eb9265996b',1,'SimRacing::Handbrake::Handbrake()']]],
+  ['haspedal_1',['hasPedal',['../class_sim_racing_1_1_pedals.html#aa68c7a07235feca59483d2fc5814503f',1,'SimRacing::Pedals']]],
+  ['have_20a_205v_20pin_20which_20pin_20should_20i_20use_2',['The SparkFun Pro Micro doesn&apos;t have a 5V pin. Which pin should I use?',['../usb_adapter_faq.html#autotoc_md37',1,'']]],
+  ['have_20a_20g923_20g920_20g29_20shifter_20why_20do_20you_20call_20it_20the_20driving_20force_20shifter_3',['I have a G923 / G920 / G29 shifter. Why do you call it the &quot;Driving Force&quot; shifter?',['../usb_adapter_faq.html#autotoc_md29',1,'']]],
+  ['how_20do_20i_20connect_20multiple_20wires_20to_20one_20pin_4',['I don&apos;t know how to solder. How do I connect multiple wires to one pin?',['../usb_adapter_faq.html#autotoc_md38',1,'']]],
+  ['how_20do_20i_20turn_20it_20on_5',['Why is the power LED off for my G25 / G27 adapter? How do I turn it on?',['../usb_adapter_faq.html#autotoc_md32',1,'']]],
+  ['how_20to_20solder_20how_20do_20i_20connect_20multiple_20wires_20to_20one_20pin_6',['I don&apos;t know how to solder. How do I connect multiple wires to one pin?',['../usb_adapter_faq.html#autotoc_md38',1,'']]]
 ];

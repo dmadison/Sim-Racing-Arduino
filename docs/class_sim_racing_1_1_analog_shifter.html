@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -106,9 +106,10 @@ $(function(){initNavTree('class_sim_racing_1_1_analog_shifter.html',''); initRes
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_sim_racing_1_1_analog_shifter-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SimRacing::AnalogShifter Class Reference<div class="ingroups"><a class="el" href="group___shifters.html">Shifters</a></div></div></div>
 </div><!--header-->
@@ -124,9 +125,11 @@ Inheritance diagram for SimRacing::AnalogShifter:</div>
  <div class="center">
   <img src="class_sim_racing_1_1_analog_shifter.png" usemap="#SimRacing::AnalogShifter_map" alt=""/>
   <map id="SimRacing::AnalogShifter_map" name="SimRacing::AnalogShifter_map">
-<area href="class_sim_racing_1_1_shifter.html" title="Base class for all shifter instances." alt="SimRacing::Shifter" shape="rect" coords="0,56,162,80"/>
-<area href="class_sim_racing_1_1_peripheral.html" title="Abstract class for all peripherals." alt="SimRacing::Peripheral" shape="rect" coords="0,0,162,24"/>
-<area href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter." alt="SimRacing::LogitechShifter" shape="rect" coords="0,168,162,192"/>
+<area href="class_sim_racing_1_1_shifter.html" title="Base class for all shifter instances." alt="SimRacing::Shifter" shape="rect" coords="0,56,185,80"/>
+<area href="class_sim_racing_1_1_peripheral.html" title="Abstract class for all peripherals." alt="SimRacing::Peripheral" shape="rect" coords="0,0,185,24"/>
+<area href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter." alt="SimRacing::LogitechShifter" shape="rect" coords="0,168,185,192"/>
+<area href="class_sim_racing_1_1_logitech_shifter_g27.html" title="Interface with the Logitech G27 shifter." alt="SimRacing::LogitechShifterG27" shape="rect" coords="0,224,185,248"/>
+<area href="class_sim_racing_1_1_logitech_shifter_g25.html" title="Interface with the Logitech G25 shifter." alt="SimRacing::LogitechShifterG25" shape="rect" coords="0,280,185,304"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -136,17 +139,20 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple struct to store X/Y coordinates for the calibration function.  <a href="struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:aa355a644cc34940610feff646b1362b5" id="r_aa355a644cc34940610feff646b1362b5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> = int8_t</td></tr>
+<tr class="memdesc:aa355a644cc34940610feff646b1362b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for gear numbers.  <br /></td></tr>
+<tr class="separator:aa355a644cc34940610feff646b1362b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abb7ec31b026d3ee8993f3f925960635d" id="r_abb7ec31b026d3ee8993f3f925960635d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb7ec31b026d3ee8993f3f925960635d">AnalogShifter</a> (<a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinX, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinY, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinRev=<a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a>, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinDetect=<a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a>)</td></tr>
-<tr class="memdesc:abb7ec31b026d3ee8993f3f925960635d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
-<tr class="separator:abb7ec31b026d3ee8993f3f925960635d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793a59411dbdd2615d7457f31de96e1b" id="r_a793a59411dbdd2615d7457f31de96e1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a793a59411dbdd2615d7457f31de96e1b">AnalogShifter</a> (<a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> gearMin, <a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> gearMax, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinX, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinY, <a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pinRev=<a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a>)</td></tr>
+<tr class="memdesc:a793a59411dbdd2615d7457f31de96e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
+<tr class="separator:a793a59411dbdd2615d7457f31de96e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9291c889851fbffee747121b770878b" id="r_ae9291c889851fbffee747121b770878b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9291c889851fbffee747121b770878b">begin</a> ()</td></tr>
 <tr class="memdesc:ae9291c889851fbffee747121b770878b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the hardware pins for reading the gear states.  <br /></td></tr>
 <tr class="separator:ae9291c889851fbffee747121b770878b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba4a4be01b42f15119a948e12d0a2f39" id="r_aba4a4be01b42f15119a948e12d0a2f39"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba4a4be01b42f15119a948e12d0a2f39">update</a> ()</td></tr>
-<tr class="memdesc:aba4a4be01b42f15119a948e12d0a2f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Polls the hardware to update the current gear state.  <br /></td></tr>
-<tr class="separator:aba4a4be01b42f15119a948e12d0a2f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa4ec991aa809a5e16a8e6a776be9df6" id="r_afa4ec991aa809a5e16a8e6a776be9df6"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa4ec991aa809a5e16a8e6a776be9df6">getPosition</a> (<a class="el" href="_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2">Axis</a> ax, long rMin=<a class="el" href="class_sim_racing_1_1_analog_input.html#ad042ffdf25fcbd05e231fd7a9e6b3e37">AnalogInput::Min</a>, long rMax=<a class="el" href="class_sim_racing_1_1_analog_input.html#a894db8eceb62bf4675f396495b73e965">AnalogInput::Max</a>) const</td></tr>
 <tr class="memdesc:afa4ec991aa809a5e16a8e6a776be9df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the buffered position for the analog axis, rescaled to a nominal range using the calibration values.     <br /></td></tr>
 <tr class="separator:afa4ec991aa809a5e16a8e6a776be9df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,12 +168,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a145ee989b46568ddf1994c3115992f81" id="r_a145ee989b46568ddf1994c3115992f81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a145ee989b46568ddf1994c3115992f81">serialCalibration</a> (Stream &amp;iface=Serial)</td></tr>
 <tr class="memdesc:a145ee989b46568ddf1994c3115992f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs an interactive calibration tool using the serial interface.  <br /></td></tr>
 <tr class="separator:a145ee989b46568ddf1994c3115992f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8baeaeef50b0982b0c61a161ab6614a" id="r_ac8baeaeef50b0982b0c61a161ab6614a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8baeaeef50b0982b0c61a161ab6614a">isConnected</a> () const</td></tr>
-<tr class="memdesc:ac8baeaeef50b0982b0c61a161ab6614a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.        <br /></td></tr>
-<tr class="separator:ac8baeaeef50b0982b0c61a161ab6614a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4766bba9571601cf422866fd02726b6" id="r_aa4766bba9571601cf422866fd02726b6"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#aa4766bba9571601cf422866fd02726b6">getGear</a> () const</td></tr>
-<tr class="memdesc:aa4766bba9571601cf422866fd02726b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently selected gear.  <br /></td></tr>
-<tr class="separator:aa4766bba9571601cf422866fd02726b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeafbb31dd532e1617df620398d9b035" id="r_adeafbb31dd532e1617df620398d9b035"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#adeafbb31dd532e1617df620398d9b035">getGear</a> () const</td></tr>
+<tr class="memdesc:adeafbb31dd532e1617df620398d9b035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently selected gear.  <br /></td></tr>
+<tr class="separator:adeafbb31dd532e1617df620398d9b035"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa85b68d69919dd658a4e3e39fa4033e2" id="r_aa85b68d69919dd658a4e3e39fa4033e2"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#aa85b68d69919dd658a4e3e39fa4033e2">getGearChar</a> () const</td></tr>
 <tr class="memdesc:aa85b68d69919dd658a4e3e39fa4033e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a character that represents the current gear.  <br /></td></tr>
 <tr class="separator:aa85b68d69919dd658a4e3e39fa4033e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,12 +180,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afa89cfebedb1208816a449334867fe7f" id="r_afa89cfebedb1208816a449334867fe7f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#afa89cfebedb1208816a449334867fe7f">gearChanged</a> () const</td></tr>
 <tr class="memdesc:afa89cfebedb1208816a449334867fe7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the current gear has changed since the last update.  <br /></td></tr>
 <tr class="separator:afa89cfebedb1208816a449334867fe7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a230280b0e25674faccaceffeec2fd29d" id="r_a230280b0e25674faccaceffeec2fd29d"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#a230280b0e25674faccaceffeec2fd29d">getGearMin</a> ()</td></tr>
-<tr class="memdesc:a230280b0e25674faccaceffeec2fd29d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the minimum possible gear index.  <br /></td></tr>
-<tr class="separator:a230280b0e25674faccaceffeec2fd29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0ededdfd519cf6e203a53cf38071278" id="r_ac0ededdfd519cf6e203a53cf38071278"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#ac0ededdfd519cf6e203a53cf38071278">getGearMax</a> ()</td></tr>
-<tr class="memdesc:ac0ededdfd519cf6e203a53cf38071278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the maximum possible gear index.  <br /></td></tr>
-<tr class="separator:ac0ededdfd519cf6e203a53cf38071278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3830bcab0b4f5701ef84acc35d8b67b6" id="r_a3830bcab0b4f5701ef84acc35d8b67b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#a3830bcab0b4f5701ef84acc35d8b67b6">getGearMin</a> ()</td></tr>
+<tr class="memdesc:a3830bcab0b4f5701ef84acc35d8b67b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the minimum possible gear index.  <br /></td></tr>
+<tr class="separator:a3830bcab0b4f5701ef84acc35d8b67b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f2c01b5f1a09a6773872b404804ba92" id="r_a5f2c01b5f1a09a6773872b404804ba92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#a5f2c01b5f1a09a6773872b404804ba92">getGearMax</a> ()</td></tr>
+<tr class="memdesc:a5f2c01b5f1a09a6773872b404804ba92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the maximum possible gear index.  <br /></td></tr>
+<tr class="separator:a5f2c01b5f1a09a6773872b404804ba92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a885be402ddfc00d584550d2624115e44" id="r_a885be402ddfc00d584550d2624115e44"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">update</a> ()</td></tr>
+<tr class="memdesc:a885be402ddfc00d584550d2624115e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a poll of the hardware to refresh the class state.  <br /></td></tr>
+<tr class="separator:a885be402ddfc00d584550d2624115e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09efde3d204dd17a2b2d540d8f5e2cdd" id="r_a09efde3d204dd17a2b2d540d8f5e2cdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a09efde3d204dd17a2b2d540d8f5e2cdd">isConnected</a> () const</td></tr>
+<tr class="memdesc:a09efde3d204dd17a2b2d540d8f5e2cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.  <br /></td></tr>
+<tr class="separator:a09efde3d204dd17a2b2d540d8f5e2cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7067327ac54e668a567b925903e8a12" id="r_af7067327ac54e668a567b925903e8a12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#af7067327ac54e668a567b925903e8a12">setStablePeriod</a> (unsigned long t)</td></tr>
+<tr class="memdesc:af7067327ac54e668a567b925903e8a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set how long the detection pin must be stable for before the device is considered to be 'connected'.     <br /></td></tr>
+<tr class="separator:af7067327ac54e668a567b925903e8a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -193,28 +205,52 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa71238ce5a2cab8cdefb81d4538743a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a String that represents the given gear.  <br /></td></tr>
 <tr class="separator:aa71238ce5a2cab8cdefb81d4538743a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:ad457a8a49919db3c7ec0b70be6cadec1" id="r_ad457a8a49919db3c7ec0b70be6cadec1"><td class="memItemLeft" align="right" valign="top">const int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#ad457a8a49919db3c7ec0b70be6cadec1">MinGear</a></td></tr>
-<tr class="memdesc:ad457a8a49919db3c7ec0b70be6cadec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">the lowest selectable gear  <br /></td></tr>
-<tr class="separator:ad457a8a49919db3c7ec0b70be6cadec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4332d053fe568f8c6aee66259c2ab7c1" id="r_a4332d053fe568f8c6aee66259c2ab7c1"><td class="memItemLeft" align="right" valign="top">const int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#a4332d053fe568f8c6aee66259c2ab7c1">MaxGear</a></td></tr>
-<tr class="memdesc:a4332d053fe568f8c6aee66259c2ab7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">the highest selectable gear  <br /></td></tr>
-<tr class="separator:a4332d053fe568f8c6aee66259c2ab7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf5659ce91411b0bde5377e027e8758b" id="r_acf5659ce91411b0bde5377e027e8758b"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#acf5659ce91411b0bde5377e027e8758b">currentGear</a></td></tr>
-<tr class="memdesc:acf5659ce91411b0bde5377e027e8758b"><td class="mdescLeft">&#160;</td><td class="mdescRight">index of the current gear  <br /></td></tr>
-<tr class="separator:acf5659ce91411b0bde5377e027e8758b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5422b23f54e88f1375bf95f8ac99793" id="r_ac5422b23f54e88f1375bf95f8ac99793"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#ac5422b23f54e88f1375bf95f8ac99793">changed</a></td></tr>
-<tr class="memdesc:ac5422b23f54e88f1375bf95f8ac99793"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether the gear has changed since the previous update  <br /></td></tr>
-<tr class="separator:ac5422b23f54e88f1375bf95f8ac99793"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ad517dd3ebb08c8afa09bd9d111e5a056" id="r_ad517dd3ebb08c8afa09bd9d111e5a056"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad517dd3ebb08c8afa09bd9d111e5a056">updateState</a> (bool connected)</td></tr>
+<tr class="memdesc:ad517dd3ebb08c8afa09bd9d111e5a056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform an internal poll of the hardware to refresh the class state.     <br /></td></tr>
+<tr class="separator:ad517dd3ebb08c8afa09bd9d111e5a056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7a3fb542a6c6921853a5cf7fa1d489" id="r_a4d7a3fb542a6c6921853a5cf7fa1d489"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_shifter.html#a4d7a3fb542a6c6921853a5cf7fa1d489">setGear</a> (<a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> gear)</td></tr>
+<tr class="memdesc:a4d7a3fb542a6c6921853a5cf7fa1d489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the currently set gear, internally.  <br /></td></tr>
+<tr class="separator:a4d7a3fb542a6c6921853a5cf7fa1d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed61c5009ee94839945006b533595be" id="r_a1ed61c5009ee94839945006b533595be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sim_racing_1_1_peripheral.html#a1ed61c5009ee94839945006b533595be">setDetectPtr</a> (<a class="el" href="class_sim_racing_1_1_device_connection.html">DeviceConnection</a> *d)</td></tr>
+<tr class="memdesc:a1ed61c5009ee94839945006b533595be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pointer to the detector object.  <br /></td></tr>
+<tr class="separator:a1ed61c5009ee94839945006b533595be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface with shifters using two potentiometers for gear position. </p>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00547">547</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abb7ec31b026d3ee8993f3f925960635d" name="abb7ec31b026d3ee8993f3f925960635d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb7ec31b026d3ee8993f3f925960635d">&#9670;&#160;</a></span>AnalogShifter()</h2>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00614">614</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="aa355a644cc34940610feff646b1362b5" name="aa355a644cc34940610feff646b1362b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa355a644cc34940610feff646b1362b5">&#9670;&#160;</a></span>Gear</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">SimRacing::Shifter::Gear</a> = int8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type alias for gear numbers. </p>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00510">510</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a793a59411dbdd2615d7457f31de96e1b" name="a793a59411dbdd2615d7457f31de96e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a793a59411dbdd2615d7457f31de96e1b">&#9670;&#160;</a></span>AnalogShifter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,6 +258,16 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">SimRacing::AnalogShifter::AnalogShifter </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a></td>          <td class="paramname"><span class="paramname"><em>gearMin</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a></td>          <td class="paramname"><span class="paramname"><em>gearMax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a></td>          <td class="paramname"><span class="paramname"><em>pinX</em></span>, </td>
         </tr>
         <tr>
@@ -232,12 +278,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a></td>          <td class="paramname"><span class="paramname"><em>pinRev</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a></td>          <td class="paramname"><span class="paramname"><em>pinDetect</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a></td>          <td class="paramname"><span class="paramname"><em>pinRev</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df">UnusedPin</a></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -245,15 +286,17 @@ Protected Attributes</h2></td></tr>
 <p>Class constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">gearMin</td><td>the lowest gear possible </td></tr>
+    <tr><td class="paramname">gearMax</td><td>the highest gear possible </td></tr>
     <tr><td class="paramname">pinX</td><td>the analog input pin for the X axis </td></tr>
     <tr><td class="paramname">pinY</td><td>the analog input pin for the Y axis </td></tr>
-    <tr><td class="paramname">pinRev</td><td>the digital input pin for the 'reverse' button </td></tr>
-    <tr><td class="paramname">pinDetect</td><td>the digital pin for device detection (high is detected) </td></tr>
+    <tr><td class="paramname">pinRev</td><td>the digital input pin for the 'reverse' button</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>With the way the class is designed, the lowest possible gear is -1 (reverse), and the highest possible gear is 6. Setting the arguments lower/higher than this will have no effect. Setting the arguments within this range will limit to those gears, and selecting gears out of range will result in neutral. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00677">677</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00816">816</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -285,10 +328,12 @@ Protected Attributes</h2></td></tr>
 <p>Should be called in <code>setup()</code> before reading from the shifter. </p>
 
 <p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#ad1121a3a58c336931c563ff4d0fc4bdb">SimRacing::Peripheral</a>.</p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_joystick_8ino-example.html#a1">ShiftJoystick.ino</a>, and <a class="el" href="_shift_print_8ino-example.html#a1">ShiftPrint.ino</a>.</dd>
+
+<p>Reimplemented in <a class="el" href="class_sim_racing_1_1_logitech_shifter_g25.html#ae668df20393abf458d27f2b2fa694d69">SimRacing::LogitechShifterG25</a>, and <a class="el" href="class_sim_racing_1_1_logitech_shifter_g27.html#a7bbf42df32cf5b54a242365a8665d2f2">SimRacing::LogitechShifterG27</a>.</p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter_g25__joystick_8ino-example.html#a3">LogitechShifterG25_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g25__print_8ino-example.html#a3">LogitechShifterG25_Print.ino</a>, <a class="el" href="_logitech_shifter_g27__joystick_8ino-example.html#a3">LogitechShifterG27_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g27__print_8ino-example.html#a3">LogitechShifterG27_Print.ino</a>, <a class="el" href="_logitech_shifter__joystick_8ino-example.html#a2">LogitechShifter_Joystick.ino</a>, and <a class="el" href="_logitech_shifter__print_8ino-example.html#a2">LogitechShifter_Print.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00691">691</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00829">829</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -317,15 +362,15 @@ Protected Attributes</h2></td></tr>
 
 <p>Checks whether the current gear has changed since the last update. </p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if gear has changed, 'false' otherwise </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_joystick_8ino-example.html#a3">ShiftJoystick.ino</a>, and <a class="el" href="_shift_print_8ino-example.html#a4">ShiftPrint.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter__joystick_8ino-example.html#a4">LogitechShifter_Joystick.ino</a>, and <a class="el" href="_logitech_shifter__print_8ino-example.html#a5">LogitechShifter_Print.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00519">519</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00572">572</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
-<a id="aa4766bba9571601cf422866fd02726b6" name="aa4766bba9571601cf422866fd02726b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4766bba9571601cf422866fd02726b6">&#9670;&#160;</a></span>getGear()</h2>
+<a id="adeafbb31dd532e1617df620398d9b035" name="adeafbb31dd532e1617df620398d9b035"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeafbb31dd532e1617df620398d9b035">&#9670;&#160;</a></span>getGear()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,7 +379,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int8_t SimRacing::Shifter::getGear </td>
+          <td class="memname"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> SimRacing::Shifter::getGear </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -350,10 +395,10 @@ Protected Attributes</h2></td></tr>
 <p>Returns the currently selected gear. </p>
 <p>Will either be reverse (-1), neutral (0), or the current gear indexed at 1 (1st gear is 1, 2nd gear is 2, etc.).</p>
 <dl class="section return"><dt>Returns</dt><dd>current gear index </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_joystick_8ino-example.html#a4">ShiftJoystick.ino</a>, and <a class="el" href="_shift_print_8ino-example.html#a6">ShiftPrint.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter_g25__joystick_8ino-example.html#a5">LogitechShifterG25_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g27__joystick_8ino-example.html#a5">LogitechShifterG27_Joystick.ino</a>, <a class="el" href="_logitech_shifter__joystick_8ino-example.html#a5">LogitechShifter_Joystick.ino</a>, and <a class="el" href="_logitech_shifter__print_8ino-example.html#a7">LogitechShifter_Print.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00475">475</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00528">528</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
@@ -384,7 +429,7 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>letter representing the current gear </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_sim_racing_1_1_shifter.html#aec7eba135360c51c7ee99def736a7e36" title="Returns a character that represents the given gear.">getGearChar(int)</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00624">624</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00763">763</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -420,13 +465,15 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>letter representing the current gear </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter_g25__print_8ino-example.html#a6">LogitechShifterG25_Print.ino</a>, and <a class="el" href="_logitech_shifter_g27__print_8ino-example.html#a6">LogitechShifterG27_Print.ino</a>.</dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00606">606</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00745">745</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ac0ededdfd519cf6e203a53cf38071278" name="ac0ededdfd519cf6e203a53cf38071278"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0ededdfd519cf6e203a53cf38071278">&#9670;&#160;</a></span>getGearMax()</h2>
+<a id="a5f2c01b5f1a09a6773872b404804ba92" name="a5f2c01b5f1a09a6773872b404804ba92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2c01b5f1a09a6773872b404804ba92">&#9670;&#160;</a></span>getGearMax()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -435,7 +482,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int8_t SimRacing::Shifter::getGearMax </td>
+          <td class="memname"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> SimRacing::Shifter::getGearMax </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -451,12 +498,12 @@ Protected Attributes</h2></td></tr>
 <p>Retrieves the maximum possible gear index. </p>
 <dl class="section return"><dt>Returns</dt><dd>the highest gear index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00533">533</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00588">588</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
-<a id="a230280b0e25674faccaceffeec2fd29d" name="a230280b0e25674faccaceffeec2fd29d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a230280b0e25674faccaceffeec2fd29d">&#9670;&#160;</a></span>getGearMin()</h2>
+<a id="a3830bcab0b4f5701ef84acc35d8b67b6" name="a3830bcab0b4f5701ef84acc35d8b67b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3830bcab0b4f5701ef84acc35d8b67b6">&#9670;&#160;</a></span>getGearMin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -465,7 +512,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int8_t SimRacing::Shifter::getGearMin </td>
+          <td class="memname"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a> SimRacing::Shifter::getGearMin </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -481,7 +528,7 @@ Protected Attributes</h2></td></tr>
 <p>Retrieves the minimum possible gear index. </p>
 <dl class="section return"><dt>Returns</dt><dd>the lowest gear index </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00526">526</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00581">581</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +559,7 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>String representing the current gear </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_sim_racing_1_1_shifter.html#aa71238ce5a2cab8cdefb81d4538743a1" title="Returns a String that represents the given gear.">getGearString(int)</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00665">665</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00804">804</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,10 +595,10 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>String representing the current gear </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_print_8ino-example.html#a5">ShiftPrint.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter__print_8ino-example.html#a6">LogitechShifter_Print.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00628">628</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00767">767</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -595,10 +642,10 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_joystick_8ino-example.html#a5">ShiftJoystick.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter_g25__joystick_8ino-example.html#a6">LogitechShifterG25_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g27__joystick_8ino-example.html#a6">LogitechShifterG27_Joystick.ino</a>, and <a class="el" href="_logitech_shifter__joystick_8ino-example.html#a6">LogitechShifter_Joystick.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00786">786</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00915">915</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -625,10 +672,10 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_print_8ino-example.html#a7">ShiftPrint.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter_g25__print_8ino-example.html#a7">LogitechShifterG25_Print.ino</a>, <a class="el" href="_logitech_shifter_g27__print_8ino-example.html#a7">LogitechShifterG27_Print.ino</a>, and <a class="el" href="_logitech_shifter__print_8ino-example.html#a8">LogitechShifter_Print.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00791">791</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00920">920</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -650,15 +697,15 @@ Protected Attributes</h2></td></tr>
 <p>Checks the current state of the "reverse" button at the bottom of the shift column. </p>
 <p>This button is pressed (HIGH) when the shifter is in reverse gear, LOW otherwise.</p>
 <dl class="section return"><dt>Returns</dt><dd>current state of the "reverse" button </dd></dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_joystick_8ino-example.html#a8">ShiftJoystick.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter__joystick_8ino-example.html#a9">LogitechShifter_Joystick.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00796">796</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00934">934</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ac8baeaeef50b0982b0c61a161ab6614a" name="ac8baeaeef50b0982b0c61a161ab6614a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8baeaeef50b0982b0c61a161ab6614a">&#9670;&#160;</a></span>isConnected()</h2>
+<a id="a09efde3d204dd17a2b2d540d8f5e2cdd" name="a09efde3d204dd17a2b2d540d8f5e2cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09efde3d204dd17a2b2d540d8f5e2cdd">&#9670;&#160;</a></span>isConnected()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +714,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SimRacing::AnalogShifter::isConnected </td>
+          <td class="memname">bool SimRacing::Peripheral::isConnected </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -675,18 +722,16 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Check if the device is physically connected to the board.       </p>
+<p>Check if the device is physically connected to the board. </p>
 <p>That means it is both present and detected long enough to be considered 'stable'.</p>
-<dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise       </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise </dd></dl>
 
-<p>Reimplemented from <a class="el" href="class_sim_racing_1_1_peripheral.html#a86985611b9c47c347c98b4c852300912">SimRacing::Peripheral</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00641">641</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00446">446</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -712,10 +757,10 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_print_8ino-example.html#a2">ShiftPrint.ino</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_logitech_shifter_g25__print_8ino-example.html#a4">LogitechShifterG25_Print.ino</a>, <a class="el" href="_logitech_shifter_g27__print_8ino-example.html#a4">LogitechShifterG27_Print.ino</a>, and <a class="el" href="_logitech_shifter__print_8ino-example.html#a3">LogitechShifter_Print.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00886">886</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l01021">1021</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -797,12 +842,12 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00805">805</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00940">940</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
-<a id="aba4a4be01b42f15119a948e12d0a2f39" name="aba4a4be01b42f15119a948e12d0a2f39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba4a4be01b42f15119a948e12d0a2f39">&#9670;&#160;</a></span>update()</h2>
+<a id="a1ed61c5009ee94839945006b533595be" name="a1ed61c5009ee94839945006b533595be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed61c5009ee94839945006b533595be">&#9670;&#160;</a></span>setDetectPtr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -811,7 +856,115 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SimRacing::AnalogShifter::update </td>
+          <td class="memname">void SimRacing::Peripheral::setDetectPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sim_racing_1_1_device_connection.html">DeviceConnection</a> *</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the pointer to the detector object. </p>
+<p>The detector object is used to check if the peripheral is connected to the microcontroller. The object is polled on every update.</p>
+<p>Although the detector instance is accessed via the <a class="el" href="class_sim_racing_1_1_peripheral.html" title="Abstract class for all peripherals.">Peripheral</a> class, it is the responsibility of the dervied class to store the <a class="el" href="class_sim_racing_1_1_device_connection.html" title="Used for tracking whether a device is connected to a specific pin and stable.">DeviceConnection</a> object and manage its lifetime.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>pointer to the detector object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00456">456</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4d7a3fb542a6c6921853a5cf7fa1d489" name="a4d7a3fb542a6c6921853a5cf7fa1d489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d7a3fb542a6c6921853a5cf7fa1d489">&#9670;&#160;</a></span>setGear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimRacing::Shifter::setGear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sim_racing_1_1_shifter.html#aa355a644cc34940610feff646b1362b5">Gear</a></td>          <td class="paramname"><span class="paramname"><em>gear</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Changes the currently set gear, internally. </p>
+<p>This function sanitizes the newly selected gear with MinGear / MaxGear, and handles caching the previous value for checking if the gear has changed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gear</td><td>the new gear value to set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00735">735</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af7067327ac54e668a567b925903e8a12" name="af7067327ac54e668a567b925903e8a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7067327ac54e668a567b925903e8a12">&#9670;&#160;</a></span>setStablePeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SimRacing::Peripheral::setStablePeriod </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set how long the detection pin must be stable for before the device is considered to be 'connected'.    </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>the amount of time, in ms, the input must be stable for (no changes) before it's interpreted as 'detected'    </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00460">460</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a885be402ddfc00d584550d2624115e44" name="a885be402ddfc00d584550d2624115e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885be402ddfc00d584550d2624115e44">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SimRacing::Peripheral::update </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -819,25 +972,22 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Polls the hardware to update the current gear state. </p>
-<dl class="section return"><dt>Returns</dt><dd>'true' if the gear has changed, 'false' otherwise </dd></dl>
-
-<p>Implements <a class="el" href="class_sim_racing_1_1_peripheral.html#ac61ff77db01f00fcfca62c8d96dec4ff">SimRacing::Peripheral</a>.</p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_shift_joystick_8ino-example.html#a2">ShiftJoystick.ino</a>, and <a class="el" href="_shift_print_8ino-example.html#a3">ShiftPrint.ino</a>.</dd>
+<p>Perform a poll of the hardware to refresh the class state. </p>
+<dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_handbrake_joystick_8ino-example.html#a2">HandbrakeJoystick.ino</a>, <a class="el" href="_handbrake_print_8ino-example.html#a3">HandbrakePrint.ino</a>, <a class="el" href="_logitech_shifter_g25__joystick_8ino-example.html#a4">LogitechShifterG25_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g25__print_8ino-example.html#a5">LogitechShifterG25_Print.ino</a>, <a class="el" href="_logitech_shifter_g27__joystick_8ino-example.html#a4">LogitechShifterG27_Joystick.ino</a>, <a class="el" href="_logitech_shifter_g27__print_8ino-example.html#a5">LogitechShifterG27_Print.ino</a>, <a class="el" href="_logitech_shifter__joystick_8ino-example.html#a3">LogitechShifter_Joystick.ino</a>, <a class="el" href="_logitech_shifter__print_8ino-example.html#a4">LogitechShifter_Print.ino</a>, <a class="el" href="_pedals_joystick_8ino-example.html#a3">PedalsJoystick.ino</a>, and <a class="el" href="_pedals_print_8ino-example.html#a3">PedalsPrint.ino</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00698">698</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00433">433</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ac5422b23f54e88f1375bf95f8ac99793" name="ac5422b23f54e88f1375bf95f8ac99793"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5422b23f54e88f1375bf95f8ac99793">&#9670;&#160;</a></span>changed</h2>
+<a id="ad517dd3ebb08c8afa09bd9d111e5a056" name="ad517dd3ebb08c8afa09bd9d111e5a056"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad517dd3ebb08c8afa09bd9d111e5a056">&#9670;&#160;</a></span>updateState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -846,97 +996,34 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SimRacing::Shifter::changed</td>
+          <td class="memname">bool SimRacing::AnalogShifter::updateState </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>connected</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>whether the gear has changed since the previous update </p>
+<p>Perform an internal poll of the hardware to refresh the class state.    </p>
+<p>This function is called from within the public <a class="el" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44" title="Perform a poll of the hardware to refresh the class state.">update()</a> in order to refresh the cached state of the peripheral. It needs to be defined in every derived class. This function is the <em>only</em> place where the cached device state should be changed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connected</td><td>the state of the device connection</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>'true' if device state changed, 'false' otherwise    </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00540">540</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p>Implements <a class="el" href="class_sim_racing_1_1_peripheral.html#ab64c7d045fcb560e9d3d773b19a04262">SimRacing::Peripheral</a>.</p>
 
-</div>
-</div>
-<a id="acf5659ce91411b0bde5377e027e8758b" name="acf5659ce91411b0bde5377e027e8758b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf5659ce91411b0bde5377e027e8758b">&#9670;&#160;</a></span>currentGear</h2>
+<p>Reimplemented in <a class="el" href="class_sim_racing_1_1_logitech_shifter_g25.html#a98974b749dd5cf7a2e641c589205ec24">SimRacing::LogitechShifterG25</a>, and <a class="el" href="class_sim_racing_1_1_logitech_shifter_g27.html#ad214608b95ffedd16b9d746e80e5deb6">SimRacing::LogitechShifterG27</a>.</p>
 
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int8_t SimRacing::Shifter::currentGear</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>index of the current gear </p>
-
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00539">539</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
-
-</div>
-</div>
-<a id="a4332d053fe568f8c6aee66259c2ab7c1" name="a4332d053fe568f8c6aee66259c2ab7c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4332d053fe568f8c6aee66259c2ab7c1">&#9670;&#160;</a></span>MaxGear</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int8_t SimRacing::Shifter::MaxGear</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>the highest selectable gear </p>
-
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00537">537</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
-
-</div>
-</div>
-<a id="ad457a8a49919db3c7ec0b70be6cadec1" name="ad457a8a49919db3c7ec0b70be6cadec1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad457a8a49919db3c7ec0b70be6cadec1">&#9670;&#160;</a></span>MinGear</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int8_t SimRacing::Shifter::MinGear</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>the lowest selectable gear </p>
-
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8h_source.html#l00536">536</a> of file <a class="el" href="_sim_racing_8h_source.html">SimRacing.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00836">836</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>

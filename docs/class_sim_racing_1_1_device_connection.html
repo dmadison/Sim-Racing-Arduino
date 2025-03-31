@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -129,9 +129,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aba68b6a03c69c5e2f5fbcd7e60dd8a33" id="r_aba68b6a03c69c5e2f5fbcd7e60dd8a33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba68b6a03c69c5e2f5fbcd7e60dd8a33">DeviceConnection</a> (<a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pin, bool invert=false, unsigned long detectTime=250)</td></tr>
-<tr class="memdesc:aba68b6a03c69c5e2f5fbcd7e60dd8a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
-<tr class="separator:aba68b6a03c69c5e2f5fbcd7e60dd8a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a2b8d4245dc1d0c3e1abc28d380b5ef" id="r_a5a2b8d4245dc1d0c3e1abc28d380b5ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a2b8d4245dc1d0c3e1abc28d380b5ef">DeviceConnection</a> (<a class="el" href="_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e">PinNum</a> pin, bool activeLow=false, unsigned long detectTime=250)</td></tr>
+<tr class="memdesc:a5a2b8d4245dc1d0c3e1abc28d380b5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <br /></td></tr>
+<tr class="separator:a5a2b8d4245dc1d0c3e1abc28d380b5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a085284c2e4ba8d0c29b50599312ce27c" id="r_a085284c2e4ba8d0c29b50599312ce27c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a085284c2e4ba8d0c29b50599312ce27c">poll</a> ()</td></tr>
 <tr class="memdesc:a085284c2e4ba8d0c29b50599312ce27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the pin detects a connection.  <br /></td></tr>
 <tr class="separator:a085284c2e4ba8d0c29b50599312ce27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,7 +142,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af39bf3c1cef6f3d0b4201c549e4d6376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the device is physically connected to the board.  <br /></td></tr>
 <tr class="separator:af39bf3c1cef6f3d0b4201c549e4d6376"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f92f9642bd490712cd61607336423d6" id="r_a0f92f9642bd490712cd61607336423d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f92f9642bd490712cd61607336423d6">setStablePeriod</a> (unsigned long t)</td></tr>
-<tr class="memdesc:a0f92f9642bd490712cd61607336423d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows the user to change the stable period of the detector.  <br /></td></tr>
+<tr class="memdesc:a0f92f9642bd490712cd61607336423d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set how long the detection pin must be stable for before the device is considered to be 'connected'.  <br /></td></tr>
 <tr class="separator:a0f92f9642bd490712cd61607336423d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -181,8 +181,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aba68b6a03c69c5e2f5fbcd7e60dd8a33" name="aba68b6a03c69c5e2f5fbcd7e60dd8a33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba68b6a03c69c5e2f5fbcd7e60dd8a33">&#9670;&#160;</a></span>DeviceConnection()</h2>
+<a id="a5a2b8d4245dc1d0c3e1abc28d380b5ef" name="a5a2b8d4245dc1d0c3e1abc28d380b5ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a2b8d4245dc1d0c3e1abc28d380b5ef">&#9670;&#160;</a></span>DeviceConnection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +195,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>invert</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>, </td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>activeLow</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -209,13 +209,13 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the pin number being read. Can be 'UnusedPin' to disable. </td></tr>
-    <tr><td class="paramname">invert</td><td>whether the input is inverted, so 'LOW' is detected instead of 'HIGH' </td></tr>
+    <tr><td class="paramname">activeLow</td><td>whether the device is detected on a high signal (false, default) or a low signal (true) </td></tr>
     <tr><td class="paramname">detectTime</td><td>the amount of time, in ms, the input must be stable for before it's interpreted as 'detected' </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00179">179</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00260">260</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -238,7 +238,7 @@ Public Member Functions</h2></td></tr>
 <p>Retrieves the current ConnectionState from the instance. </p>
 <p>This allows functions to check the same connection state multiple times without having to re-poll. </p>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00245">245</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00326">326</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -261,7 +261,7 @@ Public Member Functions</h2></td></tr>
 <p>That means it is both present and detected long enough to be considered 'stable'.</p>
 <dl class="section return"><dt>Returns</dt><dd>'true' if the device is connected, 'false' otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00249">249</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00330">330</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ Public Member Functions</h2></td></tr>
 <p>Checks if the pin detects a connection. </p>
 <p>This polls the input and checks for whether it has been connected sufficiently long enough to be deemed "stable". </p>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00209">209</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00290">290</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
@@ -302,7 +302,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Allows the user to change the stable period of the detector. </p>
+<p>Set how long the detection pin must be stable for before the device is considered to be 'connected'. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>the amount of time, in ms, the input must be stable for (no changes) before it's interpreted as 'detected' </td></tr>
@@ -310,7 +310,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00253">253</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l00334">334</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>

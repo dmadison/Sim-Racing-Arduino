@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['X',['../_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2a4b7f32a18c6d7f71d8884cc2ace20989',1,'SimRacing']]]
+  ['unplug_0',['Unplug',['../class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852ea0654aafaf348066c006491163db77393',1,'SimRacing::DeviceConnection']]]
 ];

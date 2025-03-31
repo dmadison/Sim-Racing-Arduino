@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['for_20arduino_0',['Sim Racing Library for Arduino',['../index.html',1,'']]],
-  ['force_20shifter_1',['Logitech Driving Force Shifter',['../logitech_shifter.html',1,'supported_devices']]]
+  ['calibration_0',['Calibration',['../struct_sim_racing_1_1_analog_input_1_1_calibration.html',1,'SimRacing::AnalogInput']]],
+  ['call_20it_20the_20driving_20force_20shifter_1',['I have a G923 / G920 / G29 shifter. Why do you call it the &quot;Driving Force&quot; shifter?',['../usb_adapter_faq.html#autotoc_md29',1,'']]],
+  ['can_20i_20make_20a_20usb_20adapter_20with_20both_20a_20shifter_20and_20pedals_2',['Can I make a USB adapter with both a shifter and pedals?',['../usb_adapter_faq.html#autotoc_md33',1,'']]],
+  ['can_20i_20make_20an_20adapter_20that_20supports_20all_20three_20shifters_3',['Can I make an adapter that supports all three shifters?',['../usb_adapter_faq.html#autotoc_md31',1,'']]],
+  ['can_20i_20use_20_5f_5f_5f_5f_5f_5f_20microcontroller_20instead_4',['Can I use ______ microcontroller instead?',['../usb_adapter_faq.html#autotoc_md35',1,'']]],
+  ['can_20i_20use_20an_20arduino_20uno_20arduino_20nano_20arduino_20mega_20instead_20of_20an_20arduino_20leonardo_5',['Can I use an Arduino Uno / Arduino Nano / Arduino Mega instead of an Arduino Leonardo?',['../usb_adapter_faq.html#autotoc_md34',1,'']]],
+  ['can_20t_20i_20just_20use_20a_20de_209_20to_20usb_20adapter_6',['Why can&apos;t I just use a DE-9 to USB adapter?',['../usb_adapter_faq.html#autotoc_md39',1,'']]],
+  ['can_20use_7',['The Arduino Leonardo is really big. Is there a smaller board I can use?',['../usb_adapter_faq.html#autotoc_md36',1,'']]],
+  ['clutch_20pedals_20pinout_8',['Gas, Brake, and Clutch Pedals Pinout',['../logitech_pedals.html#autotoc_md9',1,'']]],
+  ['commercial_20devices_9',['Commercial Devices',['../index.html#autotoc_md4',1,'Commercial Devices'],['../supported_devices.html#autotoc_md28',1,'Commercial Devices']]],
+  ['compatible_20with_20these_20diy_20usb_20adapters_10',['What shifters are compatible with these DIY USB adapters?',['../usb_adapter_faq.html#autotoc_md30',1,'']]],
+  ['connect_20multiple_20wires_20to_20one_20pin_11',['I don&apos;t know how to solder. How do I connect multiple wires to one pin?',['../usb_adapter_faq.html#autotoc_md38',1,'']]],
+  ['connected_12',['Connected',['../class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852eac3b259b0bc557470268a9b08a06b7404',1,'SimRacing::DeviceConnection']]],
+  ['connectionstate_13',['ConnectionState',['../class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852e',1,'SimRacing::DeviceConnection']]],
+  ['connector_14',['Connector',['../logitech_pedals.html#autotoc_md8',1,'Connector'],['../logitech_shifter.html#autotoc_md12',1,'Connector'],['../logitech_shifter_g25.html#autotoc_md16',1,'Connector'],['../logitech_shifter_g27.html#autotoc_md22',1,'Connector']]],
+  ['createshieldobject_15',['CreateShieldObject',['../_sim_racing_8h.html#a2181107f1d54b22c76f6e55f7505bc3d',1,'SimRacing']]],
+  ['createshieldobject_3c_20logitechpedals_2c_201_20_3e_16',['CreateShieldObject&lt; LogitechPedals, 1 &gt;',['../_sim_racing_8cpp.html#adee229454125b4899eda2d137caf8954',1,'SimRacing::CreateShieldObject&lt; LogitechPedals, 1 &gt;()'],['../_sim_racing_8h.html#adee229454125b4899eda2d137caf8954',1,'SimRacing::CreateShieldObject&lt; LogitechPedals, 1 &gt;()']]],
+  ['createshieldobject_3c_20logitechpedals_2c_202_20_3e_17',['CreateShieldObject&lt; LogitechPedals, 2 &gt;',['../_sim_racing_8cpp.html#a936181888d8f0c806a50873207826023',1,'SimRacing::CreateShieldObject&lt; LogitechPedals, 2 &gt;()'],['../_sim_racing_8h.html#a936181888d8f0c806a50873207826023',1,'SimRacing::CreateShieldObject&lt; LogitechPedals, 2 &gt;()']]],
+  ['createshieldobject_3c_20logitechshifter_2c_201_20_3e_18',['CreateShieldObject&lt; LogitechShifter, 1 &gt;',['../_sim_racing_8cpp.html#ac64ca7ba2cf275969a933fd9bf5f6995',1,'SimRacing::CreateShieldObject&lt; LogitechShifter, 1 &gt;()'],['../_sim_racing_8h.html#ac64ca7ba2cf275969a933fd9bf5f6995',1,'SimRacing::CreateShieldObject&lt; LogitechShifter, 1 &gt;()']]],
+  ['createshieldobject_3c_20logitechshifter_2c_202_20_3e_19',['CreateShieldObject&lt; LogitechShifter, 2 &gt;',['../_sim_racing_8cpp.html#a09c44bace771e52cd924a24dcac8f80a',1,'SimRacing::CreateShieldObject&lt; LogitechShifter, 2 &gt;()'],['../_sim_racing_8h.html#a09c44bace771e52cd924a24dcac8f80a',1,'SimRacing::CreateShieldObject&lt; LogitechShifter, 2 &gt;()']]],
+  ['createshieldobject_3c_20logitechshifterg25_2c_202_20_3e_20',['CreateShieldObject&lt; LogitechShifterG25, 2 &gt;',['../_sim_racing_8cpp.html#a65c8f54734c41540ebb5832af9334549',1,'SimRacing::CreateShieldObject&lt; LogitechShifterG25, 2 &gt;()'],['../_sim_racing_8h.html#a65c8f54734c41540ebb5832af9334549',1,'SimRacing::CreateShieldObject&lt; LogitechShifterG25, 2 &gt;()']]],
+  ['createshieldobject_3c_20logitechshifterg27_2c_202_20_3e_21',['CreateShieldObject&lt; LogitechShifterG27, 2 &gt;',['../_sim_racing_8cpp.html#a22e97cd5e38a0f74d7abab795c9cb0f5',1,'SimRacing::CreateShieldObject&lt; LogitechShifterG27, 2 &gt;()'],['../_sim_racing_8h.html#a22e97cd5e38a0f74d7abab795c9cb0f5',1,'SimRacing::CreateShieldObject&lt; LogitechShifterG27, 2 &gt;()']]]
 ];

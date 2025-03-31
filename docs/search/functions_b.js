@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update_0',['update',['../class_sim_racing_1_1_peripheral.html#ac61ff77db01f00fcfca62c8d96dec4ff',1,'SimRacing::Peripheral::update()'],['../class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09',1,'SimRacing::Pedals::update()'],['../class_sim_racing_1_1_analog_shifter.html#aba4a4be01b42f15119a948e12d0a2f39',1,'SimRacing::AnalogShifter::update()'],['../class_sim_racing_1_1_handbrake.html#aa1cfe2d01f1b1d66d08f304f076a314b',1,'SimRacing::Handbrake::update()']]]
+  ['threepedals_0',['ThreePedals',['../class_sim_racing_1_1_three_pedals.html#a58306be0f1600dc24c38fe31c05e7921',1,'SimRacing::ThreePedals']]],
+  ['twopedals_1',['TwoPedals',['../class_sim_racing_1_1_two_pedals.html#a93ebe73b308a8660e83ee16745f82ddc',1,'SimRacing::TwoPedals']]]
 ];

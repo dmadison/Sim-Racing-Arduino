@@ -27,6 +27,7 @@ var NAVTREE =
   [ "Arduino Sim Racing Library", "index.html", [
     [ "Sim Racing Library for Arduino", "index.html", "index" ],
     [ "Supported Devices", "supported_devices.html", "supported_devices" ],
+    [ "USB Adapter FAQ", "usb_adapter_faq.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -42,11 +43,7 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
+      [ "File List", "files.html", "files_dup" ]
     ] ],
     [ "Examples", "examples.html", "examples" ]
   ] ]
@@ -54,7 +51,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_handbrake_joystick_8ino-example.html"
+"_handbrake_joystick_8ino-example.html",
+"class_sim_racing_1_1_pedals.html#a1ed61c5009ee94839945006b533595be"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

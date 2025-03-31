@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['handbrake_0',['Handbrake',['../class_sim_racing_1_1_handbrake.html',1,'SimRacing::Handbrake'],['../class_sim_racing_1_1_handbrake.html#ab6eef2b72a1ad7c38fd0ff8eb79fbaef',1,'SimRacing::Handbrake::Handbrake()']]],
-  ['haspedal_1',['hasPedal',['../class_sim_racing_1_1_pedals.html#aa68c7a07235feca59483d2fc5814503f',1,'SimRacing::Pedals']]]
+  ['eeprom_20storage_0',['EEPROM Storage',['../logitech_shifter.html#autotoc_md14',1,'EEPROM Storage'],['../logitech_shifter_g25.html#autotoc_md20',1,'EEPROM Storage'],['../logitech_shifter_g27.html#autotoc_md26',1,'EEPROM Storage']]]
 ];

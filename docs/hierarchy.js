@@ -16,7 +16,11 @@ var hierarchy =
       ] ],
       [ "SimRacing::Shifter", "class_sim_racing_1_1_shifter.html", [
         [ "SimRacing::AnalogShifter", "class_sim_racing_1_1_analog_shifter.html", [
-          [ "SimRacing::LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html", null ]
+          [ "SimRacing::LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html", [
+            [ "SimRacing::LogitechShifterG27", "class_sim_racing_1_1_logitech_shifter_g27.html", [
+              [ "SimRacing::LogitechShifterG25", "class_sim_racing_1_1_logitech_shifter_g25.html", null ]
+            ] ]
+          ] ]
         ] ]
       ] ]
     ] ]

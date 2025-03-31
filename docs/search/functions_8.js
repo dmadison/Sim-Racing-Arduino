@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['read_0',['read',['../class_sim_racing_1_1_analog_input.html#abb4e228064827222e1e9c1826a5bf5ec',1,'SimRacing::AnalogInput']]]
+  ['pedals_0',['Pedals',['../class_sim_racing_1_1_pedals.html#a6d9f5b51e689962017585e89c3c942ca',1,'SimRacing::Pedals']]],
+  ['poll_1',['poll',['../class_sim_racing_1_1_device_connection.html#a085284c2e4ba8d0c29b50599312ce27c',1,'SimRacing::DeviceConnection']]],
+  ['positionchanged_2',['positionChanged',['../class_sim_racing_1_1_pedals.html#ab458ee597251d133ffffcf14c83c11fc',1,'SimRacing::Pedals::positionChanged()'],['../class_sim_racing_1_1_handbrake.html#a91a560fe530bb025eaa050802fc820e6',1,'SimRacing::Handbrake::positionChanged()']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['racing_20library_20for_20arduino_0',['Sim Racing Library for Arduino',['../index.html',1,'']]],
-  ['read_1',['read',['../class_sim_racing_1_1_analog_input.html#abb4e228064827222e1e9c1826a5bf5ec',1,'SimRacing::AnalogInput']]]
+  ['just_20use_20a_20de_209_20to_20usb_20adapter_0',['Why can&apos;t I just use a DE-9 to USB adapter?',['../usb_adapter_faq.html#autotoc_md39',1,'']]]
 ];

@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -137,7 +137,7 @@ $(function(){initNavTree('_pedals_print_8ino-example.html',''); initResizable(tr
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_Clutch = A0;</div>
 <div class="line"> </div>
 <div class="line"><a id="_a0" name="_a0"></a><a class="code hl_class" href="class_sim_racing_1_1_logitech_pedals.html">SimRacing::LogitechPedals</a> pedals(Pin_Gas, Pin_Brake, Pin_Clutch);</div>
-<div class="line"><span class="comment">//SimRacing::LogitechPedals pedals(PEDAL_SHIELD_V1_PINS);</span></div>
+<div class="line"><span class="comment">//SimRacing::LogitechPedals pedals = SimRacing::CreateShieldObject&lt;SimRacing::LogitechPedals, 1&gt;();</span></div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
@@ -158,7 +158,7 @@ $(function(){initNavTree('_pedals_print_8ino-example.html',''); initResizable(tr
 <div class="line">        delay(2000);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    pedals.<a id="a3" name="a3"></a><a class="code hl_function" href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">update</a>();</div>
+<div class="line">    pedals.<a id="a3" name="a3"></a><a class="code hl_function" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">update</a>();</div>
 <div class="line"> </div>
 <div class="line">    Serial.print(<span class="stringliteral">&quot;Pedals:&quot;</span>);</div>
 <div class="line"> </div>
@@ -187,12 +187,12 @@ $(function(){initNavTree('_pedals_print_8ino-example.html',''); initResizable(tr
 <div class="line">    delay(100);</div>
 <div class="line">}</div>
 <div class="ttc" id="a_sim_racing_8h_html"><div class="ttname"><a href="_sim_racing_8h.html">SimRacing.h</a></div><div class="ttdoc">Header file for the Sim Racing Library.</div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_logitech_pedals_html"><div class="ttname"><a href="class_sim_racing_1_1_logitech_pedals.html">SimRacing::LogitechPedals</a></div><div class="ttdoc">Interface with the Logitech pedals (Gas, Brake, and Clutch)</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00760">SimRacing.h:760</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_a33cdb23af5fde195e3aa035bedf269ea"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#a33cdb23af5fde195e3aa035bedf269ea">SimRacing::Pedals::serialCalibration</a></div><div class="ttdeci">void serialCalibration(Stream &amp;iface=Serial)</div><div class="ttdoc">Runs an interactive calibration tool using the serial interface.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00427">SimRacing.cpp:427</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_aa68c7a07235feca59483d2fc5814503f"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#aa68c7a07235feca59483d2fc5814503f">SimRacing::Pedals::hasPedal</a></div><div class="ttdeci">bool hasPedal(PedalID pedal) const</div><div class="ttdoc">Checks if a given pedal is present in the class.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00397">SimRacing.cpp:397</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_abb4929895a5b8c0065066dd2985bfa09"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#abb4929895a5b8c0065066dd2985bfa09">SimRacing::Pedals::update</a></div><div class="ttdeci">virtual bool update()</div><div class="ttdoc">Perform a poll of the hardware to refresh the class state.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00365">SimRacing.cpp:365</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_acf2a61f94391d0d939a04d8d424918a6"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">SimRacing::Pedals::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initialize the hardware (if necessary)</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00361">SimRacing.cpp:361</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_acf64bfa366732c549b7c54a527f1a6d2"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#acf64bfa366732c549b7c54a527f1a6d2">SimRacing::Pedals::getPosition</a></div><div class="ttdeci">long getPosition(PedalID pedal, long rMin=0, long rMax=100) const</div><div class="ttdoc">Retrieves the buffered position for the pedal, rescaled to a nominal range using the calibration valu...</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00387">SimRacing.cpp:387</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_logitech_pedals_html"><div class="ttname"><a href="class_sim_racing_1_1_logitech_pedals.html">SimRacing::LogitechPedals</a></div><div class="ttdoc">Interface with the Logitech pedals (Gas, Brake, and Clutch)</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00835">SimRacing.h:835</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_a33cdb23af5fde195e3aa035bedf269ea"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#a33cdb23af5fde195e3aa035bedf269ea">SimRacing::Pedals::serialCalibration</a></div><div class="ttdeci">void serialCalibration(Stream &amp;iface=Serial)</div><div class="ttdoc">Runs an interactive calibration tool using the serial interface.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00547">SimRacing.cpp:547</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_aa68c7a07235feca59483d2fc5814503f"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#aa68c7a07235feca59483d2fc5814503f">SimRacing::Pedals::hasPedal</a></div><div class="ttdeci">bool hasPedal(PedalID pedal) const</div><div class="ttdoc">Checks if a given pedal is present in the class.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00517">SimRacing.cpp:517</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_acf2a61f94391d0d939a04d8d424918a6"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#acf2a61f94391d0d939a04d8d424918a6">SimRacing::Pedals::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initialize the hardware (if necessary)</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00478">SimRacing.cpp:478</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_pedals_html_acf64bfa366732c549b7c54a527f1a6d2"><div class="ttname"><a href="class_sim_racing_1_1_pedals.html#acf64bfa366732c549b7c54a527f1a6d2">SimRacing::Pedals::getPosition</a></div><div class="ttdeci">long getPosition(PedalID pedal, long rMin=0, long rMax=100) const</div><div class="ttdoc">Retrieves the buffered position for the pedal, rescaled to a nominal range using the calibration valu...</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00507">SimRacing.cpp:507</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_peripheral_html_a885be402ddfc00d584550d2624115e44"><div class="ttname"><a href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">SimRacing::Peripheral::update</a></div><div class="ttdeci">bool update()</div><div class="ttdoc">Perform a poll of the hardware to refresh the class state.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00433">SimRacing.cpp:433</a></div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

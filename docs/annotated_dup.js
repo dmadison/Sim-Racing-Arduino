@@ -8,6 +8,8 @@ var annotated_dup =
       [ "LogitechDrivingForceGT_Pedals", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals.html", "class_sim_racing_1_1_logitech_driving_force_g_t___pedals" ],
       [ "LogitechPedals", "class_sim_racing_1_1_logitech_pedals.html", "class_sim_racing_1_1_logitech_pedals" ],
       [ "LogitechShifter", "class_sim_racing_1_1_logitech_shifter.html", "class_sim_racing_1_1_logitech_shifter" ],
+      [ "LogitechShifterG25", "class_sim_racing_1_1_logitech_shifter_g25.html", "class_sim_racing_1_1_logitech_shifter_g25" ],
+      [ "LogitechShifterG27", "class_sim_racing_1_1_logitech_shifter_g27.html", "class_sim_racing_1_1_logitech_shifter_g27" ],
       [ "Pedals", "class_sim_racing_1_1_pedals.html", "class_sim_racing_1_1_pedals" ],
       [ "Peripheral", "class_sim_racing_1_1_peripheral.html", "class_sim_racing_1_1_peripheral" ],
       [ "Shifter", "class_sim_racing_1_1_shifter.html", "class_sim_racing_1_1_shifter" ],

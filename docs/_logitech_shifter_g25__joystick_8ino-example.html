@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arduino Sim Racing Library: ShiftJoystick.ino</title>
+<title>Arduino Sim Racing Library: LogitechShifterG25_Joystick.ino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -78,7 +78,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('_shift_joystick_8ino-example.html',''); initResizable(true); });
+$(function(){initNavTree('_logitech_shifter_g25__joystick_8ino-example.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -104,15 +104,15 @@ $(function(){initNavTree('_shift_joystick_8ino-example.html',''); initResizable(
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ShiftJoystick.ino</div></div>
+  <div class="headertitle"><div class="title">LogitechShifterG25_Joystick.ino</div></div>
 </div><!--header-->
 <div class="contents">
-<p>Emulates the shifter as a joystick over USB.</p>
+<p>Emulates the Logitech G25 shifter as a joystick over USB.</p>
 <div class="fragment"><div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment"> *  Project     Sim Racing Library for Arduino</span></div>
 <div class="line"><span class="comment"> *  @author     David Madison</span></div>
 <div class="line"><span class="comment"> *  @link       github.com/dmadison/Sim-Racing-Arduino</span></div>
-<div class="line"><span class="comment"> *  @license    LGPLv3 - Copyright (c) 2022 David Madison</span></div>
+<div class="line"><span class="comment"> *  @license    LGPLv3 - Copyright (c) 2024 David Madison</span></div>
 <div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> *  This file is part of the Sim Racing Library for Arduino.</span></div>
 <div class="line"><span class="comment"> *</span></div>
@@ -136,32 +136,61 @@ $(function(){initNavTree('_shift_joystick_8ino-example.html',''); initResizable(
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_sim_racing_8h.html">SimRacing.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;Joystick.h&gt;</span></div>
 <div class="line"> </div>
+<div class="line"><span class="comment">//  Power (VCC): DE-9 pin 9</span></div>
+<div class="line"><span class="comment">// Ground (GND): DE-9 pin 6</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterX      = A0;  <span class="comment">// DE-9 pin 4</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterY      = A2;  <span class="comment">// DE-9 pin 8</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterLatch  = 5;   <span class="comment">// DE-9 pin 3</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterClock  = 6;   <span class="comment">// DE-9 pin 7</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterData   = 7;   <span class="comment">// DE-9 pin 2</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// This pin is optional! You do not need to connect it in order</span></div>
+<div class="line"><span class="comment">// to read data from the shifter. Connecting it and changing the</span></div>
+<div class="line"><span class="comment">// pin number below will light the power LED. On the G25, I</span></div>
+<div class="line"><span class="comment">// recommend using a 100 Ohm resistor in series to match the</span></div>
+<div class="line"><span class="comment">// brightness of the sequential mode LED.</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterLED = <a id="a0" name="a0"></a>SimRacing::UnusedPin;  <span class="comment">// DE-9 pin 5</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// This pin requies a pull-down resistor! If you have made the proper</span></div>
+<div class="line"><span class="comment">// connections, change the pin number to the one you&#39;re using. Setting</span></div>
+<div class="line"><span class="comment">// it will zero data when the shifter is disconnected.</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterDetect = SimRacing::UnusedPin;  <span class="comment">// DE-9 pin 1</span></div>
+<div class="line"> </div>
+<div class="line"><a id="_a1" name="_a1"></a><a class="code hl_class" href="class_sim_racing_1_1_logitech_shifter_g25.html">SimRacing::LogitechShifterG25</a> shifter(</div>
+<div class="line">    Pin_ShifterX, Pin_ShifterY,</div>
+<div class="line">    Pin_ShifterLatch, Pin_ShifterClock, Pin_ShifterData,</div>
+<div class="line">    Pin_ShifterLED, Pin_ShifterDetect</div>
+<div class="line">);</div>
+<div class="line"><span class="comment">//SimRacing::LogitechShifterG25 shifter = SimRacing::CreateShieldObject&lt;SimRacing::LogitechShifterG25, 2&gt;();</span></div>
+<div class="line"> </div>
 <div class="line"><span class="comment">// Set this option to &#39;true&#39; to send the shifter&#39;s X/Y position</span></div>
 <div class="line"><span class="comment">// as a joystick. This is not needed for most games.</span></div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">bool</span> SendAnalogAxis = <span class="keyword">false</span>;</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Set this option to &#39;true&#39; to send the raw state of the reverse</span></div>
-<div class="line"><span class="comment">// trigger as its own button. This is not needed for any racing</span></div>
-<div class="line"><span class="comment">// games, but can be useful for custom controller purposes.</span></div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">bool</span> SendReverseRaw = <span class="keyword">false</span>;</div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterX   = A0;</div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterY   = A2;</div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Pin_ShifterRev = 2;</div>
-<div class="line"> </div>
-<div class="line"><a id="_a0" name="_a0"></a><a class="code hl_class" href="class_sim_racing_1_1_logitech_shifter.html">SimRacing::LogitechShifter</a> shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);</div>
-<div class="line"><span class="comment">//SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);</span></div>
-<div class="line"> </div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> Gears[] = { 1, 2, 3, 4, 5, 6, -1 };</div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> NumGears = <span class="keyword">sizeof</span>(Gears) / <span class="keyword">sizeof</span>(Gears[0]);</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using </span>ShifterButton = <a id="a2" name="a2"></a><a class="code hl_enumeration" href="class_sim_racing_1_1_logitech_shifter_g27.html#a409de2032ae56f0954d3184a68256ce9">SimRacing::LogitechShifterG25::Button</a>;</div>
+<div class="line"><span class="keyword">const</span> ShifterButton Buttons[] = {</div>
+<div class="line">    ShifterButton::BUTTON_SOUTH,</div>
+<div class="line">    ShifterButton::BUTTON_EAST,</div>
+<div class="line">    ShifterButton::BUTTON_WEST,</div>
+<div class="line">    ShifterButton::BUTTON_NORTH,</div>
+<div class="line">    ShifterButton::BUTTON_1,</div>
+<div class="line">    ShifterButton::BUTTON_2,</div>
+<div class="line">    ShifterButton::BUTTON_3,</div>
+<div class="line">    ShifterButton::BUTTON_4,</div>
+<div class="line">};</div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> NumButtons = <span class="keyword">sizeof</span>(Buttons) / <span class="keyword">sizeof</span>(Buttons[0]);</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> ADC_Max = 1023;  <span class="comment">// 10-bit on AVR</span></div>
 <div class="line"> </div>
 <div class="line">Joystick_ Joystick(</div>
 <div class="line">    JOYSTICK_DEFAULT_REPORT_ID,      <span class="comment">// default report (no additional pages)</span></div>
 <div class="line">    JOYSTICK_TYPE_JOYSTICK,          <span class="comment">// so that this shows up in Windows joystick manager</span></div>
-<div class="line">    NumGears + SendReverseRaw,       <span class="comment">// number of buttons (7 gears: reverse and 1-6)</span></div>
-<div class="line">    0,                               <span class="comment">// number of hat switches (none)</span></div>
+<div class="line">    NumGears + NumButtons + 2,       <span class="comment">// number of buttons (7 gears: reverse and 1-6, 8 buttons, 2 sequential gears)</span></div>
+<div class="line">    1,                               <span class="comment">// number of hat switches (1, the directional pad)</span></div>
 <div class="line">    SendAnalogAxis, SendAnalogAxis,  <span class="comment">// include X and Y axes for analog output, if set above</span></div>
 <div class="line">    <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);  <span class="comment">// no other axes</span></div>
 <div class="line"> </div>
@@ -169,7 +198,7 @@ $(function(){initNavTree('_shift_joystick_8ino-example.html',''); initResizable(
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> setup() {</div>
-<div class="line">    shifter.<a id="a1" name="a1"></a><a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">begin</a>();</div>
+<div class="line">    shifter.<a id="a3" name="a3"></a><a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">begin</a>();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// if you have one, your calibration line should go here</span></div>
 <div class="line">    </div>
@@ -181,48 +210,69 @@ $(function(){initNavTree('_shift_joystick_8ino-example.html',''); initResizable(
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
-<div class="line">    shifter.<a id="a2" name="a2"></a><a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#aba4a4be01b42f15119a948e12d0a2f39">update</a>();</div>
+<div class="line">    <span class="keywordtype">bool</span> dataChanged = shifter.<a id="a4" name="a4"></a><a class="code hl_function" href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">update</a>();</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (SendAnalogAxis == <span class="keyword">true</span> || shifter.<a id="a3" name="a3"></a><a class="code hl_function" href="class_sim_racing_1_1_shifter.html#afa89cfebedb1208816a449334867fe7f">gearChanged</a>()) {</div>
+<div class="line">    <span class="keywordflow">if</span> (dataChanged || SendAnalogAxis == <span class="keyword">true</span>) {</div>
 <div class="line">        updateJoystick();</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> updateJoystick() {</div>
+<div class="line">    <span class="comment">// keep track of which button we&#39;re updating</span></div>
+<div class="line">    <span class="comment">// in the joystick output</span></div>
+<div class="line">    <span class="keywordtype">int</span> currentButton = 0;</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">// set the buttons corresponding to the gears</span></div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; NumGears; i++) {</div>
-<div class="line">        <span class="keywordflow">if</span> (shifter.<a id="a4" name="a4"></a><a class="code hl_function" href="class_sim_racing_1_1_shifter.html#aa4766bba9571601cf422866fd02726b6">getGear</a>() == Gears[i]) {</div>
-<div class="line">            Joystick.pressButton(i);</div>
+<div class="line">        <span class="keywordflow">if</span> (shifter.<a id="a5" name="a5"></a><a class="code hl_function" href="class_sim_racing_1_1_shifter.html#adeafbb31dd532e1617df620398d9b035">getGear</a>() == Gears[i]) {</div>
+<div class="line">            Joystick.pressButton(currentButton);</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">else</span> {</div>
-<div class="line">            Joystick.releaseButton(i);</div>
+<div class="line">            Joystick.releaseButton(currentButton);</div>
 <div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        currentButton++;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// set the analog axes (if the option is set)</span></div>
 <div class="line">    <span class="keywordflow">if</span> (SendAnalogAxis == <span class="keyword">true</span>) {</div>
-<div class="line">        <span class="keywordtype">int</span> x = shifter.<a id="a5" name="a5"></a><a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#afa4ec991aa809a5e16a8e6a776be9df6">getPosition</a>(<a id="a6" name="a6"></a>SimRacing::X, 0, ADC_Max);</div>
-<div class="line">        <span class="keywordtype">int</span> y = shifter.<a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#afa4ec991aa809a5e16a8e6a776be9df6">getPosition</a>(<a id="a7" name="a7"></a>SimRacing::Y, 0, ADC_Max);</div>
+<div class="line">        <span class="keywordtype">int</span> x = shifter.<a id="a6" name="a6"></a><a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#afa4ec991aa809a5e16a8e6a776be9df6">getPosition</a>(<a id="a7" name="a7"></a>SimRacing::X, 0, ADC_Max);</div>
+<div class="line">        <span class="keywordtype">int</span> y = shifter.<a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#afa4ec991aa809a5e16a8e6a776be9df6">getPosition</a>(<a id="a8" name="a8"></a>SimRacing::Y, 0, ADC_Max);</div>
 <div class="line">        Joystick.setXAxis(x);</div>
 <div class="line">        Joystick.setYAxis(y);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// set the reverse button (if the option is set)</span></div>
-<div class="line">    <span class="keywordflow">if</span> (SendReverseRaw == <span class="keyword">true</span>) {</div>
-<div class="line">        <span class="keywordtype">bool</span> reverseState = shifter.<a id="a8" name="a8"></a><a class="code hl_function" href="class_sim_racing_1_1_analog_shifter.html#a3b108a4936e524c5032a23fa9f161139">getReverseButton</a>();</div>
-<div class="line">        Joystick.setButton(NumGears, reverseState);  <span class="comment">// &quot;NumGears&quot; is the 0-indexed max gear + 1</span></div>
+<div class="line">    <span class="comment">// set the buttons</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; NumButtons; i++) {</div>
+<div class="line">        <span class="keywordtype">bool</span> state = shifter.getButton(Buttons[i]);</div>
+<div class="line">        Joystick.setButton(currentButton, state);</div>
+<div class="line"> </div>
+<div class="line">        currentButton++;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
+<div class="line">    <span class="comment">// set the hatswitch (directional pad)</span></div>
+<div class="line">    <span class="keywordtype">int</span> angle = shifter.getDpadAngle();</div>
+<div class="line">    Joystick.setHatSwitch(0, angle);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// set the sequential shifting buttons</span></div>
+<div class="line">    <span class="keywordtype">bool</span> shiftUp = shifter.getShiftUp();</div>
+<div class="line">    Joystick.setButton(currentButton, shiftUp);</div>
+<div class="line">    currentButton++;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">bool</span> shiftDown = shifter.getShiftDown();</div>
+<div class="line">    Joystick.setButton(currentButton, shiftDown);</div>
+<div class="line">    currentButton++;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// send the updated data via USB</span></div>
 <div class="line">    Joystick.sendState();</div>
 <div class="line">}</div>
 <div class="ttc" id="a_sim_racing_8h_html"><div class="ttname"><a href="_sim_racing_8h.html">SimRacing.h</a></div><div class="ttdoc">Header file for the Sim Racing Library.</div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_analog_shifter_html_a3b108a4936e524c5032a23fa9f161139"><div class="ttname"><a href="class_sim_racing_1_1_analog_shifter.html#a3b108a4936e524c5032a23fa9f161139">SimRacing::AnalogShifter::getReverseButton</a></div><div class="ttdeci">bool getReverseButton() const</div><div class="ttdoc">Checks the current state of the &quot;reverse&quot; button at the bottom of the shift column.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00796">SimRacing.cpp:796</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_analog_shifter_html_aba4a4be01b42f15119a948e12d0a2f39"><div class="ttname"><a href="class_sim_racing_1_1_analog_shifter.html#aba4a4be01b42f15119a948e12d0a2f39">SimRacing::AnalogShifter::update</a></div><div class="ttdeci">virtual bool update()</div><div class="ttdoc">Polls the hardware to update the current gear state.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00698">SimRacing.cpp:698</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_analog_shifter_html_ae9291c889851fbffee747121b770878b"><div class="ttname"><a href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">SimRacing::AnalogShifter::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initializes the hardware pins for reading the gear states.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00691">SimRacing.cpp:691</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_analog_shifter_html_afa4ec991aa809a5e16a8e6a776be9df6"><div class="ttname"><a href="class_sim_racing_1_1_analog_shifter.html#afa4ec991aa809a5e16a8e6a776be9df6">SimRacing::AnalogShifter::getPosition</a></div><div class="ttdeci">long getPosition(Axis ax, long rMin=AnalogInput::Min, long rMax=AnalogInput::Max) const</div><div class="ttdoc">Retrieves the buffered position for the analog axis, rescaled to a nominal range using the calibratio...</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00786">SimRacing.cpp:786</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_logitech_shifter_html"><div class="ttname"><a href="class_sim_racing_1_1_logitech_shifter.html">SimRacing::LogitechShifter</a></div><div class="ttdoc">Interface with the Logitech Driving Force shifter.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00787">SimRacing.h:787</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_shifter_html_aa4766bba9571601cf422866fd02726b6"><div class="ttname"><a href="class_sim_racing_1_1_shifter.html#aa4766bba9571601cf422866fd02726b6">SimRacing::Shifter::getGear</a></div><div class="ttdeci">int8_t getGear() const</div><div class="ttdoc">Returns the currently selected gear.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00475">SimRacing.h:475</a></div></div>
-<div class="ttc" id="aclass_sim_racing_1_1_shifter_html_afa89cfebedb1208816a449334867fe7f"><div class="ttname"><a href="class_sim_racing_1_1_shifter.html#afa89cfebedb1208816a449334867fe7f">SimRacing::Shifter::gearChanged</a></div><div class="ttdeci">bool gearChanged() const</div><div class="ttdoc">Checks whether the current gear has changed since the last update.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00519">SimRacing.h:519</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_analog_shifter_html_ae9291c889851fbffee747121b770878b"><div class="ttname"><a href="class_sim_racing_1_1_analog_shifter.html#ae9291c889851fbffee747121b770878b">SimRacing::AnalogShifter::begin</a></div><div class="ttdeci">virtual void begin()</div><div class="ttdoc">Initializes the hardware pins for reading the gear states.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00829">SimRacing.cpp:829</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_analog_shifter_html_afa4ec991aa809a5e16a8e6a776be9df6"><div class="ttname"><a href="class_sim_racing_1_1_analog_shifter.html#afa4ec991aa809a5e16a8e6a776be9df6">SimRacing::AnalogShifter::getPosition</a></div><div class="ttdeci">long getPosition(Axis ax, long rMin=AnalogInput::Min, long rMax=AnalogInput::Max) const</div><div class="ttdoc">Retrieves the buffered position for the analog axis, rescaled to a nominal range using the calibratio...</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00915">SimRacing.cpp:915</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_logitech_shifter_g25_html"><div class="ttname"><a href="class_sim_racing_1_1_logitech_shifter_g25.html">SimRacing::LogitechShifterG25</a></div><div class="ttdoc">Interface with the Logitech G25 shifter.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l01123">SimRacing.h:1123</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_logitech_shifter_g27_html_a409de2032ae56f0954d3184a68256ce9"><div class="ttname"><a href="class_sim_racing_1_1_logitech_shifter_g27.html#a409de2032ae56f0954d3184a68256ce9">SimRacing::LogitechShifterG27::Button</a></div><div class="ttdeci">Button</div><div class="ttdoc">Enumeration of button values.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00949">SimRacing.h:949</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_peripheral_html_a885be402ddfc00d584550d2624115e44"><div class="ttname"><a href="class_sim_racing_1_1_peripheral.html#a885be402ddfc00d584550d2624115e44">SimRacing::Peripheral::update</a></div><div class="ttdeci">bool update()</div><div class="ttdoc">Perform a poll of the hardware to refresh the class state.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8cpp_source.html#l00433">SimRacing.cpp:433</a></div></div>
+<div class="ttc" id="aclass_sim_racing_1_1_shifter_html_adeafbb31dd532e1617df620398d9b035"><div class="ttname"><a href="class_sim_racing_1_1_shifter.html#adeafbb31dd532e1617df620398d9b035">SimRacing::Shifter::getGear</a></div><div class="ttdeci">Gear getGear() const</div><div class="ttdoc">Returns the currently selected gear.</div><div class="ttdef"><b>Definition</b> <a href="_sim_racing_8h_source.html#l00528">SimRacing.h:528</a></div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.3-->

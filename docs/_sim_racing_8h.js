@@ -6,8 +6,9 @@ var _sim_racing_8h =
     [ "SimRacing::Peripheral", "class_sim_racing_1_1_peripheral.html", "class_sim_racing_1_1_peripheral" ],
     [ "SimRacing::AnalogShifter::GearPosition", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position.html", "struct_sim_racing_1_1_analog_shifter_1_1_gear_position" ],
     [ "SimRacing::Handbrake", "class_sim_racing_1_1_handbrake.html", "class_sim_racing_1_1_handbrake" ],
-    [ "PEDAL_SHIELD_V1_PINS", "_sim_racing_8h.html#aee8041b5e2abaf861dfbc513f07e9b34", null ],
-    [ "SHIFTER_SHIELD_V1_PINS", "_sim_racing_8h.html#a8bdc255ffe6b34b9191157febf849eca", null ],
+    [ "LogitechShifterG29", "_sim_racing_8h.html#ga8b3691204b3f64a9aa426c870728c8bc", null ],
+    [ "LogitechShifterG920", "_sim_racing_8h.html#gaac9df41ff23a67bcea0dac2456884ced", null ],
+    [ "LogitechShifterG923", "_sim_racing_8h.html#gad30453f5fd99fcb7edcc96bfa23ba325", null ],
     [ "PinNum", "_sim_racing_8h.html#acb3c4a979d41f9147011d2a7ffd8555e", null ],
     [ "Axis", "_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2", [
       [ "X", "_sim_racing_8h.html#a2522a9e9e71d7db4ba0fedbc82f0e5b2a4b7f32a18c6d7f71d8884cc2ace20989", null ],
@@ -20,5 +21,12 @@ var _sim_racing_8h =
       [ "Brake", "_sim_racing_8h.html#gga4f8d4f29f65329fb4ee7e4bf5eec8846a1b3e19c1b49390ba1b6605d29baf6555", null ],
       [ "Clutch", "_sim_racing_8h.html#gga4f8d4f29f65329fb4ee7e4bf5eec8846a192c8d1cf4b0c1ba83ea284b00c0890a", null ]
     ] ],
+    [ "CreateShieldObject", "_sim_racing_8h.html#a2181107f1d54b22c76f6e55f7505bc3d", null ],
+    [ "CreateShieldObject< LogitechPedals, 1 >", "_sim_racing_8h.html#adee229454125b4899eda2d137caf8954", null ],
+    [ "CreateShieldObject< LogitechPedals, 2 >", "_sim_racing_8h.html#a936181888d8f0c806a50873207826023", null ],
+    [ "CreateShieldObject< LogitechShifter, 1 >", "_sim_racing_8h.html#ac64ca7ba2cf275969a933fd9bf5f6995", null ],
+    [ "CreateShieldObject< LogitechShifter, 2 >", "_sim_racing_8h.html#a09c44bace771e52cd924a24dcac8f80a", null ],
+    [ "CreateShieldObject< LogitechShifterG25, 2 >", "_sim_racing_8h.html#a65c8f54734c41540ebb5832af9334549", null ],
+    [ "CreateShieldObject< LogitechShifterG27, 2 >", "_sim_racing_8h.html#a22e97cd5e38a0f74d7abab795c9cb0f5", null ],
     [ "UnusedPin", "_sim_racing_8h.html#ac5819ab63819ac1232105a1a368be7df", null ]
 ];

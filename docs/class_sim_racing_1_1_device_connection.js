@@ -6,7 +6,7 @@ var class_sim_racing_1_1_device_connection =
       [ "Connected", "class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852eac3b259b0bc557470268a9b08a06b7404", null ],
       [ "Unplug", "class_sim_racing_1_1_device_connection.html#a844b40b17f6935de9e20debeb83d852ea0654aafaf348066c006491163db77393", null ]
     ] ],
-    [ "DeviceConnection", "class_sim_racing_1_1_device_connection.html#aba68b6a03c69c5e2f5fbcd7e60dd8a33", null ],
+    [ "DeviceConnection", "class_sim_racing_1_1_device_connection.html#a5a2b8d4245dc1d0c3e1abc28d380b5ef", null ],
     [ "getState", "class_sim_racing_1_1_device_connection.html#a383729a5f043ae4d49bcda3711ae99fa", null ],
     [ "isConnected", "class_sim_racing_1_1_device_connection.html#af39bf3c1cef6f3d0b4201c549e4d6376", null ],
     [ "poll", "class_sim_racing_1_1_device_connection.html#a085284c2e4ba8d0c29b50599312ce27c", null ],

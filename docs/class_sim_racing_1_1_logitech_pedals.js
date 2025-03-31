@@ -7,10 +7,13 @@ var class_sim_racing_1_1_logitech_pedals =
     [ "getPosition", "class_sim_racing_1_1_logitech_pedals.html#acf64bfa366732c549b7c54a527f1a6d2", null ],
     [ "getPositionRaw", "class_sim_racing_1_1_logitech_pedals.html#abb447325455d5d1a2a8916497e499032", null ],
     [ "hasPedal", "class_sim_racing_1_1_logitech_pedals.html#aa68c7a07235feca59483d2fc5814503f", null ],
-    [ "isConnected", "class_sim_racing_1_1_logitech_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d", null ],
+    [ "isConnected", "class_sim_racing_1_1_logitech_pedals.html#a09efde3d204dd17a2b2d540d8f5e2cdd", null ],
     [ "positionChanged", "class_sim_racing_1_1_logitech_pedals.html#ab458ee597251d133ffffcf14c83c11fc", null ],
     [ "serialCalibration", "class_sim_racing_1_1_logitech_pedals.html#a33cdb23af5fde195e3aa035bedf269ea", null ],
     [ "setCalibration", "class_sim_racing_1_1_logitech_pedals.html#a5e18b4ead4270de839961be61437043a", null ],
     [ "setCalibration", "class_sim_racing_1_1_logitech_pedals.html#ab69ab30bb5ebdf64a266c62e926e0279", null ],
-    [ "update", "class_sim_racing_1_1_logitech_pedals.html#abb4929895a5b8c0065066dd2985bfa09", null ]
+    [ "setDetectPtr", "class_sim_racing_1_1_logitech_pedals.html#a1ed61c5009ee94839945006b533595be", null ],
+    [ "setStablePeriod", "class_sim_racing_1_1_logitech_pedals.html#af7067327ac54e668a567b925903e8a12", null ],
+    [ "update", "class_sim_racing_1_1_logitech_pedals.html#a885be402ddfc00d584550d2624115e44", null ],
+    [ "updateState", "class_sim_racing_1_1_logitech_pedals.html#a9db11e1bd951a5aaf02bfb0c1cc18b8e", null ]
 ];

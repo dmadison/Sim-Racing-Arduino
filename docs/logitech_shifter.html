@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arduino Sim Racing Library: Logitech Driving Force Shifter</title>
+<title>Arduino Sim Racing Library: Logitech Driving Force Shifter (G923 / G920 / G29)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v1.1.5</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.0</span>
    </div>
   </td>
  </tr>
@@ -104,15 +104,15 @@ $(function(){initNavTree('logitech_shifter.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Logitech Driving Force Shifter</div></div>
+  <div class="headertitle"><div class="title">Logitech Driving Force Shifter (G923 / G920 / G29)</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_pages_2devices_2logitech__shifter"></a> The <a href="https://www.logitechg.com/en-us/products/driving/driving-force-shifter.html">Logitech Driving Force Shifter</a> is implemented using the <a class="el" href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter.">SimRacing::LogitechShifter</a> class.</p>
-<p>See the <a class="el" href="_shift_print_8ino_source.html">ShiftPrint.ino</a> and <a class="el" href="_shift_joystick_8ino_source.html">ShiftJoystick.ino</a> examples for reference.</p>
+<div class="textblock"><p><a class="anchor" id="md_pages_2devices_2logitech__shifter"></a> The <a href="https://www.logitechg.com/en-us/products/driving/driving-force-shifter.html">Logitech Driving Force Shifter</a> is implemented using the <a class="el" href="class_sim_racing_1_1_logitech_shifter.html" title="Interface with the Logitech Driving Force shifter.">SimRacing::LogitechShifter</a> class. This shifter is included with the <a href="https://www.logitechg.com/en-us/products/driving/g923-trueforce-sim-racing-wheel.html">G923</a>, <a href="https://en.wikipedia.org/wiki/Logitech_G29">G920</a>, and <a href="https://en.wikipedia.org/wiki/Logitech_G29">G29</a> wheels.</p>
+<p>See the <a class="el" href="_logitech_shifter___print_8ino_source.html">LogitechShifter_Print.ino</a> and <a class="el" href="_logitech_shifter___joystick_8ino_source.html">LogitechShifter_Joystick.ino</a> examples for reference.</p>
 <h1><a class="anchor" id="autotoc_md11"></a>
 Adapters</h1>
-<p> <div><div style="position:relative;padding-top:56.25%;"><iframe src="https://www.youtube.com/embed/ngXsOidoWhI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div></div></p>
-<p>The best way to connect to the shifter is to build your own DIY adapter using a male DE-9 connector. This is simple to make and does not require any modifications to the shifter. The above video walks you through the process of wiring to an Arduino Leonardo.</p>
+<p> <div><div style="position:relative;padding-top:56.25%;"><iframe src="https://www.youtube.com/embed/yLL9XBgx8bs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div></div></p>
+<p>You can build your own DIY USB adapter using a male DE-9 connector. This is simple to make and does not require any modifications to the shifter. The above video walks you through the process of wiring to an Arduino Leonardo.</p>
 <p>If you want something more robust, an open source shield is available to connect the shifter to a <a href="https://github.com/sparkfun/Pro_Micro">SparkFun Pro Micro</a>. The design comes with a 3D printable case and custom board files so that the device appears as a "Sim Racing Shifter" over USB. You can use this shield to build an inexpensive USB HID adapter.</p>
 <p>You can find all of the necessary files in <a href="https://github.com/dmadison/Sim-Racing-Shields">the project repository</a>.</p>
 <h1><a class="anchor" id="autotoc_md12"></a>

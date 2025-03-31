@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['isconnected_0',['isConnected',['../class_sim_racing_1_1_device_connection.html#af39bf3c1cef6f3d0b4201c549e4d6376',1,'SimRacing::DeviceConnection::isConnected()'],['../class_sim_racing_1_1_peripheral.html#a86985611b9c47c347c98b4c852300912',1,'SimRacing::Peripheral::isConnected()'],['../class_sim_racing_1_1_pedals.html#a1ddfe82b26b91351319e4bcc8dce0f5d',1,'SimRacing::Pedals::isConnected()'],['../class_sim_racing_1_1_analog_shifter.html#ac8baeaeef50b0982b0c61a161ab6614a',1,'SimRacing::AnalogShifter::isConnected()'],['../class_sim_racing_1_1_handbrake.html#ab968cf671c3e9f6b3c4dbea58b6db65f',1,'SimRacing::Handbrake::isConnected()']]],
-  ['isinverted_1',['isInverted',['../class_sim_racing_1_1_analog_input.html#a16dc22322aa0e673647a6edb1785157f',1,'SimRacing::AnalogInput']]]
+  ['faq_0',['USB Adapter FAQ',['../usb_adapter_faq.html',1,'']]],
+  ['for_20arduino_1',['Sim Racing Library for Arduino',['../index.html',1,'']]],
+  ['for_20my_20g25_20g27_20adapter_20how_20do_20i_20turn_20it_20on_2',['Why is the power LED off for my G25 / G27 adapter? How do I turn it on?',['../usb_adapter_faq.html#autotoc_md32',1,'']]],
+  ['force_20shifter_3',['I have a G923 / G920 / G29 shifter. Why do you call it the &quot;Driving Force&quot; shifter?',['../usb_adapter_faq.html#autotoc_md29',1,'']]],
+  ['force_20shifter_20g923_20g920_20g29_4',['Logitech Driving Force Shifter (G923 / G920 / G29)',['../logitech_shifter.html',1,'supported_devices']]]
 ];
