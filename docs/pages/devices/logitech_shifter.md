@@ -6,9 +6,9 @@ See the LogitechShifter_Print.ino and LogitechShifter_Joystick.ino examples for 
 
 ## Adapters
 
-@youtube_embed{https://www.youtube.com/embed/ngXsOidoWhI}
+@youtube_embed{https://www.youtube.com/embed/yLL9XBgx8bs}
 
-The best way to connect to the shifter is to build your own DIY adapter using a male DE-9 connector. This is simple to make and does not require any modifications to the shifter. The above video walks you through the process of wiring to an Arduino Leonardo.
+You can build your own DIY USB adapter using a male DE-9 connector. This is simple to make and does not require any modifications to the shifter. The above video walks you through the process of wiring to an Arduino Leonardo.
 
 If you want something more robust, an open source shield is available to connect the shifter to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the device appears as a "Sim Racing Shifter" over USB. You can use this shield to build an inexpensive USB HID adapter.
 

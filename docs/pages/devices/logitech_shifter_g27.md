@@ -6,6 +6,16 @@ The G27 shifter is near-identical to the [G25 shifter](@ref logitech_shifter_g25
 
 These notes are based off of disassembling my own G27 shifter, with the internal PCB marked "210-001096 REV. 001".
 
+## Adapters
+
+@youtube_embed{https://www.youtube.com/embed/1yXbaHrBhXQ}
+
+You can build your own DIY USB adapter using a male DE-9 connector. This is simple to make and does not require any modifications to the shifter. The above video walks you through the process of wiring to an Arduino Leonardo.
+
+If you want something more robust, an open source shield is available to connect the shifter to a [SparkFun Pro Micro](https://github.com/sparkfun/Pro_Micro). The design comes with a 3D printable case and custom board files so that the device appears as a "Sim Racing Shifter" over USB. You can use this shield to build an inexpensive USB HID adapter.
+
+You can find all of the necessary files in [the project repository](https://github.com/dmadison/Sim-Racing-Shields).
+
 ## Connector
 
 | ![DE-9_Male](DE9_Male.svg) | ![DE-9_Female](DE9_Female.svg) |
