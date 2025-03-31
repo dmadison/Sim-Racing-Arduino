@@ -2,7 +2,7 @@
  *  Project     Sim Racing Library for Arduino
  *  @author     David Madison
  *  @link       github.com/dmadison/Sim-Racing-Arduino
- *  @license    LGPLv3 - Copyright (c) 2022 David Madison
+ *  @license    LGPLv3 - Copyright (c) 2024 David Madison
  *
  *  This file is part of the Sim Racing Library for Arduino.
  *
@@ -21,8 +21,8 @@
  */
 
  /**
- * @details Emulates the shifter as a joystick over USB.
- * @example ShiftJoystick.ino
+ * @details Emulates the Logitech G27 shifter as a joystick over USB.
+ * @example LogitechShifterG27_Joystick.ino
  */
 
 // This example requires the Arduino Joystick Library
@@ -31,32 +31,59 @@
 #include <SimRacing.h>
 #include <Joystick.h>
 
+//  Power (VCC): DE-9 pin 9
+// Ground (GND): DE-9 pin 6
+const int Pin_ShifterX      = A0;  // DE-9 pin 4
+const int Pin_ShifterY      = A2;  // DE-9 pin 8
+
+const int Pin_ShifterLatch  = 5;   // DE-9 pin 3
+const int Pin_ShifterClock  = 6;   // DE-9 pin 1
+const int Pin_ShifterData   = 7;   // DE-9 pin 2
+
+// This pin is optional! You do not need to connect it in order
+// to read data from the shifter. Connecting it and changing the
+// pin number below will light the power LED.
+const int Pin_ShifterLED = SimRacing::UnusedPin;  // DE-9 pin 5
+
+// This pin requies a pull-down resistor! If you have made the proper
+// connections, change the pin number to the one you're using. Setting
+// it will zero data when the shifter is disconnected.
+const int Pin_ShifterDetect = SimRacing::UnusedPin;  // DE-9 pin 7
+
+SimRacing::LogitechShifterG27 shifter(
+	Pin_ShifterX, Pin_ShifterY,
+	Pin_ShifterLatch, Pin_ShifterClock, Pin_ShifterData,
+	Pin_ShifterLED, Pin_ShifterDetect
+);
+//SimRacing::LogitechShifterG27 shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifterG27, 2>();
+
 // Set this option to 'true' to send the shifter's X/Y position
 // as a joystick. This is not needed for most games.
 const bool SendAnalogAxis = false;
 
-// Set this option to 'true' to send the raw state of the reverse
-// trigger as its own button. This is not needed for any racing
-// games, but can be useful for custom controller purposes.
-const bool SendReverseRaw = false;
-
-const int Pin_ShifterX   = A0;
-const int Pin_ShifterY   = A2;
-const int Pin_ShifterRev = 2;
-
-SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
-//SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
-
 const int Gears[] = { 1, 2, 3, 4, 5, 6, -1 };
 const int NumGears = sizeof(Gears) / sizeof(Gears[0]);
+
+using ShifterButton = SimRacing::LogitechShifterG27::Button;
+const ShifterButton Buttons[] = {
+	ShifterButton::BUTTON_SOUTH,
+	ShifterButton::BUTTON_EAST,
+	ShifterButton::BUTTON_WEST,
+	ShifterButton::BUTTON_NORTH,
+	ShifterButton::BUTTON_1,
+	ShifterButton::BUTTON_2,
+	ShifterButton::BUTTON_3,
+	ShifterButton::BUTTON_4,
+};
+const int NumButtons = sizeof(Buttons) / sizeof(Buttons[0]);
 
 const int ADC_Max = 1023;  // 10-bit on AVR
 
 Joystick_ Joystick(
 	JOYSTICK_DEFAULT_REPORT_ID,      // default report (no additional pages)
 	JOYSTICK_TYPE_JOYSTICK,          // so that this shows up in Windows joystick manager
-	NumGears + SendReverseRaw,       // number of buttons (7 gears: reverse and 1-6)
-	0,                               // number of hat switches (none)
+	NumGears + NumButtons,           // number of buttons (7 gears: reverse and 1-6, 8 buttons)
+	1,                               // number of hat switches (1, the directional pad)
 	SendAnalogAxis, SendAnalogAxis,  // include X and Y axes for analog output, if set above
 	false, false, false, false, false, false, false, false, false);  // no other axes
 
@@ -76,22 +103,28 @@ void setup() {
 }
 
 void loop() {
-	shifter.update();
+	bool dataChanged = shifter.update();
 
-	if (SendAnalogAxis == true || shifter.gearChanged()) {
+	if (dataChanged || SendAnalogAxis == true) {
 		updateJoystick();
 	}
 }
 
 void updateJoystick() {
+	// keep track of which button we're updating
+	// in the joystick output
+	int currentButton = 0;
+
 	// set the buttons corresponding to the gears
 	for (int i = 0; i < NumGears; i++) {
 		if (shifter.getGear() == Gears[i]) {
-			Joystick.pressButton(i);
+			Joystick.pressButton(currentButton);
 		}
 		else {
-			Joystick.releaseButton(i);
+			Joystick.releaseButton(currentButton);
 		}
+
+		currentButton++;
 	}
 
 	// set the analog axes (if the option is set)
@@ -102,11 +135,18 @@ void updateJoystick() {
 		Joystick.setYAxis(y);
 	}
 
-	// set the reverse button (if the option is set)
-	if (SendReverseRaw == true) {
-		bool reverseState = shifter.getReverseButton();
-		Joystick.setButton(NumGears, reverseState);  // "NumGears" is the 0-indexed max gear + 1
+	// set the buttons
+	for (int i = 0; i < NumButtons; i++) {
+		bool state = shifter.getButton(Buttons[i]);
+		Joystick.setButton(currentButton, state);
+
+		currentButton++;
 	}
 
+	// set the hatswitch (directional pad)
+	int angle = shifter.getDpadAngle();
+	Joystick.setHatSwitch(0, angle);
+
+	// send the updated data via USB
 	Joystick.sendState();
 }

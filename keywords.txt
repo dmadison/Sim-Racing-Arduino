@@ -35,8 +35,20 @@ AnalogShifter	KEYWORD1
 
 LogitechShifter	KEYWORD1
 
+LogitechShifterG923	KEYWORD1
+LogitechShifterG920	KEYWORD1
+LogitechShifterG29	KEYWORD1
+LogitechShifterG27	KEYWORD1
+LogitechShifterG25	KEYWORD1
+
 # Handbrake Classes
 Handbrake	KEYWORD1
+
+#######################################
+# Functions (KEYWORD2)
+#######################################
+
+CreateShieldObject	KEYWORD2
 
 #######################################
 # Peripheral Class Methods and Functions (KEYWORD2)
@@ -46,6 +58,7 @@ begin	KEYWORD2
 update	KEYWORD2
 
 isConnected	KEYWORD2
+setStablePeriod	KEYWORD2
 
 #######################################
 # AnalogInput Class Methods and Functions (KEYWORD2)
@@ -100,6 +113,57 @@ setCalibration	KEYWORD2
 serialCalibration	KEYWORD2
 
 #######################################
+# LogitechShifterG27 Datatypes (KEYWORD1)
+#######################################
+
+# Button Enum
+Button	KEYWORD1
+
+#######################################
+# LogitechShifterG27 Constants (LITERAL1)
+#######################################
+
+# Button Enum Values
+BUTTON_UNUSED1	LITERAL1
+BUTTON_REVERSE	LITERAL1
+BUTTON_UNUSED2	LITERAL1
+BUTTON_SEQUENTIAL	LITERAL1
+BUTTON_3	LITERAL1
+BUTTON_2	LITERAL1
+BUTTON_4	LITERAL1
+BUTTON_1	LITERAL1
+BUTTON_NORTH	LITERAL1
+BUTTON_EAST	LITERAL1
+BUTTON_WEST	LITERAL1
+BUTTON_SOUTH	LITERAL1
+DPAD_RIGHT	LITERAL1
+DPAD_LEFT	LITERAL1
+DPAD_DOWN	LITERAL1
+DPAD_UP	LITERAL1
+
+#######################################
+# LogitechShifterG27 Methods and Functions (KEYWORD2)
+#######################################
+
+getButton	KEYWORD2
+getButtonChanged	KEYWORD2
+getDpadAngle	KEYWORD2
+buttonsChanged	KEYWORD2
+setPowerLED	KEYWORD2
+getPowerLED	KEYWORD2
+
+#######################################
+# LogitechShifterG25 Methods and Functions (KEYWORD2)
+#######################################
+
+inSequentialMode	KEYWORD2
+getShiftUp	KEYWORD2
+getShiftDown	KEYWORD2
+
+setCalibrationSequential	KEYWORD2
+serialCalibrationSequential	KEYWORD2
+
+#######################################
 # Handbrake Methods and Functions (KEYWORD2)
 #######################################
 
@@ -118,6 +182,9 @@ serialCalibration	KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
+# Unused Pin Flag
+UnusedPin	LITERAL1
+
 # Axis Enum
 X	LITERAL1
 Y	LITERAL1
@@ -128,7 +195,3 @@ Accelerator	LITERAL1
 Throttle	LITERAL1
 Brake	LITERAL1
 Clutch	LITERAL1
-
-# Board Pin Definitions
-SHIFTER_SHIELD_V1_PINS	LITERAL1
-PEDAL_SHIELD_V1_PINS	LITERAL1

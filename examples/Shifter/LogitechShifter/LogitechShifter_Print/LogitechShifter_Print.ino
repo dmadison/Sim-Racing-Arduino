@@ -21,18 +21,30 @@
  */
 
  /**
- * @details Reads and prints the current gear over serial.
- * @example ShiftPrint.ino
+ * @details Reads from the Logitech Driving Force shifter (included with
+ *          the G923 / G920 / G29 wheels) and prints the data over serial.
+ * @example LogitechShifter_Print.ino
  */
 
 #include <SimRacing.h>
 
-const int Pin_ShifterX   = A0;
-const int Pin_ShifterY   = A2;
-const int Pin_ShifterRev = 2;
+//  Power (VCC): DE-9 pin 9
+// Ground (GND): DE-9 pin 6
+// Note: DE-9 pin 3 (CS) needs to be pulled-up to VCC!
+const int Pin_ShifterX   = A0;  // DE-9 pin 4
+const int Pin_ShifterY   = A2;  // DE-9 pin 8
+const int Pin_ShifterRev = 2;   // DE-9 pin 2
 
-SimRacing::LogitechShifter shifter(Pin_ShifterX, Pin_ShifterY, Pin_ShifterRev);
-//SimRacing::LogitechShifter shifter(SHIFTER_SHIELD_V1_PINS);
+// This pin requires an extra resistor! If you have made the proper
+// connections, change the pin number to the one you're using
+const int Pin_ShifterDetect = SimRacing::UnusedPin;  // DE-9 pin 7, requires pull-down resistor
+
+SimRacing::LogitechShifter shifter(
+	Pin_ShifterX, Pin_ShifterY,
+	Pin_ShifterRev,
+	Pin_ShifterDetect
+);
+//SimRacing::LogitechShifter shifter = SimRacing::CreateShieldObject<SimRacing::LogitechShifter, 2>();
 
 const unsigned long PrintSpeed = 1500;  // ms
 unsigned long lastPrint = 0;

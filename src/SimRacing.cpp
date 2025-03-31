@@ -29,6 +29,87 @@
 
 namespace SimRacing {
 
+#if defined(__AVR_ATmega32U4__) || defined(SIM_RACING_DOXYGEN)
+
+template<>
+LogitechPedals CreateShieldObject<LogitechPedals, 1>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 6
+	// Ground (GND): DE-9 pin 1
+
+	const PinNum Pin_Gas    = A2;  // DE-9 pin 2
+	const PinNum Pin_Brake  = A1;  // DE-9 pin 3
+	const PinNum Pin_Clutch = A0;  // DE-9 pin 4
+	const PinNum Pin_Detect = 10;  // DE-9 pin 6, requires 10k Ohm pull-down
+
+	return LogitechPedals(Pin_Gas, Pin_Brake, Pin_Clutch, Pin_Detect);
+}
+
+template<>
+LogitechPedals CreateShieldObject<LogitechPedals, 2>() {
+	// version 2 of the pedals shield has the same pinout,
+	// so we can use the v1 function
+	return CreateShieldObject<LogitechPedals, 1>();
+}
+
+template<>
+LogitechShifter CreateShieldObject<LogitechShifter, 1>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 7
+	// Ground (GND): DE-9 pin 6
+	// DE-9 pin 3 (CS) needs to be pulled-up to VCC
+
+	const PinNum Pin_X_Wiper = A1;  // DE-9 pin 4
+	const PinNum Pin_Y_Wiper = A0;  // DE-9 pin 8
+	const PinNum Pin_DataOut = 14;  // DE-9 pin 2
+	const PinNum Pin_Detect  = A2;  // DE-9 pin 7, requires 10k Ohm pull-down
+
+	return LogitechShifter(Pin_X_Wiper, Pin_Y_Wiper, Pin_DataOut, Pin_Detect);
+}
+
+template<>
+LogitechShifter CreateShieldObject<LogitechShifter, 2>() {
+	// version 2 of the shifter shield has the same data pinout for
+	// the Driving Force shifter, so we can use the v1 function
+	return CreateShieldObject<LogitechShifter, 1>();
+}
+
+template<>
+LogitechShifterG27 CreateShieldObject<LogitechShifterG27, 2>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 7
+	// Ground (GND): DE-9 pin 6
+
+	const PinNum Pin_X_Wiper  = A1;  // DE-9 pin 4
+	const PinNum Pin_Y_Wiper  = A0;  // DE-9 pin 8
+	const PinNum Pin_DataOut  = 14;  // DE-9 pin 2
+
+	const PinNum Pin_Latch    = 10;  // DE-9 pin 3, aka chip select, requires 10k Ohm pull-up
+	const PinNum Pin_Clock    = 15;  // DE-9 pin 1, should have 470 Ohm resistor to prevent shorts
+
+	const PinNum Pin_LED      = 16;  // DE-9 pin 5, has a 100-120 Ohm series resistor
+	const PinNum Pin_Detect   = A2;  // DE-9 pin 7, requires 10k Ohm pull-down
+
+	return LogitechShifterG27(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_LED, Pin_Detect);
+}
+
+template<>
+LogitechShifterG25 CreateShieldObject<LogitechShifterG25, 2>() {
+	//  Power (VCC): DE-9 pin 9, bridged to DE-9 pin 1
+	// Ground (GND): DE-9 pin 6
+
+	const PinNum Pin_X_Wiper  = A1;  // DE-9 pin 4
+	const PinNum Pin_Y_Wiper  = A0;  // DE-9 pin 8
+	const PinNum Pin_DataOut  = 14;  // DE-9 pin 2
+
+	const PinNum Pin_Latch    = 10;  // DE-9 pin 3, aka chip select, requires 10k Ohm pull-up
+	const PinNum Pin_Clock    = A2;  // DE-9 pin 7, should have 470 Ohm resistor to prevent shorts
+
+	const PinNum Pin_LED      = 16;  // DE-9 pin 5, has a 100-120 Ohm series resistor
+	const PinNum Pin_Detect   = 15;  // DE-9 pin 1, requires 10k Ohm pull-down
+
+	return LogitechShifterG25(Pin_X_Wiper, Pin_Y_Wiper, Pin_Latch, Pin_Clock, Pin_DataOut, Pin_LED, Pin_Detect);
+}
+#endif  // ATmega32U4 for shield functions
+
+
 /**
 * Take a pin number as an input and sanitize it to a known working value
 * 
@@ -176,9 +257,9 @@ static void readFloat(float& value, Stream& client) {
 //                  DeviceConnection                      #
 //#########################################################
 
-DeviceConnection::DeviceConnection(PinNum pin, bool invert, unsigned long detectTime)
+DeviceConnection::DeviceConnection(PinNum pin, bool activeLow, unsigned long detectTime)
 	:
-	pin(sanitizePin(pin)), inverted(invert), stablePeriod(detectTime),  // constants(ish)
+	pin(sanitizePin(pin)), inverted(activeLow), stablePeriod(detectTime),  // constants(ish)
 
 	/* Assume we're connected on first call
 	*/
@@ -345,16 +426,52 @@ void AnalogInput::setCalibration(AnalogInput::Calibration newCal) {
 	this->cal = newCal;
 }
 
+//#########################################################
+//                     Peripheral                         #
+//#########################################################
+
+bool Peripheral::update() {
+	// if the detector exists, poll for state
+	if (this->detector) {
+		this->detector->poll();
+	}
+
+	// get the connected state from the detector
+	const bool connected = this->isConnected();
+
+	// call the derived class update function
+	return this->updateState(connected);
+}
+
+bool Peripheral::isConnected() const {
+	// if detector exists, return state
+	if (this->detector) {
+		return this->detector->isConnected();
+	}
+
+	// otherwise, assume always connected
+	return true;
+}
+
+void Peripheral::setDetectPtr(DeviceConnection* d) {
+	this->detector = d;
+}
+
+void Peripheral::setStablePeriod(unsigned long t) {
+	// if detector exists, set the stable period
+	if (this->detector) {
+		this->detector->setStablePeriod(t);
+	}
+}
 
 //#########################################################
 //                       Pedals                           #
 //#########################################################
 
-Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals, PinNum detectPin)
+Pedals::Pedals(AnalogInput* dataPtr, uint8_t nPedals)
 	: 
 	pedalData(dataPtr),
 	NumPedals(nPedals),
-	detector(detectPin),
 	changed(false)
 {}
 
@@ -362,26 +479,29 @@ void Pedals::begin() {
 	update();  // set initial pedal position
 }
 
-bool Pedals::update() {
-	changed = false;
+bool Pedals::updateState(bool connected) {
+	this->changed = false;
 
-	detector.poll();
-	if (detector.getState() == DeviceConnection::Connected) {
-		// if connected, read all pedal positions
+	// if we're connected, read all pedal positions
+	if (connected) {
 		for (int i = 0; i < getNumPedals(); ++i) {
 			changed |= pedalData[i].read();
 		}
 	}
-	else if (detector.getState() == DeviceConnection::Unplug) {
-		// on unplug event, zero all pedals
+
+	// otherwise, zero all pedals
+	else {
 		for (int i = 0; i < getNumPedals(); ++i) {
 			const int min = pedalData[i].getMin();
-			pedalData[i].setPosition(min);
+			const int prev = pedalData[i].getPositionRaw();
+			if (min != prev) {
+				pedalData[i].setPosition(min);
+				changed = true;
+			}
 		}
-		changed = true;  // set flag so we know everything moved to 0
 	}
 
-	return changed;
+	return this->changed;
 }
 
 long Pedals::getPosition(PedalID pedal, long rMin, long rMax) const {
@@ -555,8 +675,8 @@ void Pedals::serialCalibration(Stream& iface) {
 }
 
 
-TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
-	: Pedals(pedalData, NumPedals, detectPin),
+TwoPedals::TwoPedals(PinNum gasPin, PinNum brakePin)
+	: Pedals(pedalData, NumPedals),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin) }
 {}
 
@@ -566,8 +686,8 @@ void TwoPedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::Cal
 }
 
 
-ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
-	: Pedals(pedalData, NumPedals, detectPin),
+ThreePedals::ThreePedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin)
+	: Pedals(pedalData, NumPedals),
 	pedalData{ AnalogInput(gasPin), AnalogInput(brakePin), AnalogInput(clutchPin) }
 {}
 
@@ -578,10 +698,13 @@ void ThreePedals::setCalibration(AnalogInput::Calibration gasCal, AnalogInput::C
 }
 
 
-
 LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin, PinNum detectPin)
-	: ThreePedals(gasPin, brakePin, clutchPin, detectPin)
+	: 
+	ThreePedals(gasPin, brakePin, clutchPin),
+	detectObj(detectPin, false)  // active high
 {
+	this->setDetectPtr(&this->detectObj);
+
 	// taken from calibrating my own pedals. the springs are pretty stiff so while
 	// this covers the whole travel range, users may want to back it down for casual
 	// use (esp. for the brake travel)
@@ -589,8 +712,11 @@ LogitechPedals::LogitechPedals(PinNum gasPin, PinNum brakePin, PinNum clutchPin,
 }
 
 LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinNum brakePin, PinNum detectPin)
-	: TwoPedals(gasPin, brakePin, detectPin)
+	: 
+	TwoPedals(gasPin, brakePin),
+	detectObj(detectPin, false)  // active high
 {
+	this->setDetectPtr(&this->detectObj);
 	this->setCalibration({ 646, 0 }, { 473, 1023 });  // taken from calibrating my own pedals
 }
 
@@ -599,9 +725,22 @@ LogitechDrivingForceGT_Pedals::LogitechDrivingForceGT_Pedals(PinNum gasPin, PinN
 //                       Shifter                          #
 //#########################################################
 
-Shifter::Shifter(int8_t min, int8_t max)
-	: MinGear(min), MaxGear(max)
-{}
+Shifter::Shifter(Gear min, Gear max)
+	:
+	MinGear(min), MaxGear(max)
+{
+	this->currentGear = this->previousGear = 0;  // neutral
+}
+
+void Shifter::setGear(Gear gear) {
+	// if gear is out of range, set it to neutral
+	if (gear < MinGear || gear > MaxGear) {
+		gear = 0;
+	}
+
+	this->previousGear = this->currentGear;
+	this->currentGear = gear;
+}
 
 char Shifter::getGearChar(int gear) {
 	char c = '?';
@@ -674,18 +813,17 @@ const float AnalogShifter::CalEngagementPoint = 0.70;
 const float AnalogShifter::CalReleasePoint = 0.50;
 const float AnalogShifter::CalEdgeOffset = 0.60;
 
-AnalogShifter::AnalogShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
-	: 
-	/* In initializing the Shifter, the lowest gear is going to be '-1' if a pin
-	* exists for reverse, otherwise it's going to be '0' (neutral).
-	*/
-	Shifter(sanitizePin(pinRev) != UnusedPin ? -1 : 0, 6),
+AnalogShifter::AnalogShifter(
+	Gear gearMin, Gear gearMax,
+	PinNum pinX, PinNum pinY, PinNum pinRev
+) : 
+	Shifter(gearMin, gearMax),
 
 	/* Two axes, X and Y */
 	analogAxis{ AnalogInput(pinX), AnalogInput(pinY) },
 
 	pinReverse(sanitizePin(pinRev)),
-	detector(detectPin, false)  // not inverted
+	reverseState(false)
 {}
 
 void AnalogShifter::begin() {
@@ -695,48 +833,39 @@ void AnalogShifter::begin() {
 	update();  // set initial gear position
 }
 
-bool AnalogShifter::update() {
-	detector.poll();
-
-	switch (detector.getState()) {
-
-	// connected! poll the ADC for new analog axis data
-	case(DeviceConnection::Connected):
-		analogAxis[Axis::X].read();
-		analogAxis[Axis::Y].read();
-		break;
-
-	// on an unplug event, we want to reset our position back to
-	// neutral and then immediately return
-	case(DeviceConnection::Unplug):
-	{
-		const int8_t previousGear = this->getGear();
-
+bool AnalogShifter::updateState(bool connected) {
+	// if not connected, reset our position back to neutral
+	// and immediately return
+	if (!connected) {
+		// set axis values to calibrated neutral
 		analogAxis[Axis::X].setPosition(calibration.neutralX);
 		analogAxis[Axis::Y].setPosition(calibration.neutralY);
 
-		if (previousGear != 0) changed = true;
-		currentGear = 0;
-		return changed;
-		break;
+		// set reverse state to unpressed
+		this->reverseState = false;
+
+		// set gear to neutral
+		this->setGear(0);
+
+		// status changed if gear changed
+		return this->gearChanged();
 	}
 
-	// if the device is either disconnected or just plugged in and unstable, set gear
-	// 'changed' to false and then immediately return false to save on processing
-	case(DeviceConnection::PlugIn):
-	case(DeviceConnection::Disconnected):
-		changed = false;
-		return changed;
-		break;
-	}
-
-	const int8_t previousGear = this->getGear();
-	const bool prevOdd = ((previousGear != -1) && (previousGear & 1));  // were we previously in an odd gear
-	const bool prevEven = (!prevOdd && previousGear != 0);  // were we previously in an even gear
-	
+	// poll the analog axes for new data
+	analogAxis[Axis::X].read();
+	analogAxis[Axis::Y].read();
 	const int x = analogAxis[Axis::X].getPosition();
 	const int y = analogAxis[Axis::Y].getPosition();
-	int8_t newGear = 0;
+
+	// poll the reverse button and cache in the class
+	this->reverseState = this->readReverseButton();
+
+	// check previous gears for comparison
+	const Gear previousGear = this->getGear();
+	const bool prevOdd = ((previousGear != -1) && (previousGear & 1));  // were we previously in an odd gear
+	const bool prevEven = (!prevOdd && previousGear != 0);  // were we previously in an even gear
+
+	Gear newGear = 0;
 
 	// If we're below the 'release' thresholds, we must still be in the previous gear
 	if ((prevOdd && y > calibration.oddRelease) || (prevEven && y < calibration.evenRelease)) {
@@ -777,10 +906,10 @@ bool AnalogShifter::update() {
 		}
 	}
 
-	changed = (newGear != previousGear) ? 1 : 0;
-	currentGear = newGear;
+	// finally, store the newly calculated gear
+	this->setGear(newGear);
 
-	return changed;
+	return this->gearChanged();
 }
 
 long AnalogShifter::getPosition(Axis ax, long min, long max) const {
@@ -793,13 +922,19 @@ int AnalogShifter::getPositionRaw(Axis ax) const {
 	return analogAxis[ax].getPositionRaw();
 }
 
-bool AnalogShifter::getReverseButton() const {
-	// if the reverse pin is not set *or* if the device is not currently
-	// connected, avoid reading the floating input and just return 'false'
-	if (pinReverse == UnusedPin || detector.getState() != DeviceConnection::Connected) {
+bool AnalogShifter::readReverseButton() {
+	// if the reverse pin is not set, avoid reading the
+	// floating input and just return 'false'
+	if (pinReverse == UnusedPin) {
 		return false;
 	}
 	return digitalRead(pinReverse);
+}
+
+bool AnalogShifter::getReverseButton() const {
+	// return the cached reverse state from updateState(bool)
+	// do NOT poll the button!
+	return this->reverseState;
 }
 
 void AnalogShifter::setCalibration(
@@ -997,19 +1132,543 @@ void AnalogShifter::serialCalibration(Stream& iface) {
 }
 
 LogitechShifter::LogitechShifter(PinNum pinX, PinNum pinY, PinNum pinRev, PinNum detectPin)
-	: AnalogShifter(pinX, pinY, pinRev, detectPin)
+	: 
+	AnalogShifter(
+		-1, 6,  // includes reverse and gears 1-6
+		pinX, pinY, pinRev
+	),
+
+	detectObj(detectPin, false)  // active high
 {
+	this->setDetectPtr(&this->detectObj);
 	this->setCalibration({ 490, 440 }, { 253, 799 }, { 262, 86 }, { 460, 826 }, { 470, 76 }, { 664, 841 }, { 677, 77 });
+}
+
+
+LogitechShifterG27::LogitechShifterG27(
+	PinNum pinX, PinNum pinY,
+	PinNum pinLatch, PinNum pinClock, PinNum pinData,
+	PinNum pinLed,
+	PinNum pinDetect
+) :
+	LogitechShifter(pinX, pinY, UnusedPin, pinDetect),
+
+	pinLatch(sanitizePin(pinLatch)), pinClock(sanitizePin(pinClock)), pinData(sanitizePin(pinData)),
+	pinLed(sanitizePin(pinLed))
+{
+	this->pinModesSet = false;
+	this->setPowerLED(1);  // power LED on by default
+	this->buttonStates = this->previousButtons = 0x0000;  // zero all button data
+
+	// using the calibration values from my own G27 shifter
+	this->setCalibration({ 453, 470 }, { 247, 828 }, { 258, 6 }, { 449, 878 }, { 472, 5 }, { 645, 880 }, { 651, 21 });
+}
+
+void LogitechShifterG27::cacheButtons(uint16_t newStates) {
+	this->previousButtons = this->buttonStates;  // save current to previous
+	this->buttonStates = newStates;  // replace current with new value
+}
+
+void LogitechShifterG27::setPinModes(bool enabled) {
+	// check if pins are valid. if one or more pins is unused,
+	// this isn't going to work and we shouldn't bother setting
+	// any of the pin states
+	if (
+		this->pinData  == UnusedPin ||
+		this->pinLatch == UnusedPin ||
+		this->pinClock == UnusedPin)
+	{
+		return;
+	}
+
+	// set up data pin to read from regardless
+	pinMode(this->pinData, INPUT);
+
+	// enabled = drive the output pins
+	if (enabled) {
+		// note: writing the output before setting the
+		// pin mode so that we don't accidentally drive
+		// the wrong direction momentarily
+
+		// set latch pin as output, HIGH on idle
+		digitalWrite(this->pinLatch, HIGH);
+		pinMode(this->pinLatch, OUTPUT);
+
+		// set clock pin as output, LOW on idle
+		digitalWrite(this->pinClock, LOW);
+		pinMode(this->pinClock, OUTPUT);
+
+		// if we have an LED pin, set it to output and write the
+		// commanded state (inverted, as the LED is active-low)
+		if (this->pinLed != UnusedPin) {
+			digitalWrite(this->pinLed, !(this->ledState));
+			pinMode(this->pinLed, OUTPUT);
+		}
+	}
+
+	// disabled = leave output pins as high-z
+	else {
+		// note: setting the mode before writing the
+		// output for the same reason; changing in
+		// high-z mode is safer
+
+		// set latch pin as high impedance, with pull-up
+		pinMode(this->pinLatch, INPUT);
+		digitalWrite(this->pinLatch, HIGH);
+
+		// set clock pin as high impedance, no pull-up
+		pinMode(this->pinClock, INPUT);
+		digitalWrite(this->pinClock, LOW);
+
+		// if we have an LED pin, set it to input, LOW on idle
+		if (this->pinLed != UnusedPin) {
+			pinMode(this->pinLed, INPUT);
+			digitalWrite(this->pinLed, LOW);
+		}
+	}
+
+	this->pinModesSet = enabled;
+}
+
+void LogitechShifterG27::setPowerLED(bool state) {
+	this->ledState = state;
+}
+
+uint16_t LogitechShifterG27::readShiftRegisters() {
+	// if the pin outputs are not set, quit (none pressed)
+	if (!this->pinModesSet) return 0x0000;
+
+	uint16_t data = 0x0000;
+
+	// pulse shift register latch from high to low to high, 12 us
+	// (this timing is *completely* arbitrary, but it's nice to have
+	//  *some* delay so that much faster MCUs don't blow through it)
+	digitalWrite(this->pinLatch, LOW);
+	delayMicroseconds(12);
+	digitalWrite(this->pinLatch, HIGH);
+	delayMicroseconds(12);
+
+	// clock is pulsed from LOW to HIGH on every bit,
+	// and then left to idle low
+	for (int i = 0; i < 16; ++i) {
+		digitalWrite(this->pinClock, LOW);
+		const bool state = digitalRead(this->pinData);
+		if (state) data |= 1 << (15 - i);  // store data in word, MSB-first
+		digitalWrite(this->pinClock, HIGH);
+		delayMicroseconds(6);
+	}
+	digitalWrite(this->pinClock, LOW);
+
+	// edge case: two of the bits (0x8000 and 0x2000) are connected only to
+	// pull-down resistors, and should theoretically never be high. If they,
+	// and all other bits, *are* high, then we are not reading from a shifter
+	// that has shift registers. The "Driving Force" (G29/G920/G923) shifter
+	// has its data output connected to the 'reverse' button through a buffer,
+	// and will report 'high' if the reverse button is pressed no matter how
+	// many times the clock is pulsed.
+	//
+	// QED: we are connected to a "Driving Force" shifter, and not a G27.
+	// That's okay! If we set the state of the 'reverse' button and clear
+	// all others, we can still behave like a G27.
+	if (data == 0xFFFF) {
+		data = (1 << (uint8_t) Button::BUTTON_REVERSE);
+	}
+
+	return data;
+}
+
+void LogitechShifterG27::begin() {
+	// disable pin outputs. this sets the initial
+	// 'safe' state. the outputs will be enabled
+	// by the 'updateState(bool)' function when needed.
+	this->setPinModes(0);
+
+	// call the begin() class of the base, which will also
+	// poll 'update()' on our behalf
+	this->AnalogShifter::begin();
+}
+
+bool LogitechShifterG27::updateState(bool connected) {
+	bool changed = false;
+
+	// if we're connected, set the pin modes, read the
+	// shift registers, and cache the data
+	if (connected) {
+		if (!this->pinModesSet) {
+			this->setPinModes(1);
+		}
+
+		if (this->pinLed != UnusedPin) {
+			digitalWrite(this->pinLed, !(this->ledState));  // active low
+		}
+
+		const uint16_t data = this->readShiftRegisters();
+		this->cacheButtons(data);
+		changed |= this->buttonsChanged();
+	}
+
+	// if we're *not* connected, reset the pin modes and
+	// set no buttons pressed
+	else {
+		if (this->pinModesSet) {
+			this->setPinModes(0);
+		}
+
+		this->cacheButtons(0x0000);
+		changed |= this->buttonsChanged();
+	}
+
+	// we also need to update the data for the analog shifter
+	changed |= AnalogShifter::updateState(connected);
+
+	return changed;
+}
+
+bool LogitechShifterG27::buttonsChanged() const {
+	return this->buttonStates != this->previousButtons;
+}
+
+bool LogitechShifterG27::getButton(Button button) const {
+	return this->extractButton(button, this->buttonStates);
+}
+
+bool LogitechShifterG27::getButtonChanged(Button button) const {
+	return this->getButton(button) != this->extractButton(button, this->previousButtons);
+}
+
+int LogitechShifterG27::getDpadAngle() const {
+	const Button pads[4] = {
+		DPAD_UP,
+		DPAD_RIGHT,
+		DPAD_DOWN,
+		DPAD_LEFT,
+	};
+
+	// combine pads to a bitfield (nybble)
+	uint8_t dpad = 0x00;
+	for (uint8_t i = 0; i < 4; ++i) {
+		dpad |= (this->getButton(pads[i]) << i);
+	}
+
+	// The hatswitch value is from 0-7 proceeding clockwise
+	// from top (0 is 'up', 1 is 'up + right', etc.). I don't
+	// know of a great way to do this, so have this naive
+	// lookup table with a built-in SOCD cleaner
+
+	// For this, simultaneous opposing cardinal directions
+	// are neutral (because this is presumably used for
+	// navigation only, and not fighting games. Probably).
+
+	// bitfield to hatswitch lookup table
+	const uint8_t hat_table[16] = {
+		8, // 0b0000, Unpressed
+		0, // 0b0001, Up
+		2, // 0b0010, Right
+		1, // 0b0011, Right + Up
+		4, // 0b0100, Down
+		8, // 0b0101, Down + Up (SOCD None)
+		3, // 0b0110, Down + Right
+		2, // 0b0111, Down + Right + Up (SOCD Right)
+		6, // 0b1000, Left
+		7, // 0b1001, Left + Up
+		8, // 0b1010, Left + Right (SOCD None)
+		0, // 0b1011, Left + Right + Up (SOCD Up)
+		5, // 0b1100, Left + Down
+		6, // 0b1101, Left + Down + Up (SOCD Left)
+		4, // 0b1110, Left + Down + Right (SOCD Down)
+		8, // 0b1111, Left + Down + Right + Up (SOCD None)
+	};
+
+	// multiply the 0-8 value by 45 to get it in degrees
+	int16_t angle = hat_table[dpad & 0x0F] * 45;
+
+	// edge case: if no buttons are pressed, the angle is '-1'
+	if (angle == 360) angle = -1;
+
+	return angle;
+}
+
+bool LogitechShifterG27::readReverseButton() {
+	// this virtual function is provided for the sake of the AnalogShifter base
+	// class, which can use this to get the button state from the shift register
+	// without needing to interface with the shift registers themselves
+	return this->getButton(BUTTON_REVERSE);
+}
+
+
+/*
+* Static calibration constants
+* These values are arbitrary - just what worked well with my own shifter.
+*/
+const float LogitechShifterG25::CalEngagementPoint = 0.70;
+const float LogitechShifterG25::CalReleasePoint = 0.50;
+
+LogitechShifterG25::LogitechShifterG25(
+	PinNum pinX, PinNum pinY,
+	PinNum pinLatch, PinNum pinClock, PinNum pinData,
+	PinNum pinLed,
+	PinNum pinDetect
+) :
+	LogitechShifterG27(
+		pinX, pinY,
+		pinLatch, pinClock, pinData,
+		pinLed,
+		pinDetect
+	),
+
+	sequentialProcess(false),  // not in sequential mode
+	sequentialState(0)         // no sequential buttons pressed
+{
+	// using the calibration values from my own G25 shifter
+	this->setCalibration({ 508, 435 }, { 310, 843 }, { 303, 8 }, { 516, 827 }, { 540, 14 }, { 713, 846 }, { 704, 17 });
+	this->setCalibrationSequential(425, 619, 257);
+}
+
+void LogitechShifterG25::begin() {
+	this->sequentialProcess = false;  // clear process flag
+	this->sequentialState = 0;        // clear any pressed buttons
+
+	this->LogitechShifterG27::begin();  // call base class begin()
+}
+
+bool LogitechShifterG25::updateState(bool connected) {
+	// call the base class to update the state of the
+	// buttons and the H-pattern shifter
+	bool changed = this->LogitechShifterG27::updateState(connected);
+
+	// if we're connected and in sequential mode...
+	if (connected && this->inSequentialMode()) {
+
+		// clear 'changed', because this will falsely report a change
+		// if we've "shifted" into 2nd/4th in the process of sequential
+		// shifting
+		changed = false;
+
+		// force neutral gear, ignoring the H-pattern selection
+		this->setGear(0);
+
+		// edge case: if we've not just switched into sequential mode,
+		// we need to ignore the H-pattern gear change (to 2/4, and then
+		// set by us to neutral). We can do that, hackily, by setting to
+		// neutral again to clear the cached gear for comparison.
+		if (this->sequentialProcess) {
+			this->setGear(0);
+		}
+
+		// read the raw y axis value, ignoring the H-pattern calibration
+		const int y = this->getPositionRaw(Axis::Y);
+
+		// save the previous state for reference
+		const int8_t prevState = this->sequentialState;
+
+		// if we're neutral, check for up/down shift
+		if (this->sequentialState == 0) {
+			     if (y >= this->seqCalibration.upTrigger)   this->sequentialState =  1;
+			else if (y <= this->seqCalibration.downTrigger) this->sequentialState = -1;
+		}
+
+		// if we're in up-shift mode, check for release
+		else if ((this->sequentialState == 1) && (y < this->seqCalibration.upRelease)) {
+			this->sequentialState = 0;
+		}
+
+		// if we're in down-shift mode, check for release
+		else if ((this->sequentialState == -1) && (y > this->seqCalibration.downRelease)) {
+			this->sequentialState = 0;
+		}
+
+		// set the 'changed' flag if the sequential state changed
+		if (prevState != this->sequentialState) {
+			changed = true;
+		}
+		// otherwise, set 'changed' based on the buttons *only*
+		else {
+			changed = this->buttonsChanged();
+		}
+
+		// set 'process' flag to handle edge case on subsequent updates
+		this->sequentialProcess = true;
+	}
+
+	// if we're not connected or if the sequential mode has been disabled,
+	// clear the sequential flags if they have been set
+	else {
+		if (this->sequentialProcess) {
+			this->sequentialProcess = false;  // not in sequential mode
+			this->sequentialState = 0;        // no sequential buttons pressed
+			changed = true;
+		}
+	}
+
+	return changed;
+}
+
+bool LogitechShifterG25::inSequentialMode() const {
+	return this->getButton(BUTTON_SEQUENTIAL);
+}
+
+bool LogitechShifterG25::getShiftUp() const {
+	return this->sequentialState == 1;
+}
+
+bool LogitechShifterG25::getShiftDown() const {
+	return this->sequentialState == -1;
+}
+
+void LogitechShifterG25::setCalibrationSequential(int neutral, int up, int down, float engagePoint, float releasePoint) {
+	// limit percentage thresholds
+	engagePoint  = floatPercent(engagePoint);
+	releasePoint = floatPercent(releasePoint);
+
+	// prevent release point from being higher than engage
+	// (which will prevent the shifter from working at all)
+	if (releasePoint > engagePoint) {
+		releasePoint = engagePoint;
+	}
+
+	// calculate ranges
+	const int upRange   = up - neutral;
+	const int downRange = neutral - down;
+
+	// calculate calibration points
+	this->seqCalibration.upTrigger   = neutral + (upRange * engagePoint);
+	this->seqCalibration.upRelease   = neutral + (upRange * releasePoint);
+
+	this->seqCalibration.downTrigger = neutral - (downRange * engagePoint);
+	this->seqCalibration.downRelease = neutral - (downRange * releasePoint);
+}
+
+void LogitechShifterG25::serialCalibrationSequential(Stream& iface) {
+	// err if not connected
+	if (this->isConnected() == false) {
+		iface.print(F("Error! Cannot perform calibration, "));
+		iface.print(F("shifter"));
+		iface.println(F(" is not connected."));
+		return;
+	}
+
+	const char* separator = "------------------------------------";
+
+	iface.println();
+	iface.println(F("Sim Racing Library G25 Sequential Shifter Calibration"));
+	iface.println(separator);
+	iface.println();
+
+	while (this->inSequentialMode() == false) {
+		iface.print(F("Please press down on the shifter and move the dial counter-clockwise to put the shifter into sequential mode"));
+		iface.print(F(". Send any character to continue."));
+		iface.println(F(" Send 'q' to quit."));
+		iface.println();
+
+		waitClient(iface);
+		this->update();
+
+		// quit if user sends 'q'
+		if (iface.read() == 'q') {
+			iface.println(F("Quitting sequential calibration! Goodbye <3"));
+			iface.println();
+			return;
+		}
+
+		// send an error if we're still not there
+		if (this->inSequentialMode() == false) {
+			iface.println(F("Error: The shifter is not in sequential mode"));
+			iface.println();
+		}
+	}
+
+	float engagementPoint = LogitechShifterG25::CalEngagementPoint;
+	float releasePoint = LogitechShifterG25::CalReleasePoint;
+
+	const uint8_t NumPoints = 3;
+	const char* directions[2] = {
+		"up",
+		"down",
+	};
+	int data[NumPoints];
+
+	int& neutral = data[0];
+	int& yMax    = data[1];
+	int& yMin    = data[2];
+
+	for (uint8_t i = 0; i < NumPoints; ++i) {
+		if (i == 0) {
+			iface.print(F("Leave the gear shifter in neutral"));
+		}
+		else {
+			iface.print(F("Please move the gear shifter to sequentially shift "));
+			iface.print(directions[i - 1]);
+			iface.print(F(" and hold it there"));
+		}
+		iface.println(F(". Send any character to continue."));
+		waitClient(iface);
+
+		this->update();
+		data[i] = this->getPositionRaw(Axis::Y);
+		iface.println();  // spacing
+	}
+
+	iface.println(F("These settings are optional. Send 'y' to customize. Send any other character to continue with the default values."));
+
+	iface.print(F("  * Shift Engagement Point: \t"));
+	iface.println(engagementPoint);
+
+	iface.print(F("  * Shift Release Point:   \t"));
+	iface.println(releasePoint);
+
+	iface.println();
+
+	waitClient(iface);
+
+	if (iface.read() == 'y') {
+		iface.println(F("Set the engagement point as a floating point percentage. This is the percentage away from the neutral axis on Y to start shifting."));
+		readFloat(engagementPoint, iface);
+		iface.println();
+
+		iface.println(F("Set the release point as a floating point percentage. This is the percentage away from the neutral axis on Y to stop shifting. It must be less than the engagement point."));
+		readFloat(releasePoint, iface);
+		iface.println();
+	}
+
+	flushClient(iface);
+
+	// apply and print
+	this->setCalibrationSequential(neutral, yMax, yMin, engagementPoint, releasePoint);
+
+	iface.println(F("Here is your calibration:"));
+	iface.println(separator);
+	iface.println();
+
+	iface.print(F("shifter.setCalibrationSequential( "));
+
+	iface.print(neutral);
+	iface.print(", ");
+	iface.print(yMax);
+	iface.print(", ");
+	iface.print(yMin);
+	iface.print(", ");
+
+	iface.print(engagementPoint);
+	iface.print(", ");
+	iface.print(releasePoint);
+	iface.print(");");
+	iface.println();
+
+	iface.println();
+	iface.println(separator);
+	iface.println();
+
+	iface.println(F("Paste this line into the setup() function to calibrate on startup."));
+	iface.println(F("\n\nCalibration complete! :)\n"));
 }
 
 //#########################################################
 //                      Handbrake                         #
 //#########################################################
 
-Handbrake::Handbrake(PinNum pinAx, PinNum detectPin)
+Handbrake::Handbrake(PinNum pinAx)
 	: 
 	analogAxis(pinAx),
-	detector(detectPin),
 	changed(false)
 {}
 
@@ -1017,19 +1676,26 @@ void Handbrake::begin() {
 	update();  // set initial handbrake position
 }
 
-bool Handbrake::update() {
-	changed = false;
+bool Handbrake::updateState(bool connected) {
+	this->changed = false;
 
-	detector.poll();
-	if (detector.getState() == DeviceConnection::Connected) {
-		changed = analogAxis.read();
-	}
-	else if (detector.getState() == DeviceConnection::Unplug) {
-		analogAxis.setPosition(analogAxis.getMin());
-		changed = true;
+	// if connected, read state of the axis
+	if (connected) {
+		this->changed = this->analogAxis.read();
 	}
 
-	return changed;
+	// otherwise, set axis to its minimum (idle) position
+	else {
+		const int min  = this->analogAxis.getMin();
+		const int prev = this->analogAxis.getPositionRaw();
+
+		if (min != prev) {
+			this->analogAxis.setPosition(min);
+			this->changed = true;
+		}
+	}
+
+	return this->changed;
 }
 
 long Handbrake::getPosition(long rMin, long rMax) const {
