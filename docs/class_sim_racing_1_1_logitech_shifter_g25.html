@@ -35,7 +35,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="gear_shift_logo.svg"/></td>
   <td id="projectalign">
-   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.1</span>
+   <div id="projectname">Arduino Sim Racing Library<span id="projectnumber">&#160;v2.0.2</span>
    </div>
   </td>
  </tr>
@@ -174,10 +174,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab35b7d3e740e8362edbd33e7af7da437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the shifter is in sequential shifting mode.  <br /></td></tr>
 <tr class="separator:ab35b7d3e740e8362edbd33e7af7da437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c9cec62ac6f3b1cea85b7fbeb42647a" id="r_a9c9cec62ac6f3b1cea85b7fbeb42647a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c9cec62ac6f3b1cea85b7fbeb42647a">getShiftUp</a> () const</td></tr>
-<tr class="memdesc:a9c9cec62ac6f3b1cea85b7fbeb42647a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the sequential shifter is shifted up.  <br /></td></tr>
+<tr class="memdesc:a9c9cec62ac6f3b1cea85b7fbeb42647a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the sequential shifter is in the shift up position.  <br /></td></tr>
 <tr class="separator:a9c9cec62ac6f3b1cea85b7fbeb42647a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de453304c87429578f8f47d95dd642b" id="r_a7de453304c87429578f8f47d95dd642b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7de453304c87429578f8f47d95dd642b">getShiftDown</a> () const</td></tr>
-<tr class="memdesc:a7de453304c87429578f8f47d95dd642b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the sequential shifter is shifted down.  <br /></td></tr>
+<tr class="memdesc:a7de453304c87429578f8f47d95dd642b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the sequential shifter is in the shift down position.  <br /></td></tr>
 <tr class="separator:a7de453304c87429578f8f47d95dd642b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acefe26b1be818e1ba14996ba1dc971eb" id="r_acefe26b1be818e1ba14996ba1dc971eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acefe26b1be818e1ba14996ba1dc971eb">setCalibrationSequential</a> (int neutral, int up, int down, float engagePoint=LogitechShifterG25::CalEngagementPoint, float releasePoint=LogitechShifterG25::CalReleasePoint)</td></tr>
 <tr class="memdesc:acefe26b1be818e1ba14996ba1dc971eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the sequential shifter for more accurate shifting.  <br /></td></tr>
@@ -1031,8 +1031,9 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if the sequential shifter is shifted down. </p>
-<dl class="section return"><dt>Returns</dt><dd>'true' if the sequential shifter is shifted down, 'false' otherwise </dd></dl>
+<p>Check if the sequential shifter is in the shift down position. </p>
+<p>When in sequential mode, the shifter is considered to be in the "shift down" position when it is pushed away from the user.</p>
+<dl class="section return"><dt>Returns</dt><dd>'true' if the sequential shifter is in the shift down position, 'false' otherwise </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l01514">1514</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
@@ -1053,8 +1054,9 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if the sequential shifter is shifted up. </p>
-<dl class="section return"><dt>Returns</dt><dd>'true' if the sequential shifter is shifted up, 'false' otherwise </dd></dl>
+<p>Check if the sequential shifter is in the shift up position. </p>
+<p>When in sequential mode, the shifter is considered to be in the "shift up" position when it is pulled towards the user.</p>
+<dl class="section return"><dt>Returns</dt><dd>'true' if the sequential shifter is in the shift up position, 'false' otherwise </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l01510">1510</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
@@ -1173,7 +1175,7 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l01541">1541</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_sim_racing_8cpp_source.html#l01559">1559</a> of file <a class="el" href="_sim_racing_8cpp_source.html">SimRacing.cpp</a>.</p>
 
 </div>
 </div>
